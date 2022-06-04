@@ -11,8 +11,9 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>GenericApp</artifactId>
-	<version>4.0.0</version>
+	<version>6.0.0</version>
 	<description>Generic Application Provider</description>
+
 
 	<properties>
 		<java.version>11</java.version>
