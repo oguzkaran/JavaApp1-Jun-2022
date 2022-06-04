@@ -10,10 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>GenericApp</artifactId>
+	<artifactId>SampleApp</artifactId>
 	<version>6.0.0</version>
-	<name>GenericApp</name>
-	<description>Generic Application Provider</description>
+	<name>SampleApp</name>
 
 	<properties>
 		<java.version>11</java.version>
