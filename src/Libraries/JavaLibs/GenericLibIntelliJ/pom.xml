@@ -15,6 +15,13 @@
 	<name>GenericLib</name>
 	<description>Generic Library Provider</description>
 
+	<repositories>
+		<repository>
+			<id>JavaApp1-Jun-2022</id>
+			<url>https://raw.github.com/oguzkaran/javaapp1-jun-2022-maven-repo/main</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>

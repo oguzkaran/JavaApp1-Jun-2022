@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : ArrayUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 04.06.2022
+	LAST UPDATE : 05.06.2022
 
 	Utility class for array operations
 
@@ -11,7 +11,6 @@
 package org.csystem.util.array;
 
 import java.util.Random;
-
 public final class ArrayUtil {
     private static void bubbleSortAscending(int [] a)
     {
@@ -100,8 +99,7 @@ public final class ArrayUtil {
         int [] result = new int[newLength];
         int min = Math.min(a.length, newLength);
 
-        for (int i = 0; i < min; ++i)
-            result[i] = a[i];
+        System.arraycopy(a, 0, result, 0, min);
 
         return result;
     }
