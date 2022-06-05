@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>LibraryUsageProjectLocalApp</artifactId>
+	<artifactId>LibraryUsageMavenLocalApp</artifactId>
 	<version>6.0.0</version>
-	<name>LibraryUsageProjectLocalApp</name>
-	<description>Demo project that use library in project local. This approach is not recommended if there no rationale</description>
+	<name>LibraryUsageMavenLocalApp</name>
+	<description>Demo project that use library in maven local</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -24,16 +24,12 @@
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util</artifactId>
 			<version>6.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-util-6.0.0.jar</systemPath>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-console</artifactId>
 			<version>6.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-util-console-6.0.0.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -54,9 +50,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<includeSystemScope>true</includeSystemScope>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

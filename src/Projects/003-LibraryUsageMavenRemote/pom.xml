@@ -10,10 +10,17 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>LibraryUsageProjectLocalApp</artifactId>
+	<artifactId>LibraryUsageMavenRemoteApp</artifactId>
 	<version>6.0.0</version>
-	<name>LibraryUsageProjectLocalApp</name>
-	<description>Demo project that use library in project local. This approach is not recommended if there no rationale</description>
+	<name>LibraryUsageMavenRemoteApp</name>
+	<description>Demo project that use library in maven remote</description>
+
+	<repositories>
+		<repository>
+			<id>JavaApp1-Jun-2022</id>
+			<url>https://raw.github.com/oguzkaran/javaapp1-jun-2022-maven-repo/main</url>
+		</repository>
+	</repositories>
 
 	<properties>
 		<java.version>11</java.version>
@@ -23,17 +30,13 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util</artifactId>
-			<version>6.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-util-6.0.0.jar</systemPath>
+			<version>6.1.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-console</artifactId>
 			<version>6.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/libs/org-csystem-util-console-6.0.0.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -54,9 +57,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<includeSystemScope>true</includeSystemScope>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
