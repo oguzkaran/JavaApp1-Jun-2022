@@ -1,0 +1,23 @@
+/*----------------------------------------------------------------------------------------------------------------------
+    Bir yazıyı ters yüz eden reversed metodunun recursive versiyonu
+----------------------------------------------------------------------------------------------------------------------*/
+package org.csystem.util.recursion.test;
+
+import org.csystem.util.console.Console;
+import org.csystem.util.recursion.RecursionUtil;
+import org.csystem.util.recursion.Util;
+
+public class RecursiveReversedTest {
+    public static void run()
+    {
+        for (;;) {
+            var s = Console.read("Input a text:");
+
+            var rev = RecursionUtil.reversed(s);
+            Console.writeLine(rev);
+
+            if ("quit".equals(s))
+                break;
+        }
+    }
+}
