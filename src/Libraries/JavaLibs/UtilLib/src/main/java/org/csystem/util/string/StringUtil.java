@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 04.06.2022
+	LAST UPDATE : 18.06.2022
 
 	Utility class for string operations
 
@@ -87,12 +87,13 @@ public final class StringUtil {
     public static String getLetters(String s)
     {
         String str = "";
+        int len = s.length();
 
-        char [] chars = s.toCharArray();
-
-        for (char c : chars)
+        for (int i = 0; i < len; ++i) {
+            char c = s.charAt(i);
             if (Character.isLetter(c))
-                str += c; // İleride daha etkin olacak
+                str += c;
+        }
 
         return str;
     }
@@ -348,11 +349,7 @@ public final class StringUtil {
 
     public static String reversed(String s)
     {
-        char [] c = s.toCharArray();
-
-        ArrayUtil.reverse(c);
-
-        return String.valueOf(c);
+        return new StringBuilder(s).reverse().toString();
     }
 
     public static String squeeze(String s1, String s2)

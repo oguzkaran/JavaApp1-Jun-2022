@@ -3,6 +3,11 @@ package org.csystem.util.recursion;
 import org.csystem.util.console.Console;
 
 public class RecursionUtil {
+    private static int gcdRecur(int a, int b)
+    {
+        return b == 0 ? a : gcdRecur(b, a % b);
+    }
+
     private static int fibonacciNumberRecur(int n)
     {
         if (n <= 2)
@@ -10,6 +15,7 @@ public class RecursionUtil {
 
         return fibonacciNumberRecur(n - 1) + fibonacciNumberRecur(n - 2);
     }
+
 
     private static void reversedRecur(char [] chars, int left, int right)
     {
@@ -22,6 +28,16 @@ public class RecursionUtil {
         chars[left] = chars[right];
         chars[right] = temp;
         reversedRecur(chars, left + 1, right - 1);
+    }
+
+    public static void writeCollatz(int n)
+    {
+        Console.writeLine(n);
+
+        if (n == 1)
+            return;
+
+        writeCollatz(n % 2 == 0 ? n / 2 : 3 * n + 1);
     }
 
     private static void writeNumberRecur(int val, int radix)
@@ -55,6 +71,11 @@ public class RecursionUtil {
             return -1;
 
         return fibonacciNumberRecur(n);
+    }
+
+    public static int gcd(int a, int b)
+    {
+        return gcdRecur(Math.abs(a), Math.abs(b));
     }
 
     public static String reversed(String s)
