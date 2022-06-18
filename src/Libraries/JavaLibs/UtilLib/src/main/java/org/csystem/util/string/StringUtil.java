@@ -27,6 +27,7 @@ public final class StringUtil {
     private StringUtil()
     {
     }
+
     public static String capitalize(String s)
     {
         return s.isEmpty() ? "" : Character.toUpperCase(s.charAt(0)) + s.substring(1).toLowerCase();
@@ -45,12 +46,15 @@ public final class StringUtil {
 
     public static String changeCase(String s)
 	{
-		char [] c = s.toCharArray();
-		
-		for (int i = 0; i < c.length; ++i)
-		    c[i] = Character.isUpperCase(c[i]) ? Character.toLowerCase(c[i]) : Character.toUpperCase(c[i]);
-		
-		return String.valueOf(c);
+        var sb = new StringBuilder(s);
+        var len = s.length();
+
+        for (int i = 0; i < len; ++i) {
+            char c = sb.charAt(i);
+            sb.setCharAt(i, Character.isUpperCase(c) ? Character.toLowerCase(c) : Character.toUpperCase(c));
+        }
+
+        return sb.toString();
 	}
     
     public static int countString(String s1, String s2)
@@ -86,16 +90,16 @@ public final class StringUtil {
 
     public static String getLetters(String s)
     {
-        String str = "";
+        var sb = new StringBuilder();
         int len = s.length();
 
         for (int i = 0; i < len; ++i) {
             char c = s.charAt(i);
             if (Character.isLetter(c))
-                str += c;
+                sb.append(c);
         }
 
-        return str;
+        return sb.toString();
     }
 
     public static String getLongestPalindrome(String text)
@@ -122,13 +126,13 @@ public final class StringUtil {
 
     public static String getRandomText(Random r, int n, String sourceText)
     {
+        var sb = new StringBuilder(n);
         int length = sourceText.length();
-        char [] c = new char[n];
 
         for (int i = 0; i < n; ++i)
-            c[i] = sourceText.charAt(r.nextInt(length));
+            sb.append(sourceText.charAt(r.nextInt(length)));
 
-        return String.valueOf(c);
+        return sb.toString();
     }
 
     public static String getRandomTextEN(Random r, int n)
@@ -150,7 +154,6 @@ public final class StringUtil {
     {
         return getRandomTextTR(new Random(), n);
     }
-
 
     public static String [] getRandomStringArrayTR(int n, int min, int max)
     {
@@ -277,16 +280,16 @@ public final class StringUtil {
 
     public static String join(String [] str, String delimiter, boolean removeEmpties)
     {
-        String result = "";
+        var sb = new StringBuilder();
 
         for (String s : str) {
             if (removeEmpties && s.isEmpty())
                 continue;
 
-            result += s + delimiter;
+            sb.append(s).append(delimiter);
         }
 
-        return result.substring(0, result.length() - delimiter.length());
+        return sb.substring(0, sb.length() - delimiter.length());
     }
 
     public static String join(ArrayList<String> list, char delimiter)
@@ -306,23 +309,23 @@ public final class StringUtil {
 
     public static String join(ArrayList<String> list, String delimiter, boolean removeEmpties)
     {
-        String result = "";
+        var sb = new StringBuilder();
 
         for (String s : list) {
             if (removeEmpties && s.isEmpty())
                 continue;
 
-            result += s + delimiter;
+            sb.append(s).append(delimiter);
         }
 
-        return result.substring(0, result.length() - delimiter.length());
+        return sb.substring(0, sb.length() - delimiter.length());
     }
 
     public static String padLeading(String s, int length, char ch)
     {
         int len = s.length();
 
-        return length <= len ? s : repeat(length - len, ch) + s;
+        return length <= len ? s : (ch + "").repeat(length - len) + s;
     }
 
     public static String padLeading(String s, int length)
@@ -334,37 +337,32 @@ public final class StringUtil {
     {
         int len = s.length();
 
-        return length <= len ? s : s + repeat(length - len, ch);
+        return length <= len ? s : (ch + "").repeat(length - len);
     }
 
     public static String padTrailing(String s, int length)
     {
         return padTrailing(s, length, ' ');
-    }    
-
-    public static String repeat(int count, char ch)
-    {
-    	return String.format("%0" + count + "d", 0).replace('0', ch);
     }
 
-    public static String reversed(String s)
+    public static String reverse(String s)
     {
         return new StringBuilder(s).reverse().toString();
     }
 
     public static String squeeze(String s1, String s2)
 	{
-		String str = "";
-		int length = s1.length();
+        var sb = new StringBuilder();
+		int len = s1.length();
 
-		for (int i = 0; i < length; ++i) {
+		for (int i = 0; i < len; ++i) {
 			char ch = s1.charAt(i);
 			
 			if (!s2.contains(ch + ""))
-				str += ch;
+				sb.append(ch);
 		}			
 		
-		return str;
+		return sb.toString();
 	}
     
     public static String trimLeading(String s)
