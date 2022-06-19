@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 11.06.2022
+	LAST UPDATE : 19.06.2022
 
 	Utility class for numeric operations
 
@@ -222,17 +222,7 @@ public final class NumberUtil {
 	}
 
 	
-	public static void printGoldbachPrimes(int val)
-	{
-		for (var a = 2; a < val; ++a) {
-			var b = val - a;
-			
-			if (isPrime(a) && isPrime(b) && a <= b)
-				System.out.printf("%d + %d = %d == %d%n", a, b, a + b, val);				
-		}				
-	}
-	
-	public static int reversed(int val)
+	public static int reverse(int val)
 	{
 		var result = 0;
 		

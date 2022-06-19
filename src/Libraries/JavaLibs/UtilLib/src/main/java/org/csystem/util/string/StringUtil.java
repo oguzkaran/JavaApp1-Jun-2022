@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 18.06.2022
+	LAST UPDATE : 19.06.2022
 
 	Utility class for string operations
 
@@ -9,8 +9,6 @@
 	All Rights Free
 -----------------------------------------------------------------------*/
 package org.csystem.util.string;
-
-import org.csystem.util.array.ArrayUtil;
 
 import java.util.ArrayList;
 import java.util.Random;

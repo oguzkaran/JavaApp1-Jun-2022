@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : ArrayUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 11.06.2022
+	LAST UPDATE : 19.06.2022
 
 	Utility class for array operations
 
@@ -87,73 +87,6 @@ public final class ArrayUtil {
             bubbleSortDescending(a);
         else
             bubbleSortAscending(a);
-    }
-
-    public static void print(int n, int...a)
-    {
-        var fmt = String.format("%%0%dd ", n);
-
-        for (var val : a)
-            System.out.printf(fmt, val);
-
-        System.out.println();
-    }
-
-    public static void print(int...a)
-    {
-        print(1, a);
-    }
-
-    public static void print(double...a)
-    {
-        for (var val : a)
-            System.out.printf("%f", val);
-
-        System.out.println();
-    }
-
-    public static void print(int n, int[]...a)
-    {
-        for (var array : a)
-            print(n, array);
-    }
-
-    public static void print(String...str)
-    {
-        for (var s : str)
-            System.out.println(s);
-    }
-
-    public static void print(byte...b)
-    {
-        print(b.length, b);
-    }
-
-    public static void print(int length, byte...b)
-    {
-        print(length, ' ', '\n', b);
-    }
-
-    public static void print(int length, char sep, char end, byte...b)
-    {
-        for (var i = 0; i < length; ++i)
-            System.out.printf("%d%c", b[i], sep);
-
-        System.out.print(end);
-    }
-
-    public static void drawHistogram(int [] data, int n, char ch) //[0, data.length - 1]
-    {
-        var nMax = max(data);
-
-        for (var val : data) {
-            var count = (int)Math.floor(val * n / (double)nMax);
-
-            while (count-- > 0)
-                System.out.print(ch);
-
-            System.out.println();
-        }
     }
 
     public static void fillRandomArray(int [] a, int min, int max)
@@ -250,21 +183,57 @@ public final class ArrayUtil {
         return minVal;
     }
 
-    public static int partition(int [] a, int threshold)
+    public static void print(int n, int...a)
     {
-        var partitionIndex = 0;
+        var fmt = String.format("%%0%dd ", n);
 
-        while (partitionIndex != a.length && a[partitionIndex] < threshold)
-            ++partitionIndex;
+        for (var val : a)
+            System.out.printf(fmt, val);
 
-        if (partitionIndex == a.length)
-            return partitionIndex;
+        System.out.println();
+    }
 
-        for (int i = partitionIndex + 1; i < a.length; ++i)
-            if (a[i] < threshold)
-                swap(a, i, partitionIndex++);
+    public static void print(int...a)
+    {
+        print(1, a);
+    }
 
-        return partitionIndex;
+    public static void print(double...a)
+    {
+        for (var val : a)
+            System.out.printf("%f", val);
+
+        System.out.println();
+    }
+
+    public static void print(int n, int[]...a)
+    {
+        for (var array : a)
+            print(n, array);
+    }
+
+    public static void print(String...str)
+    {
+        for (var s : str)
+            System.out.println(s);
+    }
+
+    public static void print(byte...b)
+    {
+        print(b.length, b);
+    }
+
+    public static void print(int length, byte...b)
+    {
+        print(length, ' ', '\n', b);
+    }
+
+    public static void print(int length, char sep, char end, byte...b)
+    {
+        for (var i = 0; i < length; ++i)
+            System.out.printf("%d%c", b[i], sep);
+
+        System.out.print(end);
     }
 
     public static void reverse(int [] a)
