@@ -1,39 +1,22 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örneği inceleyiniz. Örnekte StringBuilder sınıfının replace metodunun kullanıldığına dikkat ediniz
+
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.console.Console;
+import java.util.Scanner;
 
 class App {
     public static void main(String[] args)
     {
-        var s = Console.read("Input a text:");
-        var sb = new StringBuilder(s);
+        var kb = new Scanner(System.in);
 
-        sb.setLength(sb.length() + 10);
+        for (int i = 0; i < 5; ++i) {
+            var s = kb.nextLine();
 
-        Console.writeLine("(%s)", sb);
-        Console.writeLine("Length:%d", sb.length());
-        Console.writeLine("--------------------------------");
-        Console.writeLine("(%s)", sb);
-        Console.writeLine("Length:%d", sb.length());
-        Console.writeLine("--------------------------------");
-        var idxFirst = sb.indexOf("\0");
-        var idxLast = sb.lastIndexOf("\0");
+            System.out.println(s.toUpperCase());
+        }
 
-        sb.replace(idxFirst, idxLast + 1, "istanbul");
-
-        Console.writeLine("(%s)", sb);
-        Console.writeLine("Length:%d", sb.length());
-        Console.writeLine("--------------------------------");
-
-        int len = sb.length();
-
-        for (int i = 0; i < len; ++i)
-            if (sb.charAt(i) == '\0')
-                Console.write("%d ", i);
-
-        Console.writeLine();
+        System.err.println("Tekrar yapmıyorum");
+        System.out.println("Tekrar yapıyor musunuz?");
     }
 }
