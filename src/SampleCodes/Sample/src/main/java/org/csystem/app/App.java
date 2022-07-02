@@ -1,22 +1,25 @@
 /*----------------------------------------------------------------------------------------------------------------------
-
+    Aşağıdaki örneği inceleyiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import java.util.Scanner;
+import org.csystem.util.bitwise.BitwiseUtil;
 
 class App {
     public static void main(String[] args)
     {
-        var kb = new Scanner(System.in);
+        BitwiseUnsignedRightShiftTest.run();
+    }
+}
 
-        for (int i = 0; i < 5; ++i) {
-            var s = kb.nextLine();
+class BitwiseUnsignedRightShiftTest {
+    public static void run()
+    {
+        long a = ~(~0L >>> 1);
 
-            System.out.println(s.toUpperCase());
+        while (a != 0) {
+            BitwiseUtil.writeBits(a);
+            a >>>= 1;
         }
-
-        System.err.println("Tekrar yapmıyorum");
-        System.out.println("Tekrar yapıyor musunuz?");
     }
 }
