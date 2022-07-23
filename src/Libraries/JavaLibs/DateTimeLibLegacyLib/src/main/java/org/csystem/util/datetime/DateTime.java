@@ -9,7 +9,6 @@ import static java.util.Calendar.*;
 public final class DateTime implements Serializable, Comparable<DateTime> {
     private static final long serialVersionUID = 1L;
     private static final int [] DAYS_OF_MONTHS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
     private final Calendar m_calendar;
 
     private static boolean isValidDate(int day, int mon, int year)
@@ -188,6 +187,7 @@ public final class DateTime implements Serializable, Comparable<DateTime> {
     }
 
     public static DateTime now() {return new DateTime();}
+
     public static DateTime today()
     {
         DateTime now = now();
