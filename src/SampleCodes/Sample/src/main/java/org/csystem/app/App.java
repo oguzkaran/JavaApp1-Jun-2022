@@ -1,18 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Komut satırı argümanı olarak alınan gün, ay ve yıl bilgilerine göre kişinin doğum günü geçmişse
-    "Geçmiş doğum gününüz kutlu olsun", o gün doğum günü ise "Doğum gününüz kutlu olsun", doğum günü henüz gelmemiş
-    ise "Doğum gününüzü şimdiden kutlarız" mesajlarından birisini stdout'a bastıran progrtamı yazınız. Programı
-    Calendar ve GregorianCalendar sınıfları ile yazınız.
-    ~/Projects/004-BirthDateRemainderConsoleAppCalendar
+    DateTimeFormatterUtil ve DateTimeConvertUtil sınıfları
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
 
+import java.time.LocalDateTime;
+
+import static org.csystem.util.datetime.DateTimeConvertUtil.*;
+import static org.csystem.util.datetime.DateTimeFormatterUtil.*;
+
 class App {
     public static void main(String[] args)
     {
-        for (var arg : args)
-            Console.writeLine(arg);
+        var now = LocalDateTime.now();
+        var millis = toMilliseconds(now);
+
+        Console.writeLine(DATETIME_DOT_SEC_TR.format(now));
+        Console.writeLine(millis);
+
+        var dateTime = toLocalDateTime(millis);
+
+        Console.writeLine(DATETIME_DOT_SEC_TR.format(dateTime));
     }
 }

@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import static java.util.Calendar.*;
 
 public class BirthDateInfo {
-    private static final double ms_dividerForAge = 1000. * 60 * 60 * 24 * 365;
+    private static final double DIVIDER_FOR_AGE = 1000. * 60 * 60 * 24 * 365;
     private final Calendar m_birthDate;
 
     public BirthDateInfo(int day, int month, int year)
@@ -35,7 +35,7 @@ public class BirthDateInfo {
     {
         var today = new GregorianCalendar();
 
-        return (today.getTimeInMillis() - m_birthDate.getTimeInMillis()) / ms_dividerForAge;
+        return (today.getTimeInMillis() - m_birthDate.getTimeInMillis()) / DIVIDER_FOR_AGE;
     }
 
     public BirthDateStatus getBirthDateStatus()

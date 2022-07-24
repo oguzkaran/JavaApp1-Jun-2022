@@ -1,18 +1,20 @@
 package org.csystem.util.datetime;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class BirthDateInfo {
-    private static final double DIVIDER_FOR_AGE = 1000. * 60 * 60 * 24 * 365;
-    private final DateTime m_birthDate;
+    private final LocalDate m_birthDate;
 
     public BirthDateInfo(int day, int month, int year)
     {
         //...
-        m_birthDate = DateTime.of(day, month, year);
+        m_birthDate = LocalDate.of(year, month, day);
     }
 
     public int getDay()
     {
-        return m_birthDate.getDay();
+        return m_birthDate.getDayOfMonth();
     }
 
     public int getMonthValue()
@@ -27,14 +29,12 @@ public class BirthDateInfo {
 
     public double getAge()
     {
-        var today = DateTime.today();
-
-        return (today.getTimeInMillis() - m_birthDate.getTimeInMillis()) / DIVIDER_FOR_AGE;
+        return ChronoUnit.DAYS.between(m_birthDate, LocalDate.now()) / 365.;
     }
 
     public BirthDateStatus getBirthDateStatus()
     {
-        var today = DateTime.today();
+        var today = LocalDate.now();
         var birthDay = m_birthDate.withYear(today.getYear());
 
         var status = BirthDateStatus.SAME;
