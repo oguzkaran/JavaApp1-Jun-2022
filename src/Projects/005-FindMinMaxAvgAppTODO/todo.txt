@@ -1,0 +1,8 @@
+Aşağıdaki açıklamalara göre uygulamayı yazınız:
+
+Açıklamalar:
+    - Program verilmişse komut satırı argümanı ile verilmemişse stdin'den aldığı count kadar BigDecimal sayıyı stdin'den
+    okuyacaktır
+    - Komut satırından alınan değer için kontrol yapılmayacaktır
+    - Program alınan sayıların en büyüğünü, en küçüğünü, toplamlarını ve ortalamalarını bularak stdout'a yazdıracaktır
+    - scale ve rounding mode'u dilediğiniz gibi belirleyebilirsiniz

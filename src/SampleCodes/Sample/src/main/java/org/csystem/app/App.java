@@ -1,26 +1,20 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    DateTimeFormatterUtil ve DateTimeConvertUtil sınıfları
+    BigDewcimal sınıfının scale ve RoundingMode parametreli divide metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
 
-import java.time.LocalDateTime;
-
-import static org.csystem.util.datetime.DateTimeConvertUtil.*;
-import static org.csystem.util.datetime.DateTimeFormatterUtil.*;
+import java.math.RoundingMode;
 
 class App {
     public static void main(String[] args)
     {
-        var now = LocalDateTime.now();
-        var millis = toMilliseconds(now);
 
-        Console.writeLine(DATETIME_DOT_SEC_TR.format(now));
-        Console.writeLine(millis);
+        var a = Console.readBigDecimal("Birinci sayıyı giriniz:");
+        var b = Console.readBigDecimal("İkinci sayıyı giriniz:");
+        var c = a.divide(b, 10, RoundingMode.HALF_UP);
 
-        var dateTime = toLocalDateTime(millis);
-
-        Console.writeLine(DATETIME_DOT_SEC_TR.format(dateTime));
+        Console.writeLine(c);
     }
 }
