@@ -93,11 +93,11 @@ public final class NumberUtil {
 		return sum;
 	}
 
-	public static int factorial(int n)
+	public static long factorial(int n)
 	{
-		var result = 1;
+		var result = 1L;
 		
-		for (var i = 2; i <= n; ++i)
+		for (var i = 2L; i <= n; ++i)
 			result *= i;
 		
 		return result;
@@ -105,9 +105,12 @@ public final class NumberUtil {
 
 	public static BigInteger factorialBig(int n)
 	{
-		//TODO:
+		var result = BigInteger.ONE;
 
-		return null;
+		for (int i = 2; i < n; ++i)
+			result = result.multiply(BigInteger.valueOf(i));
+
+		return result;
 	}
 	
 	public static int gcd(int a, int b)
@@ -230,7 +233,6 @@ public final class NumberUtil {
 		return numberToText3DigitsTR(val);
 	}
 
-	
 	public static int reverse(int val)
 	{
 		var result = 0;
@@ -300,6 +302,13 @@ public final class NumberUtil {
 	public static boolean isPerfect(int val)
 	{
 		return sumFactors(val) == val;
+	}
+
+	public static boolean isPrime(BigInteger val)
+	{
+		//TODO:
+
+		return true;
 	}
 	
 	public static boolean isPrime(long val)
