@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 19.06.2022
+	LAST UPDATE : 30.07.2022
 
 	Utility class for numeric operations
 
@@ -9,6 +9,8 @@
 	All Rights Free
 -----------------------------------------------------------------------*/
 package org.csystem.util.numeric;
+
+import java.math.BigInteger;
 
 import static java.lang.Math.*;
 
@@ -99,6 +101,13 @@ public final class NumberUtil {
 			result *= i;
 		
 		return result;
+	}
+
+	public static BigInteger factorialBig(int n)
+	{
+		//TODO:
+
+		return null;
 	}
 	
 	public static int gcd(int a, int b)
