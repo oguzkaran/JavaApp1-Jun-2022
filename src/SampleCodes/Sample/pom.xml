@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.7</version>
+		<version>2.7.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -41,13 +41,25 @@
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime</artifactId>
-			<version>6.0.0</version>
+			<version>6.1.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime-legacy</artifactId>
 			<version>6.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.1-jre</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
 		</dependency>
 
 

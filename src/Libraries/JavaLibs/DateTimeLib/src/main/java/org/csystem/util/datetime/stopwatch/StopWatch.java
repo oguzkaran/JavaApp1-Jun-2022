@@ -1,9 +1,9 @@
 /*----------------------------------------------------------------------
 	FILE        : StopWatch.java
 	AUTHOR      : Oğuz Karan, JavaApp1-Jun-2022 group
-	LAST UPDATE : 24.07.2022
+	LAST UPDATE : 30.07.2022
 
-	Class that can be used to measure time for codes
+	StopWatch class to measure time
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
@@ -16,15 +16,6 @@ public class StopWatch {
     private long m_start;
     private long m_stop;
 
-    public void start()
-    {
-        m_start = System.nanoTime();
-    }
-
-    public void stop()
-    {
-        m_stop = System.nanoTime();
-    }
 
     public long getStart()
     {
@@ -34,6 +25,16 @@ public class StopWatch {
     public long getStop()
     {
         return m_stop;
+    }
+
+    public void start()
+    {
+        m_start = System.nanoTime();
+    }
+
+    public void stop()
+    {
+        m_stop = System.nanoTime();
     }
 
     public long getElapsed(TimeUnit timeUnit)
@@ -46,5 +47,20 @@ public class StopWatch {
         return m_stop - m_start;
     }
 
+    public long getElapsedAsMillis()
+    {
+        return getElapsed(TimeUnit.MILLISECONDS);
+    }
 
+    public long getElapsedAsSeconds()
+    {
+        return getElapsed(TimeUnit.SECONDS);
+    }
+
+    public double totalSeconds()
+    {
+        return getElapsedAsNano() / 1_000_000_000.;
+    }
+
+    //...
 }
