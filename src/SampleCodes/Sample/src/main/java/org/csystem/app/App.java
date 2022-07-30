@@ -1,6 +1,5 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: UtilLib içerisindeki NumberUtil sınıfına BigInteger parametreli isPrime metodunbu ekleyiniz ve
-    aşağıdaki kod ile test ediniz
+    Aşağıdaki örneği inceleyiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -12,17 +11,16 @@ import java.math.BigInteger;
 class App {
     public static void main(String[] args)
     {
-        FactorialBigTest.run();
+        IsPrimeTest.run();
     }
 }
 
-class FactorialBigTest {
+class IsPrimeTest {
     public static void run()
     {
-        var n = Console.readBigInteger("Bir sayı giriniz:");
+        var n = Console.readLong("Bir sayı giriniz:");
 
-        for (var i = BigInteger.TWO; i.compareTo(n) <= 0; i = i.add(BigInteger.ONE))
-            if (NumberUtil.isPrime(i))
-                Console.writeLine("%s ", i);
+        Console.writeLine(NumberUtil.isPrime(BigInteger.valueOf(n)) ? "Asal" : "Asal değil");
+        Console.writeLine(NumberUtil.isPrime(n) ? "Asal" : "Asal değil");
     }
 }

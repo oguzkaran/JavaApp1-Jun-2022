@@ -15,12 +15,17 @@ import java.math.BigInteger;
 import static java.lang.Math.*;
 
 public final class NumberUtil {
-	private static final String [] ms_ones;
-	private static final String [] ms_tens;
+	private static final String [] ONES;
+	private static final String [] TENS;
+
+	private static final BigInteger THREE = BigInteger.valueOf(3);
+	private static final BigInteger FIVE = BigInteger.valueOf(5);
+	private static final BigInteger SEVEN = BigInteger.valueOf(7);
+	private static final BigInteger ELEVEN = BigInteger.valueOf(11);
 
 	static {
-		ms_ones = new String[]{"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
-		ms_tens = new String[]{"", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"};
+		ONES = new String[]{"", "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz"};
+		TENS = new String[]{"", "on", "yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan"};
 	}
 
 	private static int [] getDigits(long val, int n)
@@ -49,15 +54,15 @@ public final class NumberUtil {
 
 		if (a != 0) {
 			if (a != 1)
-				text += ms_ones[a];
+				text += ONES[a];
 			text += "yüz";
 		}
 
 		if (b != 0)
-			text += ms_tens[b];
+			text += TENS[b];
 
 		if (c != 0)
-			text += ms_ones[c];
+			text += ONES[c];
 
 		return text;
 	}
@@ -90,7 +95,19 @@ public final class NumberUtil {
 			val /= 10;
 		}
 		
-		return sum;
+		return Math.abs(sum);
+	}
+
+	public static BigInteger digitsSum(BigInteger val)
+	{
+		var sum = BigInteger.ZERO;
+
+		while (!val.equals(BigInteger.ZERO)) {
+			sum = sum.add(val.remainder(BigInteger.TEN));
+			val = val.divide(BigInteger.TEN);
+		}
+
+		return sum.abs();
 	}
 
 	public static long factorial(int n)
@@ -179,27 +196,7 @@ public final class NumberUtil {
 			++val;
 		}
 	}
-	
-	public static int getNextFibonacciNumber(int val)
-	{
-		if (val < 0)
-			return 0;
 
-		var prev1 = 1;
-		var prev2 = 0;
-		int result;
-		
-		for (;;) {
-			result = prev1 + prev2;
-			
-			if (result > val)
-				return result;
-			
-			prev2 = prev1;
-			prev1 = result;
-		}		
-	}
-	
 	public static int getPrime(int n)
 	{
 		var count = 0;
@@ -244,7 +241,6 @@ public final class NumberUtil {
 		
 		return result;
 	}
-		
 	
 	public static int sumFactors(int val)
 	{
@@ -260,53 +256,29 @@ public final class NumberUtil {
 		
 		return result + 1;
 	}
-	
-	public static boolean areFriends(int a, int b)
-	{
-		return sumFactors(a) == b && sumFactors(b) == a;
-	}
-	
-	public static boolean isArmstrong(int val)
-	{
-		return val >= 0 && getDigitsPowSum(val) == val;		
-	}
-	
-	public static boolean isFactorian(int n)
-	{
-		return n >= 0 && getDigitsFactorialSum(n) == n;
-	}
-	
-	public static boolean isDecimalHarshad(int val)
-	{
-		return val > 0 && val % digitsSum(val) == 0;
-	}	
-	
-	public static boolean isHardyRamanujan(int val)
-	{
-		if (val <= 0)
-			return false;
-
-		var count = 0;
-		
-		EXIT_LOOP:
-			for (int x = 1; x * x * x < val; ++x)
-				for (int y = x + 1; x * x * x + y * y * y <= val; ++y)
-					if (x * x * x + y * y * y == val) {
-						if (++count == 2)
-							break EXIT_LOOP;
-						++x;
-					}
-		return count == 2;
-	}
-	
-	public static boolean isPerfect(int val)
-	{
-		return sumFactors(val) == val;
-	}
 
 	public static boolean isPrime(BigInteger val)
 	{
-		//TODO:
+		if (val.compareTo(BigInteger.ONE) <= 0)
+			return false;
+
+		if (val.remainder(BigInteger.TWO).equals(BigInteger.ZERO))
+			return val.equals(BigInteger.TWO);
+
+		if (val.remainder(THREE).equals(BigInteger.ZERO))
+			return val.equals(THREE);
+
+		if (val.remainder(FIVE).equals(BigInteger.ZERO))
+			return val.equals(FIVE);
+
+		if (val.remainder(SEVEN).equals(BigInteger.ZERO))
+			return val.equals(SEVEN);
+
+		var sqrtVal = val.sqrt();
+
+		for (var i = ELEVEN; i.compareTo(sqrtVal) <= 0; i = i.add(BigInteger.TWO))
+			if (val.remainder(i).equals(BigInteger.ZERO))
+				return false;
 
 		return true;
 	}
@@ -327,10 +299,10 @@ public final class NumberUtil {
 		
 		if (val % 7 == 0)
 			return val == 7;
+
+		var sqrtVal = (int)sqrt(val);
 		
-		int sqrtVal = (int)sqrt(val);
-		
-		for (long i = 11; i <= sqrtVal; i += 2)
+		for (var i = 11L; i <= sqrtVal; i += 2)
 			if (val % i == 0)
 				return false;
 		
@@ -341,9 +313,20 @@ public final class NumberUtil {
 	{
 		boolean result;
 		
-		for (long sum = val; (result = isPrime(sum)) && sum > 9; sum = digitsSum(sum))
+		for (var sum = val; (result = isPrime(sum)) && sum > 9; sum = digitsSum(sum))
 			;
 		
+		return result;
+	}
+
+	public static boolean isPrimeX(BigInteger val)
+	{
+		boolean result;
+		var nine = BigInteger.valueOf(9);
+
+		for (var sum = val; (result = isPrime(sum)) && sum.compareTo(nine) > 0; sum = digitsSum(sum))
+			;
+
 		return result;
 	}
 	
