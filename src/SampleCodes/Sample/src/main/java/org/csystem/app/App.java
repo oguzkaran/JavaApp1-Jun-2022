@@ -1,5 +1,7 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Bir sınıfın içerisinde non-static bir sınıf bvildirilebilir (inner class)
+    Yerel sınıflar (local classes): Bir metot içerisinde bildirilen sınıflara denir. Farklı faaliyet alanları (scope)
+    içerisinde aynı isimde yerel sınıf bildirimi geçerlidir. Aynı faaliyet alanı içerisinde aynı isimde sınıf bildirimi
+    geçersizdir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -11,7 +13,21 @@ class App {
 }
 
 class A {
-    public class B {
-        //...
+    //...
+}
+
+class Sample {
+    public  void foo()
+    {
+        class A {
+            //...
+        }
+    }
+
+    public  void bar()
+    {
+        class A {
+            //...
+        }
     }
 }
