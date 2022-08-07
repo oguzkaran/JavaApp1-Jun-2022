@@ -1,52 +1,36 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örneği inceleyiniz
+    Sınıf Çalışması: Yukarıdaki örneği aşağıdaki gibi çalıştırılabilecek şekilde yazınız:
+        java -jar PeriodicRandomNumberGenerator-6.0.0.jar count min max period
+    Çözüm için ~/Projects/006-PeriodicRandomNumberGeneratorApp uygulamasına bakınız
+
+    Sınıf Çalışması: Aşağıda aç
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
 
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
+
 class App {
     public static void main(String[] args)
     {
-        var iv = Util.createIntValueByStdin();
-        var a = Console.readInt("Üçüncü sayıyı giriniz:");
+        var count = Console.readInt("Kaç tane sayı üretmek istersiniz?");
+        var timer = new Timer();
+        var random = new Random();
 
-        Util.doWork(a, iv);
-    }
-}
+        timer.scheduleAtFixedRate(new TimerTask() {
+            private int m_count;
 
-class Util {
-    public static IntValue createIntValueByStdin()
-    {
-        var x = Console.readInt("Birinci sayıyı giriniz:");
-        var y = Console.readInt("İkinci sayıyı giriniz:");
-
-        return new IntValue(y) {
-            public int addWith(int value)
+            public void run()
             {
-                return x + value + a;
+                if (m_count++ != count)
+                    Console.write("%02d ", random.nextInt(100));
+                else
+                    timer.cancel();
             }
-        };
-    }
-
-    public static void doWork(int value, IntValue intValue)
-    {
-        Console.writeLine(intValue.addWith(value));
+        }, 0, 1000);
     }
 }
 
-abstract class IntValue {
-    protected int a;
-    public IntValue()
-    {
-        //...
-    }
-
-    public IntValue(int a)
-    {
-        this.a = a;
-    }
-
-    public abstract int addWith(int value);
-    //...
-}
