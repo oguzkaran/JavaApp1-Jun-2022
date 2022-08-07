@@ -1,9 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: Yukarıdaki örneği aşağıdaki gibi çalıştırılabilecek şekilde yazınız:
-        java -jar PeriodicRandomNumberGenerator-6.0.0.jar count min max period
-    Çözüm için ~/Projects/006-PeriodicRandomNumberGeneratorApp uygulamasına bakınız
+    Sınıf Çalışması: Aşağıda açıklanan sınıfı yazınız:
+    Açıklamalar:
+        - Sınıfın ismi CountdownScheduler olacaktır
+        - Sınıfın ctor'u milisaniye cinsinden toplam zamanı ve periyot bilgisini alacaktır
+            new CountdownScheduler(10000, 1000)
+        - Sınıfın onTick ve onFinish isimli abstract metotları olacaktır. onTick metodu her periyotta çağrılacak, onFinish
+        metodu ise geri sayım bittiğinde çağrılacaktır
+        - onTick metodunun kalan zamanı milisaniye cinsinden veren bir parametresi olacaktır: Örneğin:
+            new CountdownScheduler(10000, 1000) {
+                protected void onTick(long millisUntilFinished)
+                {
+                    //Her adımda yapılacak iş. millisUntilFinished içerisinde kalan milisaniye sayısı olacaktır
+                }
 
-    Sınıf Çalışması: Aşağıda aç
+                protected void onFinish()
+                {
+                    //Geri sayım bittiğinde yapılacak iş
+                }
+            }
+         - Sınıfın start isimli metodu ile scheduler başlatılacaktır
+         - Sınıfın cancel isimli metodu geri sayımı durdurmak için kullanılabilecektir
+         - java.util.Timer sınıfını  türetme yapmadan kullanınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
