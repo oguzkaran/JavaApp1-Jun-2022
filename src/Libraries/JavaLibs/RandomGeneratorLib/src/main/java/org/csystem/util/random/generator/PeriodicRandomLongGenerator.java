@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : PeriodicRandomLongGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 07.08.2022
+	LAST UPDATE : 13.08.2022
 
 	PeriodicRandomIntGenerator class
 
@@ -16,13 +16,13 @@ import java.util.TimerTask;
 
 public class PeriodicRandomLongGenerator {
     private int m_count;
-    private int m_min;
-    private int m_bound;
+    private long m_min;
+    private long m_bound;
     private long m_delay;
     private long m_period;
-    private final Timer m_timer = new Timer();
+    private Timer m_timer;
 
-    private PeriodicRandomLongGenerator(int count, int min, int bound, long delay, long period)
+    private PeriodicRandomLongGenerator(int count, long min, long bound, long delay, long period)
     {
         m_count = count;
         m_min = min;
@@ -46,14 +46,14 @@ public class PeriodicRandomLongGenerator {
             return this;
         }
 
-        public Builder setMin(int min)
+        public Builder setMin(long min)
         {
             m_generator.m_min = min;
 
             return this;
         }
 
-        public Builder setBound(int bound)
+        public Builder setBound(long bound)
         {
             m_generator.m_bound = bound;
 
@@ -80,14 +80,16 @@ public class PeriodicRandomLongGenerator {
         }
     }
 
-    public void start(IIntConsumer consumer)
+    public void start(ILongConsumer consumer)
     {
         var random = new Random();
+        m_timer = new Timer();
+
         m_timer.scheduleAtFixedRate(new TimerTask() {
             public void run()
             {
                 if (m_count-- != 0)
-                    consumer.accept(random.nextInt(m_min, m_bound));
+                    consumer.accept(Math.abs(random.nextLong()) * (m_bound - m_min) + m_min);
                 else
                     m_timer.cancel();
             }

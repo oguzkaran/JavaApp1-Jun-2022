@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : PeriodicRandomDoubleGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 07.08.2022
+	LAST UPDATE : 13.08.2022
 
 	PeriodicRandomIntGenerator class
 
@@ -16,13 +16,13 @@ import java.util.TimerTask;
 
 public class PeriodicRandomDoubleGenerator {
     private int m_count;
-    private int m_min;
-    private int m_bound;
+    private double m_min;
+    private double m_bound;
     private long m_delay;
     private long m_period;
-    private final Timer m_timer = new Timer();
+    private Timer m_timer;
 
-    private PeriodicRandomDoubleGenerator(int count, int min, int bound, long delay, long period)
+    private PeriodicRandomDoubleGenerator(int count, double min, double bound, long delay, long period)
     {
         m_count = count;
         m_min = min;
@@ -46,14 +46,14 @@ public class PeriodicRandomDoubleGenerator {
             return this;
         }
 
-        public Builder setMin(int min)
+        public Builder setMin(double min)
         {
             m_generator.m_min = min;
 
             return this;
         }
 
-        public Builder setBound(int bound)
+        public Builder setBound(double bound)
         {
             m_generator.m_bound = bound;
 
@@ -80,14 +80,16 @@ public class PeriodicRandomDoubleGenerator {
         }
     }
 
-    public void start(IIntConsumer consumer)
+    public void start(IDoubleConsumer consumer)
     {
         var random = new Random();
+
+        m_timer = new Timer();
         m_timer.scheduleAtFixedRate(new TimerTask() {
             public void run()
             {
                 if (m_count-- != 0)
-                    consumer.accept(random.nextInt(m_min, m_bound));
+                    consumer.accept(random.nextDouble() * (m_bound - m_min) + m_min);
                 else
                     m_timer.cancel();
             }

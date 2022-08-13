@@ -20,7 +20,7 @@ public class PeriodicRandomIntGenerator {
     private int m_bound;
     private long m_delay;
     private long m_period;
-    private final Timer m_timer = new Timer();
+    private Timer m_timer;
 
     private PeriodicRandomIntGenerator(int count, int min, int bound, long delay, long period)
     {
@@ -83,11 +83,13 @@ public class PeriodicRandomIntGenerator {
     public void start(IIntConsumer consumer)
     {
         var random = new Random();
+
+        m_timer = new Timer();
         m_timer.scheduleAtFixedRate(new TimerTask() {
             public void run()
             {
                 if (m_count-- != 0)
-                    consumer.accept(random.nextInt(m_min, m_bound));
+                    consumer.accept(random.nextInt(m_bound - m_min) + m_min);
                 else
                     m_timer.cancel();
             }

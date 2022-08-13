@@ -46,6 +46,12 @@
 
 		<dependency>
 			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-scheduler</artifactId>
+			<version>6.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime-legacy</artifactId>
 			<version>6.0.0</version>
 		</dependency>
