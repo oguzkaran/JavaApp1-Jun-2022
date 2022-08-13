@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : PeriodicRandomIntGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 07.08.2022
+	LAST UPDATE : 13.08.2022
 
 	PeriodicRandomIntGenerator class
 
@@ -13,22 +13,19 @@ package org.csystem.util.random.generator;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-public class PeriodicRandomIntGenerator {
-    private int m_count;
+public final class PeriodicRandomIntGenerator extends PeriodicIntGenerator {
     private int m_min;
     private int m_bound;
-    private long m_delay;
-    private long m_period;
-    private Timer m_timer;
+    private Random m_random;
 
-    private PeriodicRandomIntGenerator(int count, int min, int bound, long delay, long period)
+    private PeriodicRandomIntGenerator(Random random, int count, int min, int bound, long delay, long period)
     {
-        m_count = count;
+        super(count, delay, period, TimeUnit.MILLISECONDS, null);
+        m_random = random;
         m_min = min;
         m_bound = bound;
-        m_delay = delay;
-        m_period = period;
     }
 
     public static class Builder {
@@ -36,12 +33,26 @@ public class PeriodicRandomIntGenerator {
 
         public Builder()
         {
-            m_generator = new PeriodicRandomIntGenerator(10, 0, 99, 0, 1000);
+            m_generator = new PeriodicRandomIntGenerator(new Random(), 10, 0, 99, 0, 1000);
+
+            m_generator.setSupplier(new IIntSupplier() {//Burası değişecek
+                public int get()
+                {
+                    return m_generator.m_random.nextInt(m_generator.m_bound - m_generator.m_min) + m_generator.m_min;
+                }
+            });
+        }
+
+        public Builder setRandom(Random random)
+        {
+            m_generator.m_random = random;
+
+            return this;
         }
 
         public Builder setCount(int count)
         {
-            m_generator.m_count = count;
+            m_generator.setCount(count);
 
             return this;
         }
@@ -62,14 +73,14 @@ public class PeriodicRandomIntGenerator {
 
         public Builder setDelay(long delay)
         {
-            m_generator.m_delay = delay;
+            m_generator.setDelay(delay);
 
             return this;
         }
 
         public Builder setPeriod(long period)
         {
-            m_generator.m_period = period;
+            m_generator.setPeriod(period);
 
             return this;
         }
@@ -78,26 +89,5 @@ public class PeriodicRandomIntGenerator {
         {
             return m_generator;
         }
-    }
-
-    public void start(IIntConsumer consumer)
-    {
-        var random = new Random();
-
-        m_timer = new Timer();
-        m_timer.scheduleAtFixedRate(new TimerTask() {
-            public void run()
-            {
-                if (m_count-- != 0)
-                    consumer.accept(random.nextInt(m_bound - m_min) + m_min);
-                else
-                    m_timer.cancel();
-            }
-        }, m_delay, m_period);
-    }
-
-    public void stop()
-    {
-        m_timer.cancel();
     }
 }

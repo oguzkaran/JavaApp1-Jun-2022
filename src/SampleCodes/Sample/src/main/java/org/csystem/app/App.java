@@ -1,44 +1,24 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Sınıf Çalışması: CountDownScheduler sınıfını genişletecek şekilde başlangıçta da bir işin yapılabilmesini sağlayan
-    onStart abstract metodunun eklendiği CountDownSchedulerEx isimli sınıfı yazınız
+    Aşağıdaki örnekte anonim sınıf kullanılarak adeta nesneye ilk değer verme (initialization) biçiminde kod yazılmıştır.
+    Bu sentaks nesneye ilk değer verme sentaksı değildir. Anonim sınıf içerisinde non-static initializer yazmak demektir.
+    Dikkat edilirse p referansının dinamik türü Product deği, Product sınıfından türetilmiş olanm bir anonim sınıf
+    türündendir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.app.shopping.Product;
 import org.csystem.util.console.Console;
-import org.csystem.util.scheduler.countdown.CountDownSchedulerEx;
 
-import java.util.concurrent.TimeUnit;
+import java.math.BigDecimal;
 
 class App {
     public static void main(String[] args)
     {
-        CountDownSchedulerExTest.run();
+        Product p = new Product() {{setName("laptop"); setStock(100); setCost(BigDecimal.valueOf(7000)); setUnitPrice(BigDecimal.valueOf(10000)); setExpiryDate(null);}};
+
+        Console.writeLine(p.getClass().getName());
+
+        Console.writeLine(p.getName());
     }
 }
 
-class CountDownSchedulerExTest {
-    public static void run()
-    {
-        var scheduler = new CountDownSchedulerEx(10, 1, TimeUnit.SECONDS) {
-            private int m_count;
-            protected void onStart()
-            {
-                Console.writeLine("Geri sayım başlıyor");
-            }
-            protected void onTick(long millisUntilFinished)
-            {
-                ++m_count;
-                Console.write("%02d\r", millisUntilFinished / 1000);
-            }
-
-            protected void onFinish()
-            {
-                Console.writeLine("00");
-                Console.writeLine("Count:%d", m_count);
-                Console.writeLine("Geri sayım tamamlandı");
-            }
-        }.startScheduler();
-
-        //...
-    }
-}
