@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : PeriodicIntGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 13.08.2022
+	LAST UPDATE : 14.08.2022
 
 	PeriodicIntGenerator class
 
@@ -14,6 +14,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
+import java.util.function.IntConsumer;
+import java.util.function.IntSupplier;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
@@ -22,14 +24,14 @@ public class PeriodicIntGenerator {
     private long m_delay;
     private long m_period;
     private Timer m_timer;
-    private IIntSupplier m_supplier;
+    private IntSupplier m_supplier;
 
-    public PeriodicIntGenerator(int count, long delay, long period, IIntSupplier supplier)
+    public PeriodicIntGenerator(int count, long delay, long period, IntSupplier supplier)
     {
         this(count, delay, period, MILLISECONDS, supplier);
     }
 
-    public PeriodicIntGenerator(int count, long delay, long period, TimeUnit timeUnit, IIntSupplier supplier)
+    public PeriodicIntGenerator(int count, long delay, long period, TimeUnit timeUnit, IntSupplier supplier)
     {
         m_count = count;
         m_delay = timeUnit == MILLISECONDS ? delay : MILLISECONDS.convert(delay, timeUnit);
@@ -62,12 +64,12 @@ public class PeriodicIntGenerator {
         m_period = period;
     }
 
-    public void setSupplier(IIntSupplier supplier)
+    public void setSupplier(IntSupplier supplier)
     {
         m_supplier = supplier;
     }
 
-    public void start(IIntConsumer consumer)
+    public void start(IntConsumer consumer)
     {
         var random = new Random();
 
@@ -76,7 +78,7 @@ public class PeriodicIntGenerator {
             public void run()
             {
                 if (m_count-- != 0)
-                    consumer.accept(m_supplier.get());
+                    consumer.accept(m_supplier.getAsInt());
                 else
                     m_timer.cancel();
             }

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : PeriodicRandomIntGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 13.08.2022
+	LAST UPDATE : 14.08.2022
 
 	PeriodicRandomIntGenerator class
 
@@ -35,12 +35,7 @@ public final class PeriodicRandomIntGenerator extends PeriodicIntGenerator {
         {
             m_generator = new PeriodicRandomIntGenerator(new Random(), 10, 0, 99, 0, 1000);
 
-            m_generator.setSupplier(new IIntSupplier() {//Burası değişecek
-                public int get()
-                {
-                    return m_generator.m_random.nextInt(m_generator.m_bound - m_generator.m_min) + m_generator.m_min;
-                }
-            });
+            m_generator.setSupplier(() -> m_generator.m_random.nextInt(m_generator.m_bound - m_generator.m_min) + m_generator.m_min);
         }
 
         public Builder setRandom(Random random)
