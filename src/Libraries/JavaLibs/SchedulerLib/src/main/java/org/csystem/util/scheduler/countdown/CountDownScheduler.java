@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : CountDownScheduler.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 13.08.2022
+	LAST UPDATE : 20.08.2022
 
 	CountdownScheduler class
 
@@ -29,16 +29,21 @@ public abstract class CountDownScheduler {
 
             public void run()
             {
-                var millisUntilFinished = m_millisInFuture - m_value;
+                try {
+                    var millisUntilFinished = m_millisInFuture - m_value;
 
-                onTick(millisUntilFinished);
-                m_value += m_interval;
+                    onTick(millisUntilFinished);
+                    m_value += m_interval;
 
-                if (m_value < m_millisInFuture)
-                    return;
+                    if (m_value < m_millisInFuture)
+                        return;
 
-                onFinish();
-                m_timer.cancel();
+                    onFinish();
+                    m_timer.cancel();
+                }
+                catch (Exception ignore) {
+
+                }
             }
         };
     }
@@ -56,8 +61,8 @@ public abstract class CountDownScheduler {
         m_timerTask = createTimerTask();
     }
 
-    protected abstract void onTick(long millisUntilFinished);
-    protected abstract void onFinish();
+    protected abstract void onTick(long millisUntilFinished) throws Exception;
+    protected abstract void onFinish() throws Exception;
 
     public final CountDownScheduler start()
     {

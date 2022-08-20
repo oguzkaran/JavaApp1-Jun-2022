@@ -20,7 +20,7 @@ public class Scheduler {
     private final long m_delay;
     private final long m_period;
     private Timer m_timer;
-    private Runnable m_cancelTask;
+    private IRunnable m_cancelTask;
 
     public Scheduler(long period)
     {
@@ -43,12 +43,12 @@ public class Scheduler {
         m_period = timeUnit == MILLISECONDS ? period : MILLISECONDS.convert(period, timeUnit);
     }
 
-    public Scheduler schedule(Runnable task)
+    public Scheduler schedule(IRunnable task)
     {
         return schedule(task, null);
     }
 
-    public Scheduler schedule(Runnable task, Runnable cancelTask)
+    public Scheduler schedule(IRunnable task,IRunnable cancelTask)
     {
         try {
             m_timer = new Timer();
@@ -57,7 +57,12 @@ public class Scheduler {
                 @Override
                 public void run()
                 {
-                    task.run();
+                    try {
+                        task.run();
+                    }
+                    catch (Exception ignore) {
+
+                    }
                 }
             }, m_delay, m_period);
 
@@ -72,9 +77,14 @@ public class Scheduler {
 
     public final void cancel()
     {
-        m_timer.cancel();
+        try {
+            m_timer.cancel();
 
-        if (m_cancelTask != null)
-            m_cancelTask.run();
+            if (m_cancelTask != null)
+                m_cancelTask.run();
+        }
+        catch (Exception ignore) {
+
+        }
     }
 }

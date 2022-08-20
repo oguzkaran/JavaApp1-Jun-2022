@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : CountDownSchedulerEx.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 13.08.2022
+	LAST UPDATE : 20.08.2022
 
 	CountdownSchedulerEx class
 
@@ -25,12 +25,17 @@ public abstract class CountDownSchedulerEx extends CountDownScheduler {
         super(durationInFuture, interval, timeUnit);
     }
 
-    protected abstract void onStart();
+    protected abstract void onStart() throws Exception;
 
     public final CountDownSchedulerEx startScheduler()
     {
-        onStart();
-        start();
+        try {
+            onStart();
+            start();
+        }
+        catch (Exception ignore) {
+
+        }
 
         return this;
     }
