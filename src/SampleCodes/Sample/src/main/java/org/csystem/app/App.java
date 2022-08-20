@@ -1,20 +1,26 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Method Reference:
+    Sınıf Çalışması: SchedulerLib içerisinde bildirilen ve aşağıda açıklanan Alarm isimli sınıfı yazınız
+    Açıklamalar:
+    - Sınıfın bildirimde yazan ctor'ları olacaktır
+
+    - Sınıfın start isimli iki tane metodu olacaktır. Bir tane Runnable parmetreli start metodu zaman geldiğinde yapılacak
+    işklemi alacaktır (callback).
+
+    - Sınıfın alarmı iptal eden cancel isimli bir metodu olacaktır
+
+    - Alarm sınıfının yazarken Scheduler sınıfını kullanınız
 ----------------------------------------------------------------------------------------------------------------------*/
+
 package org.csystem.app;
 
-import java.util.function.IntBinaryOperator;
+import org.csystem.util.console.Console;
+import org.csystem.util.scheduler.alarm.AlarmClock;
+import org.csystem.util.scheduler.alarm.AlarmClockStatus;
 
 class App {
     public static void main(String[] args)
     {
-        IntBinaryOperator bop = Operation::add;
+        new AlarmClock(14, 28).start(() -> Console.writeLine("Haydi uyan!..."), AlarmClockStatus.DAILY);
     }
 }
 
-class Operation {
-    public static int add(int a, int b)
-    {
-        return a + b;
-    }
-}
