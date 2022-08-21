@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : NumberUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 30.07.2022
+	LAST UPDATE : 21.08.2022
 
 	Utility class for numeric operations
 
@@ -11,6 +11,9 @@
 package org.csystem.util.numeric;
 
 import java.math.BigInteger;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
+import java.util.OptionalLong;
 
 import static java.lang.Math.*;
 
@@ -334,4 +337,138 @@ public final class NumberUtil {
 	{
 		return isPrime(n) && isPrime(getIndexOfPrime(n));
 	}
+
+	public static OptionalInt toInt(String str)
+	{
+		return toInt(str, 10);
+	}
+
+
+	public static OptionalInt toInt(String str, int radix)
+	{
+		try {
+			return OptionalInt.of(Integer.parseInt(str, radix));
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return OptionalInt.empty();
+	}
+
+	public static OptionalLong toLong(String str)
+	{
+		return toLong(str, 10);
+	}
+
+	public static OptionalLong toLong(String str, int radix)
+	{
+		try {
+			return OptionalLong.of(Long.parseLong(str, radix));
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return OptionalLong.empty();
+	}
+
+	public static OptionalDouble toDouble(String str)
+	{
+		try {
+			return OptionalDouble.of(Double.parseDouble(str));
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return OptionalDouble.empty();
+	}
+
+	public static int toIntDefault(String str)
+	{
+		return toIntDefault(str, 10, 0);
+	}
+
+	public static int toIntDefault(String str, int defaultValue)
+	{
+		return toIntDefault(str, 10, defaultValue);
+	}
+
+	public static int toIntDefault(String str, int radix, int defaultValue)
+	{
+		try {
+			return Integer.parseInt(str, radix);
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return defaultValue;
+	}
+
+	public static long toLongDefault(String str)
+	{
+		return toLongDefault(str, 10, 0);
+	}
+
+	public static long toLongDefault(String str, long defaultValue)
+	{
+		return toLongDefault(str, 10, defaultValue);
+	}
+
+	public static long toLongDefault(String str, int radix, long defaultValue)
+	{
+		try {
+			return Long.parseLong(str, radix);
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return defaultValue;
+	}
+
+
+	public static short toShortDefault(String str)
+	{
+		return toShortDefault(str, 10, (short)0);
+	}
+
+	public static short toShortDefault(String str, short defaultValue)
+	{
+		return toShortDefault(str, 10, defaultValue);
+	}
+
+	public static short toShortDefault(String str, int radix, short defaultValue)
+	{
+		try {
+			return Short.parseShort(str, radix);
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return defaultValue;
+	}
+
+	public static double toDoubleDefault(String str)
+	{
+		return toDoubleDefault(str, 10);
+	}
+
+	public static double toDoubleDefault(String str, double defaultValue)
+	{
+		try {
+			return Double.parseDouble(str);
+		}
+		catch (NumberFormatException ignore) {
+
+		}
+
+		return defaultValue;
+	}
+
+
+
 }
