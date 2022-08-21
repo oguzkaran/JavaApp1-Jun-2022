@@ -1,5 +1,5 @@
 package org.csystem.util.random.generator;
 
 public interface IIntSupplier {
-    int getAsInt();
+    int getAsInt() throws Exception;
 }

@@ -1,69 +1,35 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Method Reference çeşitleri:
-    1. static metot referansı (static method reference)
-    2. Bir nesneye ilişkin non-static metot referansı (reference to an instance method of particular object)
-    3. Bir türe ilişkin non-static metot referansı (reference to an instance method of any object of a particular type)
-    4. ctor reference (reference to constructor)
+    Java 8 ile birlikte java.util.function paketine bir grup fonksiyonel arayüz eklenmiştir. Bu arayüzler özellikle
+    yine Java 8 ile birlikte eklenen "Stream API" tarafından kullanılmaktadır. Stream API Java'da programlama modelini
+    geliştirmiştir ve kullanılbildiği yerde kesinlikle kullanılmalıdır. Stream API ileride ele alınacaktır. Şüphesiz
+    bu arayüzler yalnızca Stream API ile kullanılmaz. Programcı kendi tasarladığı sınıflarda ve metotlarda da kullanabilir.
+    Ayrıca Java 8 ile birlikte bu arayüzlere başka sınıflar tarafından da kullanılmaktadır:
+    java.util.function paketi altında bulunan arayüzler basitçe şu şekilde gruplanabilir:
+    1. Function arayüzleri: Bu arayüzler bir ya da iki tane giriş (input) alan ve bir sonuç üretilmesi işleminde kullanılır.
+    Bu arayüzlerin en geneli Function ve BiFunction arayüzleridir. Bu arayüzlerin metotları applyXXX biçimindedir.
+
+    2. Operatör arayüzleri: Bu arayüzler bir ya da iki girişe göre bi işlem yapan ve üreten durumlarda kullanılır. Bunların
+    bir çoğu Function ve BiFunction arayüzlerinden türetilmiştir. Bu arayüzler genel olarak BinaryOperator ve UnaryOperator
+    olarak iki gruba ayrılabilir. Bu arayüzlerin metotları applyXXX biçimindedir.
+
+    3. Consumer arayüzleri: Bu arayüzler bir ya da iki girişe göre sadece işlem yapan, bir sonuç üretmeyen durumlarda
+    kullanılır. Bu arayüzlerin metotları acceptXXX biçimindedir.
+
+    4. Supplier arayüzleri: Bu arayüzler bir giriş almadan bir değer üretmek için kullanılır. Bu arayüzlerin metotları
+    getXXX biçimindedir. getXXX metotlarının geri dönüş değeri ilgili türdendir
+
+    5. Predicate arayüzleri: Bu arayüzler bir veya iki giriş alan ve sonucunda boolean türden bir değer üretilmesi
+    gereken durumlarda kullanılır. Bu arayüzlerin test isimli metotları vardır
+
+    Anahtar Notlar: Bu arayüzlerin temel tür karşılıkları her tür ve her işlem için bulunmaz. Bu arayüzler temel türler
+    için çok kullanılan ve diğerlerinin bu türlere doğrudan (implicit) dönüşümlerinin geçerli olduğu için yazılmıştır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.util.console.Console;
-
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 class App {
     public static void main(String[] args)
     {
-        var timer = new Timer();
 
-        var random = new Random();
-
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run()
-            {
-                try {
-                    Console.writeLine("Result:%f", MathUtil.log10(random.nextDouble(1, 10)));
-                }
-                catch (MathResultStatusException ignore) {
-
-                }
-            }
-        }, 0, 1000);
     }
 }
 
-class MathUtil {
-    public static double log10(double a) throws MathResultStatusException
-    {
-        if (a == 0)
-            throw new MathResultStatusException("Undefined", MathResultStatus.NEGATIVE_INFINITY);
-
-        if (a < 0)
-            throw  new MathResultStatusException("Indeterminate", MathResultStatus.NAN);
-
-        return Math.log10(a);
-    }
-}
-
-enum MathResultStatus {
-    NAN, POSITIVE_INFINITY, NEGATIVE_INFINITY, POSITIVE_ZERO, NEGATIVE_ZERO,
-}
-
-class MathResultStatusException extends Exception {
-    private final MathResultStatus m_mathResultStatus;
-
-    public MathResultStatusException(String message, MathResultStatus mathResultStatus)
-    {
-        super(message);
-        m_mathResultStatus = mathResultStatus;
-    }
-
-    @Override
-    public String getMessage()
-    {
-        return String.format("Message: %s, Status:%s", super.getMessage(), m_mathResultStatus);
-    }
-}
