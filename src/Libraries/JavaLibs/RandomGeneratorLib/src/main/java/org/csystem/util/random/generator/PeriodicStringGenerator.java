@@ -1,9 +1,9 @@
 /*----------------------------------------------------------------------
-	FILE        : PeriodicIntGenerator.java
+	FILE        : PeriodicStringGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
 	LAST UPDATE : 27.08.2022
 
-	PeriodicIntGenerator class
+	PeriodicStringGenerator class
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
@@ -17,19 +17,19 @@ import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-public class PeriodicIntGenerator {
+public class PeriodicStringGenerator {
     private int m_count;
     private long m_delay;
     private long m_period;
     private Timer m_timer;
-    private IIntSupplier m_supplier;
+    private IStringSupplier m_supplier;
 
-    public PeriodicIntGenerator(int count, long delay, long period, IIntSupplier supplier)
+    public PeriodicStringGenerator(int count, long delay, long period, IStringSupplier supplier)
     {
         this(count, delay, period, MILLISECONDS, supplier);
     }
 
-    public PeriodicIntGenerator(int count, long delay, long period, TimeUnit timeUnit, IIntSupplier supplier)
+    public PeriodicStringGenerator(int count, long delay, long period, TimeUnit timeUnit, IStringSupplier supplier)
     {
         m_count = count;
         m_delay = timeUnit == MILLISECONDS ? delay : MILLISECONDS.convert(delay, timeUnit);
@@ -62,12 +62,12 @@ public class PeriodicIntGenerator {
         m_period = period;
     }
 
-    public void setSupplier(IIntSupplier supplier)
+    public void setSupplier(IStringSupplier supplier)
     {
         m_supplier = supplier;
     }
 
-    public void start(IIntConsumer consumer)
+    public void start(IStringConsumer consumer)
     {
         var random = new Random();
 
@@ -77,7 +77,7 @@ public class PeriodicIntGenerator {
             {
                 try {
                     if (m_count-- != 0)
-                        consumer.accept(m_supplier.getAsInt());
+                        consumer.accept(m_supplier.getAsString());
                     else
                         m_timer.cancel();
                 }

@@ -1,9 +1,11 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    OptinalInt sınıfının ifPresentOrElse metotları
+    BitwiawUtil sınıfının highestSetBit metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.util.bitwise.BitwiseUtil;
 import org.csystem.util.console.Console;
+import org.csystem.util.console.commandline.CommandLineArgsUtil;
 import org.csystem.util.numeric.NumberUtil;
 
 import java.util.Random;
@@ -11,18 +13,14 @@ import java.util.Random;
 class App {
     public static void main(String[] args)
     {
-        var random = new Random();
-
         for (;;) {
-            var str = Console.read("Bir yazı giriniz:");
+            var a = Console.readInt("Bir sayı giriniz:");
 
-            if ("elma".equals(str))
+            BitwiseUtil.writeBits(a);
+            Console.writeLine("Highest set bit index:%d", BitwiseUtil.highestSetBit(a));
+
+            if (a == 0)
                 break;
-
-            var optInt = NumberUtil.toInt(str);
-
-            optInt.ifPresentOrElse(val -> Console.writeLine("%d * %d = %d", val, val, val * val),
-                    () -> Console.Error.writeLine("Geçersiz değer!...")); //Since Java 9
         }
     }
 }

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : BitwiseUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 03.07.2022
+	LAST UPDATE : 27.08.2022
 
 	Utility class for bitwise operations
 
@@ -22,6 +22,105 @@ public final class BitwiseUtil {
     public static long clearBit(long a, int k) // -> [0, 63]
     {
         return a & ~(1L << k);
+    }
+
+    public static int highestSetBit(int a)
+    {
+        for (int i = Integer.SIZE - 1; i >= 0; --i)
+            if (isSet(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestClearBit(byte a)
+    {
+        for (int i = 0; i < Byte.SIZE; ++i)
+            if (isClear(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestClearBit(short a)
+    {
+        for (int i = 0; i < Short.SIZE; ++i)
+            if (isClear(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestClearBit(int a)
+    {
+        for (int i = 0; i < Integer.SIZE; ++i)
+            if (isClear(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestClearBit(long a)
+    {
+        for (int i = 0; i < Long.SIZE; ++i)
+            if (isClear(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestClearBit(char a)
+    {
+        for (int i = 0; i < Character.SIZE; ++i)
+            if (isClear(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestSetBit(byte a)
+    {
+        for (int i = 0; i < Byte.SIZE; ++i)
+            if (isSet(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestSetBit(short a)
+    {
+        for (int i = 0; i < Short.SIZE; ++i)
+            if (isSet(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestSetBit(int a)
+    {
+        for (int i = 0; i < Integer.SIZE; ++i)
+            if (isSet(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestSetBit(long a)
+    {
+        for (int i = 0; i < Long.SIZE; ++i)
+            if (isSet(a, i))
+                return i;
+
+        return -1;
+    }
+
+    public static int lowestSetBit(char a)
+    {
+        for (int i = 0; i < Character.SIZE; ++i)
+            if (isSet(a, i))
+                return i;
+
+        return -1;
     }
 
     public static int [] indicesOfSetBits(int a)
