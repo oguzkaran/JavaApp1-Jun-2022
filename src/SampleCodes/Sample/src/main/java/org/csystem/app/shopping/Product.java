@@ -70,4 +70,10 @@ public class Product {
     {
         m_unitPrice = unitPrice;
     }
+
+    @Override
+    public String toString()
+    {
+        return "...";
+    }
 }

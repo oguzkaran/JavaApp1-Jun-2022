@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : IRunnable.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 20.08.2022
+	LAST UPDATE : 28.08.2022
 
 	IRunnable interface that is useful for checked exceptions
 
@@ -10,6 +10,7 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.scheduler;
 
+@FunctionalInterface
 public interface IRunnable {
     void run() throws Exception;
 }

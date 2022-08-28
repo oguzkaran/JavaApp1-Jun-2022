@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 
 import static java.util.Calendar.*;
 
+@Deprecated(since = "7.0.0")
 public final class DateTime implements Serializable, Comparable<DateTime> {
     private static final long serialVersionUID = 1L;
     private static final int [] DAYS_OF_MONTHS = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
