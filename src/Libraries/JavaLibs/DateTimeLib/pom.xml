@@ -14,7 +14,7 @@
 
     <groupId>org.csystem</groupId>
     <artifactId>org-csystem-util-datetime</artifactId>
-    <version>6.1.0</version>
+    <version>6.2.0</version>
 
     <properties>
         <java.version>11</java.version>

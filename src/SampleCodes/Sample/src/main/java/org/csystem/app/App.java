@@ -1,9 +1,9 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Reflection: Java derleyicisi "byte code"'a metadata bilgilerini yazar. Öreneğin bir sınıf için elemanları, elemanların
-    erişim belirleyicileri gibi bilgiler arakoda yazılır. İşte "reflection" bu bilgilerin çalışma zamanında elde edilip
-    metadata'lar ile işlem yapma faaliyetidir.
+
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
+
+import java.lang.annotation.*;
 
 class App {
     public static void main(String[] args)
@@ -11,5 +11,35 @@ class App {
 
     }
 }
+
+class CommandInfo {
+    @Command("ls")
+    @Command("dir")
+    @Command
+    public void list()
+    {
+        //...
+    }
+
+    @Commands({@Command("cp"), @Command})
+    public void copy()
+    {
+        //...
+    }
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@Repeatable(Commands.class)
+@interface Command {
+    String value() default "";
+}
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface Commands {
+    Command [] value();
+}
+
 
 

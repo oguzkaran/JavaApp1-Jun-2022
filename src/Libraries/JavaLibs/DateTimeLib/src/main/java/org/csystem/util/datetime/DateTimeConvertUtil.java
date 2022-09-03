@@ -3,7 +3,7 @@
 	AUTHOR      : Oğuz Karan, JavaApp1-Jun-2022 group
 	LAST UPDATE : 24.07.2022
 
-	DateTimeConverter class for date time operations
+	DateTimeConverter class for date time conversion operations
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
