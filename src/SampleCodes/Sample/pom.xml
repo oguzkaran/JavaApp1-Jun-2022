@@ -52,6 +52,12 @@
 
 		<dependency>
 			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-generator</artifactId>
+			<version>9.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime-legacy</artifactId>
 			<version>7.0.0</version>
 		</dependency>

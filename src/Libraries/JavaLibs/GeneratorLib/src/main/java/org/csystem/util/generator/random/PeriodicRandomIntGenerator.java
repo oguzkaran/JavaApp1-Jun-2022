@@ -8,7 +8,9 @@
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.random.generator;
+package org.csystem.util.generator.random;
+
+import org.csystem.util.generator.PeriodicIntGenerator;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;

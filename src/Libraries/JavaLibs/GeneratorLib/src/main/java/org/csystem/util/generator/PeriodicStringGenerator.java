@@ -8,7 +8,7 @@
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.random.generator;
+package org.csystem.util.generator;
 
 import java.util.Random;
 import java.util.Timer;

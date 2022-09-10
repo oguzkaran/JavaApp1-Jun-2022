@@ -1,4 +1,4 @@
-package org.csystem.util.random.generator;
+package org.csystem.util.generator;
 
 @FunctionalInterface
 public interface IIntSupplier {
