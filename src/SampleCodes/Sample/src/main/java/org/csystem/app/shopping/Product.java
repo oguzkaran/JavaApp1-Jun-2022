@@ -72,6 +72,12 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object other)
+    {
+        return other instanceof Product && ((Product)other).m_id == m_id;
+    }
+
+    @Override
     public String toString()
     {
         return "...";

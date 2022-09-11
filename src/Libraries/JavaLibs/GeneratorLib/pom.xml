@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util-generator</artifactId>
-	<version>9.0.0</version>
+	<version>9.1.0</version>
 	<name>org-csystem-util-generator</name>
 
 	<repositories>

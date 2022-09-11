@@ -1,17 +1,17 @@
 /*----------------------------------------------------------------------
 	FILE        : DoubleGenerator.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 10.09.2022
+	LAST UPDATE : 11.09.2022
 
 	Iterable DoubleGenerator class generates double values
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-
 package org.csystem.util.generator;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class DoubleGenerator implements Iterable<Double> {
@@ -26,28 +26,42 @@ public class DoubleGenerator implements Iterable<Double> {
 
     public static DoubleGenerator of(Random random, int count, double min, double bound)
     {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return of(count, () -> random.nextDouble() * (bound - min) + min);
     }
 
     public static DoubleGenerator of(int count, IDoubleSupplier supplier)
     {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new DoubleGenerator(count, supplier);
     }
 
     @Override
     public Iterator<Double> iterator()
     {
        return new Iterator<>() {
+           int count;
            @Override
            public boolean hasNext()
            {
-               throw new UnsupportedOperationException("Not implemented yet");
+                return count + 1 < m_count;
            }
 
            @Override
            public Double next()
            {
-               throw new UnsupportedOperationException("Not implemented yet");
+                if (!hasNext())
+                    throw new NoSuchElementException("No such random value");
+
+                Double result = null;
+
+                try {
+                    ++count;
+                    result = m_supplier.getAsDouble();
+                }
+                catch (Exception ignore) {
+
+                }
+
+                return result;
            }
        };
     }
