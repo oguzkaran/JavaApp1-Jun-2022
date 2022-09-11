@@ -1,5 +1,6 @@
 package com.eraytasay.app.menu.plugin;
 
+import com.eraytasay.menu.plugin.IMenuPlugin;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.commandline.CommandLineArgsUtil;
 import org.csystem.util.reflection.ReflectionUtil;
@@ -14,7 +15,7 @@ public class MenuApp {
 
         for (;;) {
             int i = 1;
-            var classes = ReflectionUtil.getImplementedClassesByJars(path, "com.eraytasay.menu.plugin.IMenuPlugin");
+            var classes = ReflectionUtil.getImplementedClassesByJars(path, IMenuPlugin.class);
 
             if (!classes.isEmpty()) {
                 Console.writeLine("Menu:");
