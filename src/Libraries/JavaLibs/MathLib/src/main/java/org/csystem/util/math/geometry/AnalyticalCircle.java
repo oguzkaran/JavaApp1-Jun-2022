@@ -11,6 +11,8 @@
 ----------------------------------------------------------------*/
 package org.csystem.util.math.geometry;
 
+import static java.lang.Math.abs;
+
 public class AnalyticalCircle extends Circle {
     private final MutablePoint m_center;
 
@@ -110,5 +112,21 @@ public class AnalyticalCircle extends Circle {
         return true;
     }
 
-    //...
+    @Override
+    public String toString()
+    {
+        return String.format("%s, Point: %s", super.toString(), m_center);
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof AnalyticalCircle))
+            return false;
+
+        var ac = ((AnalyticalCircle)other);
+
+        return super.equals(ac) && abs(m_center.getX() - ac.m_center.getX()) < DELTA
+                && abs(m_center.getY() - ac.m_center.getY()) < DELTA;
+    }
 }

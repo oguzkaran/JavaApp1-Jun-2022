@@ -11,6 +11,8 @@
 
 package org.csystem.util.math.geometry;
 
+import org.csystem.util.math.MutableFraction;
+
 public class MutablePoint {
 	private double m_x;
 
@@ -82,8 +84,20 @@ public class MutablePoint {
 		return new Point(m_x, m_y);
 	}
 
+	@Override
  	public String toString()
 	{
 		return PointCommonUtil.toString(m_x, m_y);
+	}
+
+	@Override
+	public boolean equals(Object other)
+	{
+		if (!(other instanceof MutablePoint))
+			return false;
+
+		var p = (MutablePoint)other;
+
+		return m_x == p.m_x && m_y == p.m_y;
 	}
 }

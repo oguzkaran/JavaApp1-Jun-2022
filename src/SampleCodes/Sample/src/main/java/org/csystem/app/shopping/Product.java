@@ -11,6 +11,15 @@ public class Product {
     private BigDecimal m_cost;
     private BigDecimal m_unitPrice;
 
+    public Product()
+    {
+
+    }
+    public Product(int id)
+    {
+        m_id = id;
+    }
+
     public int getId()
     {
         return m_id;

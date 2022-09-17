@@ -10,7 +10,10 @@
 ----------------------------------------------------------------*/
 package org.csystem.util.math.geometry;
 
+import static java.lang.Math.abs;
+
 public class Circle {
+    protected static final double DELTA = 0.0001;
     private double m_radius;
 
     public Circle()
@@ -42,5 +45,18 @@ public class Circle {
         return 2 * Math.PI * m_radius;
     }
 
-    //...
+    @Override
+    public String toString()
+    {
+        return String.format("Radius: %f", m_radius);
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof Circle))
+            return false;
+
+        return abs(m_radius - ((Circle)other).m_radius) < DELTA;
+    }
 }

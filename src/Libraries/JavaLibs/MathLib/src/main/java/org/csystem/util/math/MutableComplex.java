@@ -123,8 +123,20 @@ public class MutableComplex {
 		return new Complex(m_real, m_imag);
 	}
 
+	@Override
 	public String toString()
 	{
 		return ComplexCommonUtil.toString(m_real, m_imag);
+	}
+
+	@Override
+	public boolean equals(Object other)
+	{
+		if (!(other instanceof MutableComplex))
+			return false;
+
+		var z = (MutableComplex)other;
+
+		return m_real == z.m_real && m_imag == z.m_imag;
 	}
 }

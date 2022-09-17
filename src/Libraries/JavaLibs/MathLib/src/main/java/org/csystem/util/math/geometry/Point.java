@@ -60,8 +60,20 @@ public class Point {
 		return new MutablePoint(m_x, m_y);
 	}
 
+	@Override
 	public String toString()
 	{
 		return PointCommonUtil.toString(m_x, m_y);
+	}
+
+	@Override
+	public boolean equals(Object other)
+	{
+		if (!(other instanceof Point))
+			return false;
+
+		var p = (Point)other;
+
+		return m_x == p.m_x && m_y == p.m_y;
 	}
 }

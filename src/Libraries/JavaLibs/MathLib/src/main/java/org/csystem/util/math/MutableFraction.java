@@ -200,8 +200,20 @@ public class MutableFraction {
         m_a -= m_b;
     }
 
+    @Override
     public String toString()
     {
         return String.format("%d%s", m_a, m_b != 1 ? " / " + m_b + " = " + getRealValue() : "");
+    }
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof MutableFraction))
+            return false;
+
+        var f = (MutableFraction)other;
+
+        return m_a == f.m_a && m_b == f.m_b;
     }
 }

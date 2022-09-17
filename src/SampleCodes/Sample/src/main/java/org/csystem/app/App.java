@@ -1,39 +1,35 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Apache common kütüphanesinin de Pair sınıfı vardır
+    org-csystem-util-math kütüphanesinin 6.0.0 versiyonunda AnalyticalCircle sınıfının (ve diğer sınıfların da) equals
+    metodu override edilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.factory.NameWithIndexFactory;
+import org.csystem.app.factory.RandomCircleFactory;
 import org.csystem.util.console.Console;
-import org.csystem.util.tuple.Pair;
+import org.csystem.util.math.geometry.AnalyticalCircle;
 
 import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        var factory = new NameWithIndexFactory();
+        var factory = new RandomCircleFactory(new Random(), -10, 10);
 
-        var names = factory.getNames(new Random(), Console.readInt("Bir sayı giriniz:"));
-        var idx = Console.readInt("Aranacak indeks numarasını giriniz:");
-        var name = Console.read("Aranacak ismi giriniz:");
+        var circles = factory.getCircles(Console.readInt("Bir sayı giriniz:"));
 
-        names.forEach(Console::writeLine);
-        Console.writeLine("------------------------");
+        circles.forEach(Console::writeLine);
 
-        var index = names.indexOf(Pair.of(idx, name));
-
-        if (index != -1)
-            Console.writeLine("%d, %s, %d. indekste ilk olarak görüldü", idx, name, index);
-        else
-            Console.writeLine("%d, %s, bulunamadı", idx, name);
-
-        index = names.lastIndexOf(Pair.of(idx, name));
+        var r = Console.readDouble("Yarıçapı giriniz:");
+        var x = Console.readDouble("x'i giriniz:");
+        var y = Console.readDouble("y'yi giriniz:");
+        var ac = new AnalyticalCircle(r, x, y);
+        var index = circles.indexOf(ac);
 
         if (index != -1)
-            Console.writeLine("%d, %s, %d. indekste son olarak görüldü", idx, name, index);
+            Console.writeLine("%s çemberi %d.indekste bulundu:", ac, index);
         else
-            Console.writeLine("%d, %s, bulunamadı", idx, name);
+            Console.writeLine("%s çemberi bulunamadı:", ac);
+
     }
 }
 
