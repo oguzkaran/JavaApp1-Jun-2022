@@ -1,33 +1,39 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Liste tarzı collection sınıflar elemanları arasında öncelik-sonralık ilişkisi olan collection sınıflardır. Bu sınıflar
-    convention List<E> arayüzünü destekler. List<E> arayüzü Collection<E> arayüzünden türetilmiştir. List<E> arayüzünün
-    Collection<E> arayüzünden gelen metotları dışında önemli iki metodu indexOf ve get metotlarıdır.
+    Apache common kütüphanesinin de Pair sınıfı vardır
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.app.factory.NameWithIndexFactory;
 import org.csystem.util.console.Console;
-import org.csystem.util.generator.IntGenerator;
+import org.csystem.util.tuple.Pair;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Random;
 
 class App {
     public static void main(String[] args)
     {
-        var r = new Random();
-        var iLinkedList = new LinkedList<Integer>();
+        var factory = new NameWithIndexFactory();
 
-        IntGenerator.of(r, 10, 0, 99).forEach(iLinkedList::add);
+        var names = factory.getNames(new Random(), Console.readInt("Bir sayı giriniz:"));
+        var idx = Console.readInt("Aranacak indeks numarasını giriniz:");
+        var name = Console.read("Aranacak ismi giriniz:");
 
-        iLinkedList.forEach(a -> Console.write("%d ", a));
-        Console.writeLine();
-        var iList = new ArrayList<Integer>(iLinkedList);
+        names.forEach(Console::writeLine);
+        Console.writeLine("------------------------");
 
-        iList.add(400);
-        iList.addAll(iLinkedList);
+        var index = names.indexOf(Pair.of(idx, name));
 
-        iList.forEach(a -> Console.write("%d ", a));
-        Console.writeLine();
+        if (index != -1)
+            Console.writeLine("%d, %s, %d. indekste ilk olarak görüldü", idx, name, index);
+        else
+            Console.writeLine("%d, %s, bulunamadı", idx, name);
+
+        index = names.lastIndexOf(Pair.of(idx, name));
+
+        if (index != -1)
+            Console.writeLine("%d, %s, %d. indekste son olarak görüldü", idx, name, index);
+        else
+            Console.writeLine("%d, %s, bulunamadı", idx, name);
     }
 }
+

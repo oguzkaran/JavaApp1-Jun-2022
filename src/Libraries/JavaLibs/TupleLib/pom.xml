@@ -10,10 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>GenericLib</artifactId>
+	<artifactId>org-csystem-util-tuple</artifactId>
 	<version>6.0.0</version>
-	<name>GenericLib</name>
-	<description>Generic Library Provider</description>
+	<name>org-csystem-util-tuple</name>
 
 	<repositories>
 		<repository>
