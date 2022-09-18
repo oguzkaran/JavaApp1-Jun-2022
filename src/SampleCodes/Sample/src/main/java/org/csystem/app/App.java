@@ -1,35 +1,27 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    org-csystem-util-math kütüphanesinin 6.0.0 versiyonunda AnalyticalCircle sınıfının (ve diğer sınıfların da) equals
-    metodu override edilmiştir
+    Sınıf Çalışması: null değeri tutamayan CSDVectorNotNullable isimli veri collection sınıfı yazınız.
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.app.factory.RandomCircleFactory;
 import org.csystem.util.console.Console;
-import org.csystem.util.math.geometry.AnalyticalCircle;
+import org.csystem.util.iterable.IntRange;
+import org.csystem.util.string.StringUtil;
 
 import java.util.Random;
+import java.util.Vector;
 
 class App {
     public static void main(String[] args)
     {
-        var factory = new RandomCircleFactory(new Random(), -10, 10);
+        var random = new Random();
+        var sVec = new Vector<String>(5, Console.readInt("Capacity artım miktarını giriniz:"));
 
-        var circles = factory.getCircles(Console.readInt("Bir sayı giriniz:"));
-
-        circles.forEach(Console::writeLine);
-
-        var r = Console.readDouble("Yarıçapı giriniz:");
-        var x = Console.readDouble("x'i giriniz:");
-        var y = Console.readDouble("y'yi giriniz:");
-        var ac = new AnalyticalCircle(r, x, y);
-        var index = circles.indexOf(ac);
-
-        if (index != -1)
-            Console.writeLine("%s çemberi %d.indekste bulundu:", ac, index);
-        else
-            Console.writeLine("%s çemberi bulunamadı:", ac);
-
+        Console.writeLine("Capacity:%d", sVec.capacity());
+        var count = Console.readInt("Bir sayı giriniz:");
+        IntRange.of(0, count).forEach(i -> sVec.add(StringUtil.getRandomTextEN(random, random.nextInt(5, 15))));
+        sVec.forEach(Console::writeLine);
+        Console.writeLine("------------------------");
+        Console.writeLine("Capacity:%d", sVec.capacity());
     }
 }
 
