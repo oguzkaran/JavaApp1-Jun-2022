@@ -69,6 +69,7 @@ public class CSDArrayListNotNullable<E> extends ArrayList<E> {
     public boolean addAll(Collection<? extends E> collection)
     {
         checkAnyNull(collection);
+
         return super.addAll(collection);
     }
 

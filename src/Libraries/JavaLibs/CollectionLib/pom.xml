@@ -12,7 +12,7 @@
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util-collection</artifactId>
 	<version>6.0.0</version>
-	<name>GenericLib</name>
+	<name>org-csystem-util-collection</name>
 
 	<repositories>
 		<repository>

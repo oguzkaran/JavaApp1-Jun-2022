@@ -67,6 +67,13 @@
 			<artifactId>org-csystem-util.math</artifactId>
 			<version>6.0.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-collection</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-datetime-legacy</artifactId>
