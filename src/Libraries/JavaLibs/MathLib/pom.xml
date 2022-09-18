@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>org-csystem-util.math</artifactId>
+	<artifactId>org-csystem-util-math</artifactId>
 	<version>6.0.0</version>
 	<name>org-csystem-util.math</name>
 
