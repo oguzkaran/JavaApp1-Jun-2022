@@ -3,7 +3,7 @@
 	AUTHOR		: JavaApp1-Jun-2022 Group
 	LAST UPDATE	: 18.09.2022
 
-	CSDVectorNotNullable class that use capacity factor
+	CSDVectorCapacityFactor class that use capacity factor
 
 	Copyleft (c) 1993 C and System Programmers Association
 	All Rights Free
@@ -14,41 +14,80 @@ import java.util.Collection;
 import java.util.Vector;
 
 public class CSDVectorCapacityFactor<E> extends Vector<E> {
+    private final double m_capacityFactor;
+
+    private void configureCapacityIncrement()
+    {
+        int curCapacity = capacity();
+
+        capacityIncrement = (int)Math.floor(m_capacityFactor * curCapacity) - curCapacity;
+    }
+
     public CSDVectorCapacityFactor()
     {
+        this(10);
+    }
+
+    public CSDVectorCapacityFactor(double capacityFactor)
+    {
+        this(10, capacityFactor);
     }
 
     public CSDVectorCapacityFactor(int initialCapacity)
     {
-        super(initialCapacity);
+        this(initialCapacity, 2);
     }
 
-    public CSDVectorCapacityFactor(int initialCapacity, int capacityFactor)
+    public CSDVectorCapacityFactor(int initialCapacity, double capacityFactor)
     {
-        
+        super(initialCapacity);
+        m_capacityFactor = capacityFactor;
+        configureCapacityIncrement();
+    }
+
+    public CSDVectorCapacityFactor(Collection<? extends E> collection, double capacityFactor)
+    {
+        super(collection);
+        m_capacityFactor = capacityFactor;
+        configureCapacityIncrement();
     }
 
     @Override
-    public boolean add(E e)
+    public synchronized void addElement(E obj)
     {
-        throw new UnsupportedOperationException("TODO");
+        configureCapacityIncrement();
+        super.addElement(obj);
+    }
+
+    @Override
+    public synchronized boolean add(E e)
+    {
+        configureCapacityIncrement();
+
+        return super.add(e);
     }
 
     @Override
     public void add(int index, E element)
     {
-        throw new UnsupportedOperationException("TODO");
+        configureCapacityIncrement();
+
+        super.add(index, element);
     }
 
     @Override
-    public boolean addAll(Collection<? extends E> collection)
+    public boolean addAll(Collection<? extends E> c)
     {
-        throw new UnsupportedOperationException("TODO");
+        configureCapacityIncrement();
+
+        return super.addAll(c);
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends E> collection)
+    public synchronized boolean addAll(int index, Collection<? extends E> c)
     {
-        throw new UnsupportedOperationException("TODO");
+        configureCapacityIncrement();
+
+        return super.addAll(index, c);
     }
 }
