@@ -1,0 +1,12 @@
+- CarLib içerisindeki Card sınıfını, public arayüzü değiştirilmeden Homework-15.pdf dosyasındaki açıklamalara göre
+yazınız
+
+- CardApp içerisinde her adımda kullanıcıya bir kağıt seçtiriniz.
+
+- CardApp içerisinde karıştırılmış bir deste alınız.
+
+- Oyunda rasgele olarak seçilen kartın oyuncuya mı yoksa programa mı çıktığını bir scheduler kullanarak belirleyiniz
+
+- Oyuncu oyunu bilgisayara karşı oynayacaktır
+
+- Toplam sizin belirleyeceğiniz bir sayı kadar kazanan, toplam oyunu kazanmış olacaktır

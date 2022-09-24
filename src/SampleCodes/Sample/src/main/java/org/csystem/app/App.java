@@ -1,37 +1,61 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Stack sınıfının search metodu en üstteki eleman 1(bir) numaralı indeks olmak üzere ilk bulduğu elemanın indeks
-    numarasına geri döner. Bulamazsa -1 değerine geri döner. Eşitlik kontrolünü indexOf metodundaki gibi yapar
+    Stack sınıfı
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
+import org.csystem.util.data.test.factory.ProductFactory;
+import org.csystem.util.data.test.product.ProductInfo;
 import org.csystem.util.iterable.IntRange;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Stack;
+
+import static org.csystem.util.console.commandline.CommandLineArgsUtil.*;
 
 class App {
     public static void main(String[] args)
     {
-        var random = new Random();
-        var stack = new Stack<Integer>();
-        var count = Console.readInt("Bir sayı giriniz:");
+        checkLengthEquals(args, 3, "Wrong number of arguments");
+        try {
+            var factoryOpt = ProductFactory.loadFromTextFile(args[0]);
 
-        IntRange.of(0, count).forEach(i -> stack.push(random.nextInt(100)));
+            if (factoryOpt.isEmpty()) {
+                Console.writeLine("Empty file");
+                return;
+            }
 
-        var a = random.nextInt(100);
-        Console.writeLine("Value:%d", a);
-        int index = stack.search(a);
+            var random = new Random();
+            var productStack = new Stack<ProductInfo>();
+            var factory = factoryOpt.get();
+            var count = Integer.parseInt(args[1]);
+            IntRange.of(0, count).forEach(i -> productStack.push(factory.getRandomProduct(random).orElse(null)));
 
-        int i = 0;
+            var id = Integer.parseInt(args[2]);
+            var index = productStack.search(new ProductInfo().setId(id));
 
-        while (!stack.empty())
-            Console.writeLine("%d -> %d", ++i, stack.pop());
+            if (index != -1) {
+                var pi = productStack.get(productStack.size() - index);
 
-        if (index != -1)
-            Console.writeLine("%d sayısı %d. indekste bulundu", a, index);
-        else
-            Console.writeLine("%d sayısı bulunamadı", a, index);
+                Console.writeLine("--------------------------------------------------------------");
+                Console.writeLine("%d, %s", index, pi);
+            }
+            else
+                Console.writeLine("Not found");
+
+            int i = 0;
+
+            while (!productStack.empty())
+                Console.writeLine("%d, %s", ++i, productStack.pop());
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        catch (NumberFormatException ignore) {
+            Console.Error.writeLine("Invalid values");
+        }
     }
 }
+
 
