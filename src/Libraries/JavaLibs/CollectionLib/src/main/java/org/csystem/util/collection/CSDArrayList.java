@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------
 	FILE		: CSDArrayList.java
 	AUTHOR		: JavaApp1-Jun-2022 Group
-	LAST UPDATE	: 18.09.2022
+	LAST UPDATE	: 25.09.2022
 
 	CSDArrayList class that represents dynamic array
 
@@ -59,7 +59,8 @@ public class CSDArrayList<E> implements List<E> {
 
     public CSDArrayList(Collection<? extends E> collection)
     {
-        throw new UnsupportedOperationException("TODO");
+        this();
+        addAll(collection);
     }
 
     public boolean add(E elem)
@@ -83,6 +84,32 @@ public class CSDArrayList<E> implements List<E> {
         m_elems[index] = elem;
     }
 
+    @Override
+    public boolean addAll(Collection<? extends E> c)
+    {
+        var size = c.size();
+
+        if (m_elems.length - m_index < size) // Bu kısım değişecek
+            ensureCapacity(m_elems.length + size);
+
+        c.forEach(this::add);
+
+        return true;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends E> c)
+    {
+        var size = c.size();
+
+        if (m_elems.length - m_index < size) // Bu kısım değişecek
+            ensureCapacity(m_elems.length + size);
+
+        c.forEach(e -> add(index, e));
+
+        return true;
+    }
+
     public int capacity()
     {
         return m_elems.length;
@@ -94,6 +121,22 @@ public class CSDArrayList<E> implements List<E> {
             m_elems[i] = null;
 
         m_index = 0;
+    }
+
+    @Override
+    public boolean contains(Object o)
+    {
+        return indexOf(o) != -1;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c)
+    {
+        for (var e : c)
+            if (!contains(e))
+                return false;
+
+        return true;
     }
 
     public void ensureCapacity(int minCapacity)
@@ -109,9 +152,88 @@ public class CSDArrayList<E> implements List<E> {
         return m_elems[index];
     }
 
+    @Override
+    public int indexOf(Object o)
+    {
+        for (int i = 0; i < m_index; ++i)
+            if (Objects.equals(o, m_elems[i]))
+                return i;
+
+        return -1;
+    }
+
     public boolean isEmpty()
     {
         return m_index == 0;
+    }
+
+    @Override
+    public Iterator<E> iterator()
+    {
+        return new Iterator<>() {
+            int index = -1;
+
+            @Override
+            public boolean hasNext()
+            {
+                return index + 1 < m_index;
+            }
+
+            @Override
+            public E next()
+            {
+                if (!hasNext())
+                    throw new NoSuchElementException("");
+
+                return m_elems[++index];
+            }
+        };
+    }
+
+    public E remove(int index)
+    {
+        checkIndex(index);
+        E old = m_elems[index];
+
+        for (int i = index; i < m_index - 1; ++i)
+            m_elems[i] = m_elems[i + 1];
+
+        m_elems[--m_index] = null;
+
+        return old;
+    }
+
+    @Override
+    public boolean remove(Object o)
+    {
+        var index = indexOf(o);
+
+        if (index != -1)
+            remove(index);
+
+        return index != -1;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c)
+    {
+        boolean result = false;
+
+        for (var e : c)
+            if (remove(e))
+                result = true;
+
+        return result;
+    }
+
+    @Override
+    public int lastIndexOf(Object o)
+    {
+        for (int i = m_index - 1; i >= 0; --i)
+            if (Objects.equals(o, m_elems[i]))
+                return i;
+
+        return -1;
     }
 
     public E set(int index, E elem)
@@ -127,19 +249,6 @@ public class CSDArrayList<E> implements List<E> {
     public int size()
     {
         return m_index;
-    }
-
-    public E remove(int index)
-    {
-        checkIndex(index);
-        E old = m_elems[index];
-
-        for (int i = index; i < m_index - 1; ++i)
-            m_elems[i] = m_elems[i + 1];
-
-        m_elems[--m_index] = null;
-
-        return old;
     }
 
     public void trimToSize()
@@ -161,19 +270,7 @@ public class CSDArrayList<E> implements List<E> {
         return sb.append("]").toString();
     }
 
-    /////////////////////////////////////////////////////////////
-
-    @Override
-    public boolean contains(Object o)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
-    public Iterator<E> iterator()
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
+    //////////////////////////////////////////////////////////////////////////////
 
     @Override
     public Object[] toArray()
@@ -188,51 +285,9 @@ public class CSDArrayList<E> implements List<E> {
     }
 
     @Override
-    public boolean remove(Object o)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends E> c)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends E> c)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
     public boolean retainAll(Collection<?> c)
     {
         throw new UnsupportedOperationException("No supported");
-    }
-
-    @Override
-    public int indexOf(Object o)
-    {
-        throw new UnsupportedOperationException("TODO");
-    }
-
-    @Override
-    public int lastIndexOf(Object o)
-    {
-        throw new UnsupportedOperationException("TODO");
     }
 
     @Override

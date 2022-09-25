@@ -1,5 +1,9 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Stack sınıfı
+    LinkedList sınıfının addFirst ve pollFirst metotları:
+    poll, pollFirst ve pollLast metotları liste boş ise null değerine geri dönerler. Bu durumda algoritmamızda eğer linked
+    list içerisinde null değer tutulmadığı garanti altındaysa bu metotların geri dönüş değerinden listenin boş olup olmadığı
+    anlaşılabilir. Ancak listede null da değer olarak tutuluyorsa ve o an çağrılmada o değer de verilecekse geri dönüş
+    değeri listenin boş olup olmadığı hakkında bilgi vermez
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -9,15 +13,14 @@ import org.csystem.util.data.test.product.ProductInfo;
 import org.csystem.util.iterable.IntRange;
 
 import java.io.IOException;
-import java.util.Random;
-import java.util.Stack;
+import java.util.LinkedList;
 
-import static org.csystem.util.console.commandline.CommandLineArgsUtil.*;
+import static org.csystem.util.console.commandline.CommandLineArgsUtil.checkLengthEquals;
 
 class App {
     public static void main(String[] args)
     {
-        checkLengthEquals(args, 3, "Wrong number of arguments");
+        checkLengthEquals(args, 2, "Wrong number of arguments");
         try {
             var factoryOpt = ProductFactory.loadFromTextFile(args[0]);
 
@@ -26,28 +29,15 @@ class App {
                 return;
             }
 
-            var random = new Random();
-            var productStack = new Stack<ProductInfo>();
+            var productLList = new LinkedList<ProductInfo>();
             var factory = factoryOpt.get();
             var count = Integer.parseInt(args[1]);
-            IntRange.of(0, count).forEach(i -> productStack.push(factory.getRandomProduct(random).orElse(null)));
+            IntRange.of(0, count).forEach(i -> productLList.addFirst(factory.PRODUCTS.get(i)));
 
-            var id = Integer.parseInt(args[2]);
-            var index = productStack.search(new ProductInfo().setId(id));
+            while (!productLList.isEmpty())
+                Console.writeLine(productLList.pollFirst());
 
-            if (index != -1) {
-                var pi = productStack.get(productStack.size() - index);
-
-                Console.writeLine("--------------------------------------------------------------");
-                Console.writeLine("%d, %s", index, pi);
-            }
-            else
-                Console.writeLine("Not found");
-
-            int i = 0;
-
-            while (!productStack.empty())
-                Console.writeLine("%d, %s", ++i, productStack.pop());
+            Console.writeLine();
         }
         catch (IOException ex) {
             ex.printStackTrace();
@@ -57,5 +47,3 @@ class App {
         }
     }
 }
-
-
