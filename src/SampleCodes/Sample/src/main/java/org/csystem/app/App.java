@@ -7,43 +7,22 @@
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.game.card.Card;
 import org.csystem.util.console.Console;
-import org.csystem.util.data.test.factory.ProductFactory;
-import org.csystem.util.data.test.product.ProductInfo;
-import org.csystem.util.iterable.IntRange;
-
-import java.io.IOException;
-import java.util.LinkedList;
-
-import static org.csystem.util.console.commandline.CommandLineArgsUtil.checkLengthEquals;
 
 class App {
     public static void main(String[] args)
     {
-        checkLengthEquals(args, 2, "Wrong number of arguments");
-        try {
-            var factoryOpt = ProductFactory.loadFromTextFile(args[0]);
+        var deck = Card.getShuffledDeck();
 
-            if (factoryOpt.isEmpty()) {
-                Console.writeLine("Empty file");
-                return;
-            }
+        for (var card : deck)
+            Console.writeLine(card);
 
-            var productLList = new LinkedList<ProductInfo>();
-            var factory = factoryOpt.get();
-            var count = Integer.parseInt(args[1]);
-            IntRange.of(0, count).forEach(i -> productLList.addFirst(factory.PRODUCTS.get(i)));
+        Console.writeLine("----------------------------------------------------");
 
-            while (!productLList.isEmpty())
-                Console.writeLine(productLList.pollFirst());
+        Card.shuffleDeck(deck, 100);
 
-            Console.writeLine();
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        catch (NumberFormatException ignore) {
-            Console.Error.writeLine("Invalid values");
-        }
+        for (var card : deck)
+            Console.writeLine(card);
     }
 }

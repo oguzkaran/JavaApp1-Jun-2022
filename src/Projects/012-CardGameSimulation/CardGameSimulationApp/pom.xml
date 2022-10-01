@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.7</version>
+		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>CardGameApp</artifactId>
+	<artifactId>SwordPlayGameApp</artifactId>
 	<version>6.0.0</version>
-	<name>CardGameApp</name>
+	<name>SwordPlayGameApp</name>
 
     <repositories>
         <repository>
@@ -22,14 +22,26 @@
     </repositories>
 
     <properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-console</artifactId>
+			<version>6.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-game-card</artifactId>
 			<version>6.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-csystem-util-scheduler</artifactId>
+			<version>7.0.0</version>
 		</dependency>
 
 		<dependency>
