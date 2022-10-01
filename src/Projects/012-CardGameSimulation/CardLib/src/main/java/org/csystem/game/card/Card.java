@@ -83,6 +83,17 @@ public class Card {
     }
 
     @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof Card))
+            return false;
+
+        var card = (Card)other;
+
+        return m_type == card.m_type && m_value == card.m_value;
+    }
+
+    @Override
     public String toString()
     {
         return getName();
