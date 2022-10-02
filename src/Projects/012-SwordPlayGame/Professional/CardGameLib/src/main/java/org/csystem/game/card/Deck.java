@@ -10,9 +10,11 @@
 -----------------------------------------------------------------------*/
 package org.csystem.game.card;
 
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 
-public class Deck {
+public class Deck implements Iterable<Card> {
     private static final int SHUFFLE_COUNT = 1000;
     private final Card [] m_cards;
 
@@ -91,4 +93,25 @@ public class Deck {
     public Card getCard(int index) {return m_cards[index];}
 
     public int cardCount() {return m_cards.length;}
+
+    @Override
+    public boolean equals(Object other)
+    {
+        if (!(other instanceof Deck))
+            return false;
+
+        return Arrays.equals(m_cards, ((Deck)other).m_cards);
+    }
+
+    @Override
+    public String toString()
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
+
+    @Override
+    public Iterator<Card> iterator()
+    {
+        throw new UnsupportedOperationException("TODO");
+    }
 }

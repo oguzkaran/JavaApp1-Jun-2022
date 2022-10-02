@@ -1,6 +1,8 @@
 package org.csystem.app.game.swordplay;
 
 import org.csystem.game.card.Card;
+import org.csystem.game.card.Deck;
+import org.csystem.game.card.SwordPlayGame;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.commandline.CommandLineArgsUtil;
 import org.csystem.util.scheduler.Scheduler;
@@ -12,7 +14,7 @@ public class SwordPlayGameApp {
     {
         for (;;) {
             try {
-                return new Card(Console.read("Lütfen Kupa-Papaz biçiminde bir kart seçiniz:"));
+                return new Card(Console.read("Lütfen biçiminde bir kart seçiniz:"));
             }
             catch (IllegalArgumentException ignore) {
                 Console.writeLine("Geçersiz kart seçtiniz!...");
@@ -28,16 +30,25 @@ public class SwordPlayGameApp {
             Console.writeLine("Kaybettiniz!...");
     }
 
+    private static void playGameCallback(Card card, boolean win)
+    {
+        Console.writeLine("%s -> %s", card, win ? "Oyuncu" : "Bilgisayar");
+    }
+
+    private static void resultCallback(boolean win)
+    {
+        Console.writeLine(win ? "Bu oyunu siz kazandınız!..." : "Bu oyunu kaybettiniz!...");
+    }
+
     private static void playGame(int winScore)
     {
         var count = 0;
         var playerScore = 0;
 
         for (;;) {
-            var game = new SwordPlayGame(Card.getShuffledDeck(), selectCard());
+            var game = new SwordPlayGame(Deck.ofShuffled(), selectCard());
 
-            game.playGame(Console::writeLine);
-            Console.writeLine(game.isPlayerWin() ? "Bu oyunu siz kazandınız!..." : "Bu oyunu kaybettiniz!...");
+            game.playGame(SwordPlayGameApp::playGameCallback, SwordPlayGameApp::resultCallback);
             ++count;
             if (game.isPlayerWin())
                 ++playerScore;
