@@ -10,10 +10,16 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>org-csystem-util</artifactId>
-	<version>8.3.0</version>
-	<name>org-csystem-util</name>
-	<description>>CSD Utility library</description>
+	<artifactId>org-csystem-game-card</artifactId>
+	<version>7.0.0</version>
+	<name>org-csystem-game-card</name>
+
+	<repositories>
+		<repository>
+			<id>JavaApp1-Jun-2022</id>
+			<url>https://raw.github.com/oguzkaran/javaapp1-jun-2022-maven-repo/main</url>
+		</repository>
+	</repositories>
 
 	<properties>
 		<java.version>11</java.version>
