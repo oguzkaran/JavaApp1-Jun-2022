@@ -11,7 +11,6 @@
 package org.csystem.game.card;
 
 public class Card {
-
     private CardValue m_value;
     private CardType m_type;
 
