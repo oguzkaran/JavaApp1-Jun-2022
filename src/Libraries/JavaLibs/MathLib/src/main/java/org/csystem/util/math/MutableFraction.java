@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.math;
 
-public class MutableFraction {
+public class MutableFraction implements Comparable<MutableFraction> {
     private int m_a;
     private int m_b;
 
@@ -215,5 +215,11 @@ public class MutableFraction {
         var f = (MutableFraction)other;
 
         return m_a == f.m_a && m_b == f.m_b;
+    }
+
+    @Override
+    public int compareTo(MutableFraction other)
+    {
+        return m_a * other.m_b - other.m_a * m_b;
     }
 }

@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-game-card</artifactId>
-	<version>7.0.0</version>
+	<version>7.1.0</version>
 	<name>org-csystem-game-card</name>
 
 	<repositories>

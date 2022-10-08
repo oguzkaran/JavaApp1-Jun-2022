@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : Deck.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 02.10.2022
+	LAST UPDATE : 08.10.2022
 
 	Deck class that represents a deck for card games
 
@@ -12,6 +12,7 @@ package org.csystem.game.card;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class Deck implements Iterable<Card> {
@@ -106,12 +107,33 @@ public class Deck implements Iterable<Card> {
     @Override
     public String toString()
     {
-        throw new UnsupportedOperationException("TODO");
+        var sb = new StringBuilder("[");
+
+        for (var c : m_cards)
+            sb.append(c).append(", ");
+
+        return sb.delete(sb.length() - 2, sb.length()) .append("]").toString();
     }
 
     @Override
     public Iterator<Card> iterator()
     {
-        throw new UnsupportedOperationException("TODO");
+        return new Iterator<>() {
+            int index = -1;
+            @Override
+            public boolean hasNext()
+            {
+                return index + 1 < m_cards.length;
+            }
+
+            @Override
+            public Card next()
+            {
+                if (!hasNext())
+                    throw new NoSuchElementException("No such card");
+
+                return m_cards[++index];
+            }
+        };
     }
 }

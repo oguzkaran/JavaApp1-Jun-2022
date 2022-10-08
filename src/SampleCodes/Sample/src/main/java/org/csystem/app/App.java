@@ -1,28 +1,34 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    LinkedList sınıfının addFirst ve pollFirst metotları:
-    poll, pollFirst ve pollLast metotları liste boş ise null değerine geri dönerler. Bu durumda algoritmamızda eğer linked
-    list içerisinde null değer tutulmadığı garanti altındaysa bu metotların geri dönüş değerinden listenin boş olup olmadığı
-    anlaşılabilir. Ancak listede null da değer olarak tutuluyorsa ve o an çağrılmada o değer de verilecekse geri dönüş
-    değeri listenin boş olup olmadığı hakkında bilgi vermez
+    Comparator arayüzünün compareDouble metodu
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.game.card.Card;
 import org.csystem.util.console.Console;
+import org.csystem.util.math.Complex;
+
+import java.util.Comparator;
+import java.util.Random;
+import java.util.TreeSet;
 
 class App {
     public static void main(String[] args)
     {
-        var deck = Card.getShuffledDeck();
+        var complexSet = new TreeSet<>(Comparator.comparingDouble(Complex::getLength));
+        var r = new Random();
+        var count = Console.readInt("Bir sayı giriniz:");
 
-        for (var card : deck)
-            Console.writeLine(card);
+        for (int i = 0; i < count; ++i) {
+            var a = r.nextDouble(-10, 10);
+            var b = r.nextDouble(1, 10);
+            var f = new Complex(a, b);
 
-        Console.writeLine("----------------------------------------------------");
+            Console.writeLine("%s -> %s", f, complexSet.add(f));
+        }
 
-        Card.shuffleDeck(deck, 100);
+        Console.writeLine("---------------------------------------------");
 
-        for (var card : deck)
-            Console.writeLine(card);
+
+        Console.writeLine(complexSet);
+        Console.writeLine("Size:%d", complexSet.size());
     }
 }

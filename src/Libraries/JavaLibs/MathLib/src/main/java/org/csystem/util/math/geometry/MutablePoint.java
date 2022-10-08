@@ -8,10 +8,7 @@
 	Copyleft (c) 1993 C and System Programmers Association
 	All Rights Free
 ----------------------------------------------------------------*/
-
 package org.csystem.util.math.geometry;
-
-import org.csystem.util.math.MutableFraction;
 
 public class MutablePoint {
 	private double m_x;

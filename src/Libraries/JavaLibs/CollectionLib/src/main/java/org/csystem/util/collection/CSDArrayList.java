@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------
 	FILE		: CSDArrayList.java
 	AUTHOR		: JavaApp1-Jun-2022 Group
-	LAST UPDATE	: 25.09.2022
+	LAST UPDATE	: 08.10.2022
 
 	CSDArrayList class that represents dynamic array
 
@@ -251,6 +251,27 @@ public class CSDArrayList<E> implements List<E> {
         return m_index;
     }
 
+    @Override
+    public Object[] toArray()
+    {
+        return Arrays.copyOfRange(m_elems, 0, m_index);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T[] toArray(T[] a) //?
+    {
+        if (a.length < m_index)
+            return (T[])Arrays.copyOfRange(m_elems, 0, m_index, a.getClass());
+
+        System.arraycopy(m_elems, 0, a, 0, m_index);
+
+        if (a.length > m_index)
+            a[m_index] = null;
+
+        return a;
+    }
+
     public void trimToSize()
     {
         if (m_elems.length != m_index)
@@ -271,18 +292,6 @@ public class CSDArrayList<E> implements List<E> {
     }
 
     //////////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public Object[] toArray()
-    {
-        throw new UnsupportedOperationException("Not supported");
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a)
-    {
-        throw new UnsupportedOperationException("Not supported");
-    }
 
     @Override
     public boolean retainAll(Collection<?> c)
