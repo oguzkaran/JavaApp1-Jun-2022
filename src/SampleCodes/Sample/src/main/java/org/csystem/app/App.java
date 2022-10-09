@@ -1,34 +1,28 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Comparator arayüzünün compareDouble metodu
+    Soru: İçerisinde rakamlardan oluşan n tane karakterden oluşan bir yazı içerisinde k tane rakamı silerek en küçük sayıyı
+    elde eden kodu yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
-import org.csystem.util.math.Complex;
-
-import java.util.Comparator;
-import java.util.Random;
-import java.util.TreeSet;
+import static org.csystem.util.string.StringUtil.areAllUnique;
 
 class App {
     public static void main(String[] args)
     {
-        var complexSet = new TreeSet<>(Comparator.comparingDouble(Complex::getLength));
-        var r = new Random();
-        var count = Console.readInt("Bir sayı giriniz:");
+        AreAllUniqueTest.run();
+    }
+}
 
-        for (int i = 0; i < count; ++i) {
-            var a = r.nextDouble(-10, 10);
-            var b = r.nextDouble(1, 10);
-            var f = new Complex(a, b);
+class AreAllUniqueTest {
+    public static void run()
+    {
+        for (;;) {
+            var str = Console.read("Bir yazı giriniz:");
 
-            Console.writeLine("%s -> %s", f, complexSet.add(f));
+            Console.writeLine(areAllUnique(str) ? "Tüm karakterler farklı" : "Tekrarlanan karaklterler var");
+            if ("elma".equals(str))
+                break;
         }
-
-        Console.writeLine("---------------------------------------------");
-
-
-        Console.writeLine(complexSet);
-        Console.writeLine("Size:%d", complexSet.size());
     }
 }

@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : ArrayUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 19.06.2022
+	LAST UPDATE : 09.10.2022
 
 	Utility class for array operations
 
@@ -10,6 +10,7 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.array;
 
+import java.util.Comparator;
 import java.util.Random;
 
 public final class ArrayUtil {
@@ -28,6 +29,39 @@ public final class ArrayUtil {
                 if (a[k] < a[k + 1])
                     swap(a, k, k + 1);
     }
+
+    private static <T extends Comparable<T>> void bubbleSortAscending(T [] a)
+    {
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
+                if (a[k].compareTo(a[k + 1]) > 0)
+                    swap(a, k, k + 1);
+    }
+
+    private static <T> void bubbleSortAscending(T [] a, Comparator<T> comparator)
+    {
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
+                if (comparator.compare(a[k], a[k + 1]) > 0)
+                    swap(a, k, k + 1);
+    }
+
+    private static <T extends Comparable<T>> void bubbleSortDescending(T [] a)
+    {
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
+                if (a[k].compareTo(a[k + 1]) < 0)
+                    swap(a, k, k + 1);
+    }
+
+    private static <T> void bubbleSortDescending(T [] a, Comparator<T> comparator)
+    {
+        for (var i = 0; i < a.length - 1; ++i)
+            for (var k = 0; k < a.length - 1 - i; ++k)
+                if (comparator.compare(a[k], a[k + 1]) < 0)
+                    swap(a, k, k + 1);
+    }
+
 
     private static void selectionSortAscending(int [] a)
     {
@@ -87,6 +121,32 @@ public final class ArrayUtil {
             bubbleSortDescending(a);
         else
             bubbleSortAscending(a);
+    }
+
+    public static <T extends Comparable<T>> void bubbleSort(T [] a)
+    {
+        bubbleSort(a, false);
+    }
+
+    public static <T extends Comparable<T>> void bubbleSort(T [] a, boolean desc)
+    {
+        if (desc)
+            bubbleSortDescending(a);
+        else
+            bubbleSortAscending(a);
+    }
+
+    public static <T> void bubbleSort(T [] a, Comparator<T> comparator)
+    {
+        bubbleSort(a, comparator, false);
+    }
+
+    public static <T> void bubbleSort(T [] a, Comparator<T> comparator, boolean desc)
+    {
+        if (desc)
+            bubbleSortDescending(a, comparator);
+        else
+            bubbleSortAscending(a, comparator);
     }
 
     public static void fillRandomArray(int [] a, int min, int max)
@@ -325,6 +385,14 @@ public final class ArrayUtil {
 
         c[i] = c[k];
         c[k] = temp;
+    }
+
+    public static <T> void swap(T [] a, int i, int k)
+    {
+        var temp = a[i];
+
+        a[i] = a[k];
+        a[k] = temp;
     }
 
     public static int [][] transposed(int [][] a)
