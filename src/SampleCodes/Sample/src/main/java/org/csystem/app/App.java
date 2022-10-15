@@ -1,28 +1,15 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Soru: İçerisinde rakamlardan oluşan n tane karakterden oluşan bir yazı içerisinde k tane rakamı silerek en küçük sayıyı
-    elde eden kodu yazınız
+    Çift Yönlü Kuyruklar (Double Ended Queue):
+    Çift yönlü kuyrukların normal kuyruklardan farkı kabaca başa ve sona eleman ekleminin yaklaşık olarak sabit
+    zamanlı olmasıdır. Burada dizi dinamik büyüyen dizisi söz konusu ise "Amortized Constant time complexity" söz
+    konusudur.
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
-
-import org.csystem.util.console.Console;
-import static org.csystem.util.string.StringUtil.areAllUnique;
 
 class App {
     public static void main(String[] args)
     {
-        AreAllUniqueTest.run();
+
     }
 }
 
-class AreAllUniqueTest {
-    public static void run()
-    {
-        for (;;) {
-            var str = Console.read("Bir yazı giriniz:");
-
-            Console.writeLine(areAllUnique(str) ? "Tüm karakterler farklı" : "Tekrarlanan karaklterler var");
-            if ("elma".equals(str))
-                break;
-        }
-    }
-}
