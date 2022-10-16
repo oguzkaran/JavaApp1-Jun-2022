@@ -1,10 +1,10 @@
-package org.csystem.app.camera.car.data.entity;
-
-import org.csystem.util.datetime.DateTimeFormatterUtil;
+package org.csystem.camera.car;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CarCameraInfo implements Comparable<CarCameraInfo> {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyy kk:mm:ss");
     private final String m_plate;
     private final double m_speed;
     private final LocalDateTime m_passDateTime;
@@ -33,7 +33,6 @@ public class CarCameraInfo implements Comparable<CarCameraInfo> {
 
     //...
 
-
     @Override
     public int compareTo(CarCameraInfo other)
     {
@@ -57,8 +56,6 @@ public class CarCameraInfo implements Comparable<CarCameraInfo> {
     @Override
     public String toString()
     {
-        var formatter = DateTimeFormatterUtil.DATETIME_DOT_SEC_TR;
-
-        return String.format("[%s] (%f km / h) %s", m_plate, m_speed, formatter.format(m_passDateTime));
+        return String.format("[%s] (%f km / h) %s", m_plate, m_speed, FORMATTER.format(m_passDateTime));
     }
 }

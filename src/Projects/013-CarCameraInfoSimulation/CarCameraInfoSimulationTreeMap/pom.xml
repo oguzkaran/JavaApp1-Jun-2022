@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>CarCameraInfoSimlationApp</artifactId>
-	<version>6.0.0</version>
-	<name>CarCameraInfoSimlationApp</name>
+	<artifactId>CarCameraInfoSimulationApp</artifactId>
+	<version>6.1.0</version>
+	<name>CarCameraInfoSimulationApp</name>
 
     <repositories>
         <repository>
@@ -34,15 +34,10 @@
 
 		<dependency>
 			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util</artifactId>
-			<version>8.4.0</version>
+			<artifactId>org-csystem-camera-car</artifactId>
+			<version>6.0.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.csystem</groupId>
-			<artifactId>org-csystem-util-datetime</artifactId>
-			<version>6.2.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

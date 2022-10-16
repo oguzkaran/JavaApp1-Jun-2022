@@ -1,12 +1,13 @@
-package org.csystem.app.camera.car;
+package org.csystem.camera.car.factory;
 
-import org.csystem.app.camera.car.data.entity.CarCameraInfo;
+import org.csystem.camera.car.CarCameraInfo;
 import org.csystem.util.string.StringUtil;
+import org.csystem.util.thread.ThreadUtil;
 
 import java.util.Random;
 
-public class RandomCarCameraInfoFactory {
-    private final Random m_random;
+public class CarCameraFactory implements ICarCameraInfoFactory {
+    private final Random m_random = new Random();
 
     private String generatePlate()
     {
@@ -17,14 +18,10 @@ public class RandomCarCameraInfoFactory {
         return String.format("%02d %s %04d", num, text, value);
     }
 
-    public RandomCarCameraInfoFactory(Random random)
+    @Override
+    public CarCameraInfo create()
     {
-        m_random = random;
-    }
-
-    public CarCameraInfo createCarCameraInfo()
-    {
+        ThreadUtil.sleep(m_random.nextInt(400, 700));
         return new CarCameraInfo(generatePlate(), m_random.nextDouble(5, 220));
     }
 }
-

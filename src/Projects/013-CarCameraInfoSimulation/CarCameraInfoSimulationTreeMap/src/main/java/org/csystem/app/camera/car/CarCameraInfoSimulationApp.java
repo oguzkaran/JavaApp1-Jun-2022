@@ -1,22 +1,21 @@
 package org.csystem.app.camera.car;
 
-import org.csystem.app.camera.car.data.entity.CarCameraInfo;
+import org.csystem.camera.car.CarCameraInfo;
+import org.csystem.camera.car.factory.CarCameraFactory;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.commandline.CommandLineArgsUtil;
 import org.csystem.util.numeric.NumberUtil;
-import org.csystem.util.thread.ThreadUtil;
 
 import java.util.*;
 
 public class CarCameraInfoSimulationApp {
     private static void doSimulation(int count, Map<String, Set<CarCameraInfo>> carMap)
     {
-        var random = new Random();
-        var factory = new RandomCarCameraInfoFactory(random);
+        var factory = new CarCameraFactory();
 
         for (int i = 0; i < count; ++i) {
             Console.write(".");
-            var ci = factory.createCarCameraInfo();
+            var ci = factory.create();
 
             if (!carMap.containsKey(ci.getPlate())) {
                 var set = new TreeSet<CarCameraInfo>(Comparator.reverseOrder());
@@ -26,8 +25,6 @@ public class CarCameraInfoSimulationApp {
             }
             else
                 carMap.get(ci.getPlate()).add(ci);
-
-            ThreadUtil.sleep(random.nextLong(300, 700));
         }
     }
 
