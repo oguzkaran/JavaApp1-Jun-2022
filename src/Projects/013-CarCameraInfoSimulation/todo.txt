@@ -1,2 +1,0 @@
-Örnekteki RandomCarCameraInfoFactory sınıfını ayrı bir kütüphane içerisinde Random referansı almadan CarCameraInfoFactory
-biçiminde yazınız. Böylelikle CarCameraInfoFactory değiştirildiğinde uygulama değiştirilmemiş olur
