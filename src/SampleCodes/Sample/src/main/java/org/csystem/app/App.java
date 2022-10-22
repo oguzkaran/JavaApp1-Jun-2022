@@ -1,5 +1,6 @@
 /*----------------------------------------------------------------------------------------------------------------------
-
+    Stream arayüzlerinin noneMatch metodu tüm elemanlar parametresi ile aldığı "predicate"'ı sağlamıyorsa true, en az biri
+    sağlıyorsa false değerini üretir. noneMatch metodu etkin bir şekilde yazıldığını garanti eder
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -17,13 +18,12 @@ class App {
             if (factoryOpt.isEmpty())
                 return;
 
-            var stock = Console.readInt("Stok miktarını giriniz:");
             var products = factoryOpt.get().PRODUCTS;
 
-            products.stream()
-                    .filter(p -> p.getStock() < stock)
-                    .filter(p -> p.getName().contains("Cat"))
-                    .forEach(Console::writeLine);
+            if (products.stream().noneMatch(p -> p.getStock() <= 0))
+                Console.writeLine("Tüm ürünler stokta mevcut");
+            else
+                products.stream().filter(p -> p.getStock() <= 0).forEach(Console::writeLine);
         }
         catch (Throwable ex) {
             ex.printStackTrace();
