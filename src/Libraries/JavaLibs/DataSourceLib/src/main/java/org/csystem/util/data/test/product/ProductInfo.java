@@ -71,7 +71,7 @@ public class ProductInfo implements Comparable<ProductInfo>, Cloneable {
 
     public BigDecimal getTotal()
     {
-        return m_price.multiply(m_cost);
+        return m_price.subtract(m_cost).multiply(BigDecimal.valueOf(m_stock));
     }
 
     @Override
