@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util</artifactId>
-	<version>8.4.0</version>
+	<version>8.4.1</version>
 	<name>org-csystem-util</name>
 	<description>>CSD Utility library</description>
 
