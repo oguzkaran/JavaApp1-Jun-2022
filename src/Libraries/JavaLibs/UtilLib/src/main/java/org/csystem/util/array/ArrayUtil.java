@@ -10,8 +10,11 @@
 -----------------------------------------------------------------------*/
 package org.csystem.util.array;
 
+import org.csystem.util.iterable.IntRange;
+
 import java.util.Comparator;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public final class ArrayUtil {
     private static void bubbleSortAscending(int [] a)
@@ -156,8 +159,7 @@ public final class ArrayUtil {
 
     public static void fillRandomArray(Random r, int [] a, int min, int max)
     {
-        for (var i = 0; i < a.length; ++i)
-            a[i] = r.nextInt(max - min + 1) + min;
+        IntStream.range(0, a.length).forEach(i -> a[i] = r.nextInt(max - min + 1) + min);
     }
 
     public static int [] getHistogramData(int [] a, int n) //[0, n]

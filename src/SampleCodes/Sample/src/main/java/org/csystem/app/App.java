@@ -1,25 +1,38 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Soru: Parametresi ile aldığı int türden bir sayının asal olup olmadığını test eden isPrime metodunu performansı
-    düşünmeden döngü kullanmadan yazınız
+    Soru: stdin'den alınan count kadar rasgele ürün elde eden kodu yazınız.
+    Örnekte hiç ürün olmamsı duruöu da dolaylı olarak kontrol edilmiştir
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
+import org.csystem.util.console.commandline.CommandLineArgsUtil;
+import org.csystem.util.data.test.factory.ProductFactory;
 
-import java.util.stream.IntStream;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.Random;
+import java.util.stream.Stream;
 
 class App {
     public static void main(String[] args)
     {
-        IntStream.range(-10, 100).filter(Util::isPrime).forEach(n -> Console.write("%d ", n));
-        Console.writeLine();
+        CommandLineArgsUtil.checkLengthEquals(args, 1, "Wrong number of arguments");
+
+        try {
+            var factory = ProductFactory.loadFromTextFile(Path.of(args[0]));
+
+            var random = new Random();
+            var count = Console.readInt("Input count:");
+
+            Stream.generate(() -> factory.getRandomProduct(random))
+                            .limit(count)
+                            .filter(Optional::isPresent)
+                            .map(Optional::get)
+                            .forEach(Console::writeLine);
+        }
+        catch (Throwable ex) {
+            ex.printStackTrace();
+        }
     }
 }
 
-
-class Util {
-    public static boolean isPrime(int val)
-    {
-        return val > 1 && IntStream.rangeClosed(2, val / 2).allMatch(i -> val % i != 0);
-    }
-}
