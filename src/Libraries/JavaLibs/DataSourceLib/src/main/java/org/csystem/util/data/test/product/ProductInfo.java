@@ -74,6 +74,7 @@ public class ProductInfo implements Comparable<ProductInfo>, Cloneable {
         return m_price.subtract(m_cost).multiply(BigDecimal.valueOf(m_stock));
     }
 
+
     @Override
     public int hashCode()
     {
@@ -85,6 +86,7 @@ public class ProductInfo implements Comparable<ProductInfo>, Cloneable {
     {
         return other instanceof ProductInfo pi && m_id == pi.m_id;
     }
+
 
     @Override
     public String toString()

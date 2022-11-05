@@ -1,6 +1,5 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Soru: stdin'den alınan count kadar rasgele ürün elde eden kodu yazınız.
-    Örnekte hiç ürün olmamsı duruöu da dolaylı olarak kontrol edilmiştir
+    Aşağıdaki örnekte "unmodifiable" bir liste elde edildiğinden add işlemi exception fırlatılmasına yol açar
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
@@ -9,9 +8,9 @@ import org.csystem.util.console.commandline.CommandLineArgsUtil;
 import org.csystem.util.data.test.factory.ProductFactory;
 
 import java.nio.file.Path;
-import java.util.Optional;
+import java.util.Comparator;
 import java.util.Random;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 class App {
     public static void main(String[] args)
@@ -20,19 +19,21 @@ class App {
 
         try {
             var factory = ProductFactory.loadFromTextFile(Path.of(args[0]));
+            var products = factory.PRODUCTS;
+            var count = Console.readInt("Bir sayı giriniz:");
 
-            var random = new Random();
-            var count = Console.readInt("Input count:");
+            products.stream().sorted().forEach(Console::writeLine);
+            Console.writeLine("-------------------------------------------");
+            var result = products.stream()
+                    .sorted(Comparator.reverseOrder())
+                    .limit(count).toList();
 
-            Stream.generate(() -> factory.getRandomProduct(random))
-                            .limit(count)
-                            .filter(Optional::isPresent)
-                            .map(Optional::get)
-                            .forEach(Console::writeLine);
+            result.forEach(Console::writeLine);
+
+            result.add(factory.getRandomProduct(new Random()).orElse(null));
         }
         catch (Throwable ex) {
             ex.printStackTrace();
         }
     }
 }
-
