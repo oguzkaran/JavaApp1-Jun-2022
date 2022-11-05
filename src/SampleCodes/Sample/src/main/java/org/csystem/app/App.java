@@ -1,16 +1,19 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örnekte "unmodifiable" bir liste elde edildiğinden add işlemi exception fırlatılmasına yol açar
+    Aşağıdaki örneği inceleyiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
+import org.csystem.util.collection.CollectionUtil;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.commandline.CommandLineArgsUtil;
 import org.csystem.util.data.test.factory.ProductFactory;
+import org.csystem.util.data.test.product.ProductInfo;
+import org.csystem.util.data.test.product.ProductMapper;
 
 import java.nio.file.Path;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 class App {
     public static void main(String[] args)
@@ -18,22 +21,31 @@ class App {
         CommandLineArgsUtil.checkLengthEquals(args, 1, "Wrong number of arguments");
 
         try {
-            var factory = ProductFactory.loadFromTextFile(Path.of(args[0]));
-            var products = factory.PRODUCTS;
-            var count = Console.readInt("Bir sayı giriniz:");
+            var productFactory = ProductFactory.loadFromTextFile(Path.of(args[0]));
+            var products = productFactory.PRODUCTS;
+            var mapper = new ProductMapper();
+            var repository = new ProductRepository(products);
+            var productsInStock = repository.findProductsInStock();
+            var dtos = CollectionUtil.toList(productsInStock, mapper::toProductStockDTO);
 
-            products.stream().sorted().forEach(Console::writeLine);
-            Console.writeLine("-------------------------------------------");
-            var result = products.stream()
-                    .sorted(Comparator.reverseOrder())
-                    .limit(count).toList();
-
-            result.forEach(Console::writeLine);
-
-            result.add(factory.getRandomProduct(new Random()).orElse(null));
+            dtos.forEach(Console::writeLine);
         }
         catch (Throwable ex) {
             ex.printStackTrace();
         }
+    }
+}
+
+class ProductRepository {
+    private final List<ProductInfo> m_products;
+
+    public ProductRepository(List<ProductInfo> products)
+    {
+        m_products = products;
+    }
+
+    public Iterable<ProductInfo> findProductsInStock()
+    {
+        return m_products.stream().filter(p -> p.getStock() > 0).collect(Collectors.toList());
     }
 }
