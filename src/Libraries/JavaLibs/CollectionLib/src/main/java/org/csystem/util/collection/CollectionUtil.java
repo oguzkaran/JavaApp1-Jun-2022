@@ -20,22 +20,22 @@ public final class CollectionUtil {
     {
     }
 
-    public static <T, R> List<R> toList(Iterable<? extends T> iterable, Function<T, R> function)
+    public static <T, R> List<R> toList(Iterable<? extends T> iterable, Function<? super T, ? extends R> function)
     {
         return toList(iterable, function, false);
     }
 
-    public static <T, R> List<R> toList(Iterable<? extends T> iterable, Function<T, R> function, boolean parallel)
+    public static <T, R> List<R> toList(Iterable<? extends T> iterable, Function<? super T, ? extends R> function, boolean parallel)
     {
         return StreamSupport.stream(iterable.spliterator(), parallel).map(function).collect(Collectors.toList());
     }
 
-    public static <T, R> Iterable<R> toIterable(Iterable<? extends T> iterable, Function<T, R> function)
+    public static <T, R> Iterable<R> toIterable(Iterable<? extends T> iterable, Function<? super T, ? extends R> function)
     {
         return toIterable(iterable, function, false);
     }
 
-    public static <T, R> Iterable<R> toIterable(Iterable<? extends T> iterable, Function<T, R> function, boolean parallel)
+    public static <T, R> Iterable<R> toIterable(Iterable<? extends T> iterable, Function<? super T, ? extends R> function, boolean parallel)
     {
         return toList(iterable, function, parallel);
     }

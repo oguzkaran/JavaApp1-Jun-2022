@@ -1,19 +1,18 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Aşağıdaki örneği inceleyiniz
+    Soru: DataSourceLib 6.1.0 içerisinde bulunan StaffFactory sınıfını kullanarak çalışanları haftalık izinlerine göre
+    sınıflandıran programı yazınız. staff.csv dosyasında ilgili verileri bulabilirsiniz. Örnek bir dosya için staff.csv
+    dosyasından yararlanabilirsiniz
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
-import org.csystem.util.collection.CollectionUtil;
 import org.csystem.util.console.Console;
 import org.csystem.util.console.commandline.CommandLineArgsUtil;
-import org.csystem.util.data.test.factory.ProductFactory;
+import org.csystem.util.data.test.factory.StaffFactory;
 import org.csystem.util.data.test.product.ProductInfo;
-import org.csystem.util.data.test.product.ProductMapper;
 
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 class App {
     public static void main(String[] args)
@@ -21,14 +20,11 @@ class App {
         CommandLineArgsUtil.checkLengthEquals(args, 1, "Wrong number of arguments");
 
         try {
-            var productFactory = ProductFactory.loadFromTextFile(Path.of(args[0]));
-            var products = productFactory.PRODUCTS;
-            var mapper = new ProductMapper();
-            var repository = new ProductRepository(products);
-            var productsInStock = repository.findProductsInStock();
-            var dtos = CollectionUtil.toList(productsInStock, mapper::toProductStockDTO);
+            var factory = StaffFactory.loadFromTextFile(Path.of(args[0]));
+            var staff = factory.STAFF;
 
-            dtos.forEach(Console::writeLine);
+            staff.forEach(Console::writeLine);
+
         }
         catch (Throwable ex) {
             ex.printStackTrace();
