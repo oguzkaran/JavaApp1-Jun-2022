@@ -1,47 +1,103 @@
 /*----------------------------------------------------------------------------------------------------------------------
-    Soru: DataSourceLib 6.1.0 içerisinde bulunan StaffFactory sınıfını kullanarak çalışanları haftalık izinlerine göre
-    sınıflandıran programı yazınız. staff.csv dosyasında ilgili verileri bulabilirsiniz. Örnek bir dosya için staff.csv
-    dosyasından yararlanabilirsiniz
+    Stream arayüzlerinin dropWhile metotları
 ----------------------------------------------------------------------------------------------------------------------*/
 package org.csystem.app;
 
 import org.csystem.util.console.Console;
-import org.csystem.util.console.commandline.CommandLineArgsUtil;
-import org.csystem.util.data.test.factory.StaffFactory;
-import org.csystem.util.data.test.product.ProductInfo;
 
-import java.nio.file.Path;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 class App {
     public static void main(String[] args)
     {
-        CommandLineArgsUtil.checkLengthEquals(args, 1, "Wrong number of arguments");
+        var in = new KeyBoardInput();
+        var out = new FileOutput();
 
-        try {
-            var factory = StaffFactory.loadFromTextFile(Path.of(args[0]));
-            var staff = factory.STAFF;
+        Util.copy(in, out);
 
-            staff.forEach(Console::writeLine);
-
-        }
-        catch (Throwable ex) {
-            ex.printStackTrace();
-        }
     }
 }
 
-class ProductRepository {
-    private final List<ProductInfo> m_products;
 
-    public ProductRepository(List<ProductInfo> products)
+class NormalDoor implements IDoor {
+    @Override
+    public void open()
     {
-        m_products = products;
+        //...
     }
 
-    public Iterable<ProductInfo> findProductsInStock()
+    @Override
+    public void close()
     {
-        return m_products.stream().filter(p -> p.getStock() > 0).collect(Collectors.toList());
+        //...
+    }
+}
+
+class TimedDoor implements IDoor, ITimer {
+    //...
+    @Override
+    public void open()
+    {
+        //...
+    }
+
+    @Override
+    public void close()
+    {
+        //...
+    }
+
+    @Override
+    public void timeout(long duration)
+    {
+        //...
+    }
+}
+
+interface ITimer {
+    void timeout(long duration);
+}
+
+interface IDoor {
+    void open();
+    void close();
+}
+
+interface IInput {
+    //...
+    int read(byte [] data);
+    //
+}
+
+interface IOutput {
+    //...
+    void write(byte [] data);
+    //
+}
+
+class KeyBoardInput implements IInput {
+    @Override
+    public int read(byte[] data)
+    {
+        return 0;
+    }
+}
+
+class FileOutput implements IOutput {
+    //...
+
+
+    @Override
+    public void write(byte[] data)
+    {
+
+    }
+}
+
+class Util {
+    public static void copy(IInput in, IOutput out)
+    {
+        //...
     }
 }
