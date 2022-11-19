@@ -1,3 +1,0 @@
-    Soru: DataSourceLib 6.1.0 içerisinde bulunan StaffFactory sınıfını kullanarak çalışanları haftalık izinlerine göre
-    sınıflandıran ve komut satırından alınan enumö ismi bilgisine göre ilgili sınıfta bulunanları stdout'a basan programı yazınız.
-    staff.csv dosyasında ilgili verileri bulabilirsiniz. Örnek bir dosya için staff.csv dosyasından yararlanabilirsiniz

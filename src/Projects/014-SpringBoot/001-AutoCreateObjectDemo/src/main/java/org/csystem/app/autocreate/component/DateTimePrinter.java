@@ -2,18 +2,19 @@ package org.csystem.app.autocreate.component;
 
 import org.csystem.util.console.Console;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Component("baris")
 public class DateTimePrinter {
     private DateTimeInfo m_dateTimeInfo;
 
     //...
+
+    @Value("${datetime.message.dateprinter:Şimdi}")
+    private String m_message;
 
     @Autowired
     public void setDateTimeInfo(DateTimeInfo dateTimeInfo) //setter injection
@@ -25,7 +26,7 @@ public class DateTimePrinter {
     @PostConstruct
     public void printDateTime()
     {
-        Console.writeLine("DateTime Printer");
+        Console.writeLine(m_message);
         m_dateTimeInfo.printDateTime();
     }
 }
