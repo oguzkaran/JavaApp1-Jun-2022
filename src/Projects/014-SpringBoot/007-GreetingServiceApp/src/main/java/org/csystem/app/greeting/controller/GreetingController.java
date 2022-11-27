@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @RestController
-@Scope("prototype")
+@Scope("request")
 @RequestMapping("/api/greetings/greeting")
 public class GreetingController {
     private final LocalDateTime m_localDateTime;
