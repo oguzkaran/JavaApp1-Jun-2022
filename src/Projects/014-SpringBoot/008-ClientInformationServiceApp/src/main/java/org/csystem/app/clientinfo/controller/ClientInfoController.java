@@ -1,6 +1,6 @@
 package org.csystem.app.clientinfo.controller;
 
-import org.csystem.app.clientinfo.view.ClientInfo;
+import org.csystem.app.clientinfo.view.ClientDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,10 @@ public class ClientInfoController {
     }
 
     @GetMapping("info")
-    public ClientInfo clientInfo()
+    public ClientDTO clientInfo()
     {
         //...
-        return new ClientInfo()
+        return new ClientDTO()
                 .setHost(m_httpServletRequest.getRemoteHost())
                 .setPort(m_httpServletRequest.getRemotePort())
                 .setLocalHost(m_httpServletRequest.getLocalAddr())

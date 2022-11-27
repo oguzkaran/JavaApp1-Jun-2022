@@ -1,10 +1,11 @@
 package org.csystem.app.clientinfo.view;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
 
-public class ClientInfo {
+public class ClientDTO {
     private String m_host;
     private int m_port;
     private String m_localHost;
@@ -16,7 +17,7 @@ public class ClientInfo {
         return m_host;
     }
 
-    public ClientInfo setHost(String host)
+    public ClientDTO setHost(String host)
     {
         m_host = host;
 
@@ -28,19 +29,20 @@ public class ClientInfo {
         return m_port;
     }
 
-    public ClientInfo setPort(int port)
+    public ClientDTO setPort(int port)
     {
         m_port = port;
 
         return this;
     }
 
+    @JsonProperty("localAddr")
     public String getLocalHost()
     {
         return m_localHost;
     }
 
-    public ClientInfo setLocalHost(String localHost)
+    public ClientDTO setLocalHost(String localHost)
     {
         m_localHost = localHost;
 
@@ -52,7 +54,7 @@ public class ClientInfo {
         return m_localPort;
     }
 
-    public ClientInfo setLocalPort(int localPort)
+    public ClientDTO setLocalPort(int localPort)
     {
         m_localPort = localPort;
 
@@ -65,9 +67,8 @@ public class ClientInfo {
         return m_dateTime;
     }
 
-
     @JsonFormat(pattern = "dd/MM/yyyy kk:mm:ss")
-    public ClientInfo setDateTime(LocalDateTime dateTime)
+    public ClientDTO setDateTime(LocalDateTime dateTime)
     {
         m_dateTime = dateTime;
 

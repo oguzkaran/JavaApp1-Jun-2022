@@ -41,6 +41,13 @@
 			<artifactId>org-csystem-util-console</artifactId>
 			<version>6.2.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.csystem</groupId>
+			<artifactId>org-cystem-util-data</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
