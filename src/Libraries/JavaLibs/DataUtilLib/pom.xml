@@ -12,8 +12,7 @@
 	<groupId>org.csystem</groupId>
 	<artifactId>org-cystem-util-data</artifactId>
 	<version>6.0.0</version>
-	<name>org-cystem-util-data</name>
-
+	<name>org-csystem-util-data</name>
 
 	<repositories>
 		<repository>
