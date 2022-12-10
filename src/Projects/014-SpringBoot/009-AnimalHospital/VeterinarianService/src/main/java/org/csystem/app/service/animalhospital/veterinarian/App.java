@@ -1,4 +1,4 @@
-package org.csystem.app.service.animalhospital;
+package org.csystem.app.service.animalhospital.veterinarian;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

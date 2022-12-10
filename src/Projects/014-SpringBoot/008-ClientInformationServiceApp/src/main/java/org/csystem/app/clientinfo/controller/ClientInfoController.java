@@ -1,12 +1,11 @@
 package org.csystem.app.clientinfo.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.csystem.app.clientinfo.view.ClientDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 
 @RestController
@@ -38,8 +37,9 @@ public class ClientInfoController {
 /*
     {
         "host": "192.168.1.111",
-        "port": 13566,
-        "localHost": "192.168.1.111",
-        "localPort": 50501
+        "port": 28048,
+        "localPort": 50501,
+        "dateTime": "10/12/2022 13:39:22",
+        "localAddr": "192.168.1.111"
     }
 */

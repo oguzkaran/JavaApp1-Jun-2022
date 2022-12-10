@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.5</version>
+		<version>3.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<groupId>org.csystem</groupId>
-	<artifactId>org-cystem-util-data</artifactId>
+	<artifactId>org-csystem-util-data</artifactId>
 	<version>6.0.0</version>
 	<name>org-csystem-util-data</name>
 

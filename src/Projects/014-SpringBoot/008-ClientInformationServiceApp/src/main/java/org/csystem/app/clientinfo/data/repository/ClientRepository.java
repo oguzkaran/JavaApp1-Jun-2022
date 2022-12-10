@@ -28,8 +28,6 @@ public class ClientRepository implements IClientRepository {
         throw new UnsupportedOperationException("Not supported yet");
     }
 
-
-
     @Override
     public void delete(Client entity)
     {
