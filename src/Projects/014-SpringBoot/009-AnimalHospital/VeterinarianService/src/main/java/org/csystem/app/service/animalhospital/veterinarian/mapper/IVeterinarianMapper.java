@@ -22,6 +22,4 @@ public interface IVeterinarianMapper {
     {
         return new CountDTO(count);
     }
-
-
 }

@@ -2,11 +2,15 @@ package com.metemengen.animalhospital.data.repository;
 
 import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.entity.Veterinarian;
+import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +22,18 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";
     private static final String FIND_BY_LAST_NAME_SQL = "select * from veterinarians where last_name=:lastName";
 
+    private static final String FIND_BY_MONTH_AND_YEAR_SQL = """
+            select * from veterinarians where date_part('month', register_date) = :month\s
+            and date_part('year', register_date) = :year""";
+
+    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from veterinarians where date_part('year', register_date) between :begin and :end";
+
+    private static final String SAVE_SQL = """
+            insert into veterinarians (diploma_no, citizen_id, first_name, middle_name, last_name, birth_date, register_date)
+            values (:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)""";
+
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
+    private final IVeterinarianMapper m_veterinarianMapper;
 
     private static Veterinarian getVeterinarian(ResultSet rs) throws SQLException
     {
@@ -40,9 +55,11 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         while (rs.next());
     }
 
-    public VeterinarianRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
+    public VeterinarianRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+                                  @Qualifier(BeanName.VETERINARIAN_MAPPER) IVeterinarianMapper veterinarianMapper)
     {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        m_veterinarianMapper = veterinarianMapper;
     }
 
     @Override
@@ -79,6 +96,32 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         m_namedParameterJdbcTemplate.query(FIND_BY_LAST_NAME_SQL, paramMap, (ResultSet rs) -> fillVeterinarians(rs, veterinarians));
 
         return veterinarians;
+    }
+
+    @Override
+    public Iterable<Veterinarian> findByMonthAndYear(int month, int year)
+    {
+        var paramMap = new HashMap<String, Object>();
+        var veterinarians = new ArrayList<Veterinarian>();
+
+        paramMap.put("month", month);
+        paramMap.put("year", year);
+
+        m_namedParameterJdbcTemplate.query(FIND_BY_MONTH_AND_YEAR_SQL, paramMap, (ResultSet rs) -> fillVeterinarians(rs, veterinarians));
+
+        return veterinarians;
+    }
+
+    @Override
+    public <S extends Veterinarian> S save(S veterinarian)
+    {
+        var paramSource = new BeanPropertySqlParameterSource(m_veterinarianMapper.toVeterinarianSave(veterinarian));
+
+        paramSource.registerSqlType("birthDate", Types.DATE);
+        paramSource.registerSqlType("registerDate", Types.DATE);
+        m_namedParameterJdbcTemplate.update(SAVE_SQL, paramSource);
+
+        return veterinarian;
     }
 
     ////////////////////////////////////////////////////////////////////
@@ -134,11 +177,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
 
 
 
-    @Override
-    public <S extends Veterinarian> S save(S entity)
-    {
-        throw new UnsupportedOperationException();
-    }
+
 
     @Override
     public <S extends Veterinarian> Iterable<S> saveAll(Iterable<S> entities)

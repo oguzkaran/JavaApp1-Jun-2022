@@ -37,4 +37,10 @@ public class VeterinarianController {
     {
         return m_veterinarianService.findVeterinariansByLastName(lastName);
     }
+
+    @GetMapping("vet/monthyear")
+    public VeterinariansDTO findByMonthAndYear(@RequestParam("m") int month, @RequestParam("y")int year)
+    {
+        return m_veterinarianService.findVeterinariansByMonthAndYear(month, year);
+    }
 }

@@ -5,4 +5,5 @@ import org.csystem.util.data.repository.ICrudRepository;
 
 public interface IVeterinarianRepository extends ICrudRepository<Veterinarian, Long> {
     Iterable<Veterinarian> findByLastName(String lastName);
+    Iterable<Veterinarian> findByMonthAndYear(int month, int year);
 }
