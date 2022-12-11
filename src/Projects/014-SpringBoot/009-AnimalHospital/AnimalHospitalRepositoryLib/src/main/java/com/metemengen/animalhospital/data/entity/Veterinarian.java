@@ -1,4 +1,4 @@
-package org.csystem.app.service.animalhospital.veterinarian.data.entity;
+package com.metemengen.animalhospital.data.entity;
 
 import java.time.LocalDate;
 import java.util.Optional;

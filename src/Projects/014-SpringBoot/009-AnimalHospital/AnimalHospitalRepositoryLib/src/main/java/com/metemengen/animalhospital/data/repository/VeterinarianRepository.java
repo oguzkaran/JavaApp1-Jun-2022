@@ -1,8 +1,7 @@
-package org.csystem.app.service.animalhospital.veterinarian.data.repository;
+package com.metemengen.animalhospital.data.repository;
 
-import org.csystem.app.service.animalhospital.veterinarian.data.entity.Veterinarian;
-import org.springframework.data.relational.core.sql.SQL;
-import org.springframework.jdbc.core.RowCallbackHandler;
+import com.metemengen.animalhospital.data.BeanName;
+import com.metemengen.animalhospital.data.entity.Veterinarian;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository(BeanName.VETERINARIAN_REPOSITORY)
 public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String COUNT_SQL = "select count(*) from veterinarians";
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";
@@ -25,11 +24,12 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     {
         var diplomaNo = rs.getLong(1);
         var citizenId = rs.getString(2);
-        var firstName = rs.getString(3);
+        var firstName = rs.getString("first_name");
         var middleNameOpt = Optional.ofNullable(rs.getString(4));
         var lastName = rs.getString(5);
         var birthDate = rs.getDate(6).toLocalDate();
         var registerDate = rs.getDate(7).toLocalDate();
+
         return new Veterinarian(diplomaNo, citizenId, firstName, middleNameOpt, lastName, birthDate, registerDate);
     }
 
@@ -39,7 +39,6 @@ public class VeterinarianRepository implements IVeterinarianRepository {
             veterinarians.add(getVeterinarian(rs));
         while (rs.next());
     }
-
 
     public VeterinarianRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
     {

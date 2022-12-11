@@ -1,6 +1,6 @@
 package org.csystem.app.service.animalhospital.veterinarian.mapper;
 
-import org.csystem.app.service.animalhospital.veterinarian.data.entity.Veterinarian;
+import com.metemengen.animalhospital.data.entity.Veterinarian;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
 import org.springframework.stereotype.Component;
 

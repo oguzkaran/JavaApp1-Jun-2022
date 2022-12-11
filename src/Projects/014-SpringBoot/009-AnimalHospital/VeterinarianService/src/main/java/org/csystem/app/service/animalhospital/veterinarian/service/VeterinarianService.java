@@ -1,6 +1,6 @@
 package org.csystem.app.service.animalhospital.veterinarian.service;
 
-import org.csystem.app.service.animalhospital.veterinarian.data.repository.IVeterinarianRepository;
+import com.metemengen.animalhospital.data.repository.IVeterinarianRepository;
 import org.csystem.app.service.animalhospital.veterinarian.dto.CountDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansDTO;
@@ -15,7 +15,8 @@ public class VeterinarianService {
     private final IVeterinarianRepository m_veterinarianRepository;
     private final IVeterinarianMapper m_veterinarianMapper;
 
-    public VeterinarianService(IVeterinarianRepository veterinarianRepository, IVeterinarianMapper veterinarianMapper)
+    public VeterinarianService(IVeterinarianRepository veterinarianRepository,
+                               IVeterinarianMapper veterinarianMapper)
     {
         m_veterinarianRepository = veterinarianRepository;
         m_veterinarianMapper = veterinarianMapper;

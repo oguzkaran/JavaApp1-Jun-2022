@@ -53,6 +53,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.metemengen</groupId>
+			<artifactId>com-metemengen-library-animalhospital-repository</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-collection</artifactId>
 			<version>6.3.0</version>
