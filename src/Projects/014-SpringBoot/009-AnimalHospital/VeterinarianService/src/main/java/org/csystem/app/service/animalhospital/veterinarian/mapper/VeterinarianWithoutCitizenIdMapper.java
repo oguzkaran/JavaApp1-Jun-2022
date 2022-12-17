@@ -1,20 +1,20 @@
 package org.csystem.app.service.animalhospital.veterinarian.mapper;
 
-import com.metemengen.animalhospital.data.entity.Veterinarian;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
+
+import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianWithoutCitizenIdDTO;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
 @Primary
-public class VeterinarianMapper implements IVeterinarianMapper {
+public class VeterinarianWithoutCitizenIdMapper implements IVeterinarianWithoutCitizenIdMapper {
     @Override
-    public VeterinarianDTO toVeterinarianDTO(Veterinarian veterinarian)
+    public VeterinarianWithoutCitizenIdDTO toVeterinarianWithoutCitizenIdDTO(VeterinarianWithoutCitizenId veterinarian)
     {
-        var dto = new VeterinarianDTO();
+        var dto = new VeterinarianWithoutCitizenIdDTO();
 
         dto.diplomaNo = veterinarian.diplomaNo;;
-        dto.citizenId = veterinarian.citizenId;
         dto.firstName = veterinarian.firstName;
         dto.middleName = veterinarian.middleName.orElse(null);
         dto.lastName = veterinarian.lastName;

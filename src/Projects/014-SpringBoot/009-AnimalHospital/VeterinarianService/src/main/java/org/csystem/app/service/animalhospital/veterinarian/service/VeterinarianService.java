@@ -5,7 +5,9 @@ import com.metemengen.animalhospital.data.dal.VeterinarianServiceHelper;
 import org.csystem.app.service.animalhospital.veterinarian.dto.CountDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansDTO;
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansWithoutCitizenIdDTO;
 import org.csystem.app.service.animalhospital.veterinarian.mapper.IVeterinarianMapper;
+import org.csystem.app.service.animalhospital.veterinarian.mapper.IVeterinarianWithoutCitizenIdMapper;
 import org.csystem.util.collection.CollectionUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,11 +19,15 @@ public class VeterinarianService {
     private final VeterinarianServiceHelper m_veterinarianServiceHelper;
     private final IVeterinarianMapper m_veterinarianMapper;
 
-    public VeterinarianService(@Qualifier(BeanName.VETERINARIAN_SERVICE_HELPER) VeterinarianServiceHelper m_veterinarianServiceHelper,
-                               IVeterinarianMapper m_veterinarianMapper)
+    private final IVeterinarianWithoutCitizenIdMapper m_veterinarianWithoutCitizenIdMapper;
+
+    public VeterinarianService(@Qualifier(BeanName.VETERINARIAN_SERVICE_HELPER) VeterinarianServiceHelper veterinarianServiceHelper,
+                               IVeterinarianMapper veterinarianMapper,
+                               IVeterinarianWithoutCitizenIdMapper veterinarianWithoutCitizenIdMapper)
     {
-        this.m_veterinarianServiceHelper = m_veterinarianServiceHelper;
-        this.m_veterinarianMapper = m_veterinarianMapper;
+        m_veterinarianServiceHelper = veterinarianServiceHelper;
+        m_veterinarianMapper = veterinarianMapper;
+        m_veterinarianWithoutCitizenIdMapper = veterinarianWithoutCitizenIdMapper;
     }
 
     public CountDTO countVeterinarians()
@@ -43,6 +49,12 @@ public class VeterinarianService {
     public VeterinariansDTO findVeterinariansByMonthAndYear(int month, int year)
     {
         return m_veterinarianMapper.toVeterinariansDTO(CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByMonthAndYear(month, year), m_veterinarianMapper::toVeterinarianDTO));
+    }
+
+    public VeterinariansWithoutCitizenIdDTO findVeterinariansByYearBetween(int begin, int end)
+    {
+        return m_veterinarianWithoutCitizenIdMapper.toVeterinariansWithoutCitizenIdDTO(
+                CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByYearBetween(begin, end), m_veterinarianWithoutCitizenIdMapper::toVeterinarianWithoutCitizenIdDTO) );
     }
 
     //...

@@ -2,6 +2,7 @@ package com.metemengen.animalhospital.data.repository;
 
 import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.entity.Veterinarian;
+import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
 import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -26,7 +27,15 @@ public class VeterinarianRepository implements IVeterinarianRepository {
             select * from veterinarians where date_part('month', register_date) = :month\s
             and date_part('year', register_date) = :year""";
 
-    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from veterinarians where date_part('year', register_date) between :begin and :end";
+    private static final String FIND_BY_YEAR_BETWEEN_SQL = """
+            select diploma_no, first_name, middle_name, last_name, birth_date, register_date\s
+            from veterinarians where date_part('year', register_date) between :begin and :end
+            """;
+    private static final String FIND_BY_MONTH_SQL = """
+                select diploma_no, first_name, middle_name, last_name, birth_date, register_date\s
+                from veterinarians where date_part('month', register_date) = :month
+                """;
+    private static final String FIND_BY_YEAR_SQL = "select * from veterinarians where date_part('year', register_date) = :year";
 
     private static final String SAVE_SQL = """
             insert into veterinarians (diploma_no, citizen_id, first_name, middle_name, last_name, birth_date, register_date)
@@ -39,7 +48,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     {
         var diplomaNo = rs.getLong(1);
         var citizenId = rs.getString(2);
-        var firstName = rs.getString("first_name");
+        var firstName = rs.getString(3);
         var middleNameOpt = Optional.ofNullable(rs.getString(4));
         var lastName = rs.getString(5);
         var birthDate = rs.getDate(6).toLocalDate();
@@ -48,10 +57,29 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         return new Veterinarian(diplomaNo, citizenId, firstName, middleNameOpt, lastName, birthDate, registerDate);
     }
 
+    private static VeterinarianWithoutCitizenId getVeterinarianWithoutCitizenId(ResultSet rs) throws SQLException
+    {
+        var diplomaNo = rs.getLong("diploma_no");
+        var firstName = rs.getString("first_name");
+        var middleNameOpt = Optional.ofNullable(rs.getString("middle_name"));
+        var lastName = rs.getString("last_name");
+        var birthDate = rs.getDate("birth_date").toLocalDate();
+        var registerDate = rs.getDate("register_date").toLocalDate();
+
+        return new VeterinarianWithoutCitizenId(diplomaNo, firstName, middleNameOpt, lastName, birthDate, registerDate);
+    }
+
     private static void fillVeterinarians(ResultSet rs, List<Veterinarian> veterinarians) throws SQLException
     {
         do
             veterinarians.add(getVeterinarian(rs));
+        while (rs.next());
+    }
+
+    private static void fillVeterinariansWithoutCitizenId(ResultSet rs, List<VeterinarianWithoutCitizenId> veterinarians) throws SQLException
+    {
+        do
+            veterinarians.add(getVeterinarianWithoutCitizenId(rs));
         while (rs.next());
     }
 
@@ -67,7 +95,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     {
         var counts = new ArrayList<Long>();
 
-        m_namedParameterJdbcTemplate.query(COUNT_SQL,  rs -> {counts.add(rs.getLong(1));});
+        m_namedParameterJdbcTemplate.query(COUNT_SQL, rs -> {counts.add(rs.getLong(1));});
 
         return counts.get(0);
     }
@@ -111,6 +139,33 @@ public class VeterinarianRepository implements IVeterinarianRepository {
 
         return veterinarians;
     }
+
+    @Override
+    public Iterable<VeterinarianWithoutCitizenId> findByYearBetween(int begin, int end)
+    {
+        var paramMap = new HashMap<String, Object>();
+        var veterinarians = new ArrayList<VeterinarianWithoutCitizenId>();
+
+        paramMap.put("begin", begin);
+        paramMap.put("end", end);
+
+        m_namedParameterJdbcTemplate.query(FIND_BY_YEAR_BETWEEN_SQL, paramMap, (ResultSet rs) -> fillVeterinariansWithoutCitizenId(rs, veterinarians));
+
+        return veterinarians;
+    }
+
+    @Override
+    public Iterable<Veterinarian> findByMonth(int month)
+    {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Override
+    public Iterable<Veterinarian> findByYear(int year)
+    {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 
     @Override
     public <S extends Veterinarian> S save(S veterinarian)
