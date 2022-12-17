@@ -2,7 +2,7 @@
 
 create table if not exists veterinarians (
 	diploma_no bigint primary key,
-	citizen_id char(36) check(length(citizen_id) = 36) not null,
+	citizen_id char(36) check(length(citizen_id) >= 11) not null,
 	first_name varchar(100) not null,
 	middle_name varchar(100),
 	last_name varchar(100) not null,
@@ -13,8 +13,7 @@ create table if not exists veterinarians (
 create table if not exists owners (
 	owner_id serial primary key,
 	name varchar(255) not null,
-	phone char(14) not null,
-	address varchar(512) not null
+	phone char(14) not null,	address varchar(512) not null
 );
 
 create table if not exists animals (

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class VeterinarianDTO {
     public long diplomaNo;

@@ -15,6 +15,10 @@ public class Veterinarian { //POJO (Plain Old Java Object)
 
     public LocalDate registerDate;
 
+    public Veterinarian()
+    {
+    }
+
     public Veterinarian(long diplomaNo, String citizenId, String firstName, Optional<String> middleName, String lastName, LocalDate birthDate, LocalDate registerDate)
     {
         this.diplomaNo = diplomaNo;
@@ -23,6 +27,76 @@ public class Veterinarian { //POJO (Plain Old Java Object)
         this.middleName = middleName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.registerDate = registerDate;
+    }
+
+    public long getDiplomaNo()
+    {
+        return diplomaNo;
+    }
+
+    public void setDiplomaNo(long diplomaNo)
+    {
+        this.diplomaNo = diplomaNo;
+    }
+
+    public String getCitizenId()
+    {
+        return citizenId;
+    }
+
+    public void setCitizenId(String citizenId)
+    {
+        this.citizenId = citizenId;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName)
+    {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName()
+    {
+        return middleName.orElse(null);
+    }
+
+    public void setMiddleName(String middleName)
+    {
+        this.middleName = Optional.ofNullable(middleName);
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getBirthDate()
+    {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate)
+    {
+        this.birthDate = birthDate;
+    }
+
+    public LocalDate getRegisterDate()
+    {
+        return registerDate;
+    }
+
+    public void setRegisterDate(LocalDate registerDate)
+    {
         this.registerDate = registerDate;
     }
 

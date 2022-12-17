@@ -166,11 +166,10 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-
     @Override
     public <S extends Veterinarian> S save(S veterinarian)
     {
-        var paramSource = new BeanPropertySqlParameterSource(m_veterinarianMapper.toVeterinarianSave(veterinarian));
+        var paramSource = new BeanPropertySqlParameterSource(veterinarian);
 
         paramSource.registerSqlType("birthDate", Types.DATE);
         paramSource.registerSqlType("registerDate", Types.DATE);

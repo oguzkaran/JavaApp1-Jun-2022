@@ -4,9 +4,11 @@ import com.metemengen.animalhospital.data.entity.Veterinarian;
 import org.csystem.app.service.animalhospital.veterinarian.dto.CountDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansDTO;
+import org.mapstruct.Mapper;
 
 import java.util.List;
 
+@Mapper(implementationName = "VeterinarianMapperImpl", componentModel = "spring")
 public interface IVeterinarianMapper {
     VeterinarianDTO toVeterinarianDTO(Veterinarian veterinarian);
 
@@ -18,6 +20,7 @@ public interface IVeterinarianMapper {
 
         return dto;
     }
+
     default CountDTO toCountDTO(long count)
     {
         return new CountDTO(count);
