@@ -55,6 +55,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.karandev</groupId>
+			<artifactId>com-karandev-util-mapstruct</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.csystem</groupId>
 			<artifactId>org-csystem-util-data</artifactId>
 			<version>6.0.0</version>

@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(implementationName = "VeterinarianMapperImpl", componentModel = "spring")
+@Mapper(implementationName = "VeterinarianMapperImpl")
 public interface IVeterinarianMapper {
     VeterinarianDTO toVeterinarianDTO(Veterinarian veterinarian);
 

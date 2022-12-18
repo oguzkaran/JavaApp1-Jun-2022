@@ -12,4 +12,5 @@ public class VeterinarianSave { //POJO (Plain Old Java Object)
     public LocalDate registerDate;
 
     //...
+
 }

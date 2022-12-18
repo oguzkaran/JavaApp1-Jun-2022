@@ -70,6 +70,17 @@ public class Veterinarian { //POJO (Plain Old Java Object)
         this.middleName = Optional.ofNullable(middleName);
     }
 
+    public Optional<String> getMiddleNameOpt()
+    {
+        return middleName;
+    }
+
+    public void setMiddleNameOpt(Optional<String> middleName)
+    {
+        this.middleName = middleName;
+    }
+
+
     public String getLastName()
     {
         return lastName;

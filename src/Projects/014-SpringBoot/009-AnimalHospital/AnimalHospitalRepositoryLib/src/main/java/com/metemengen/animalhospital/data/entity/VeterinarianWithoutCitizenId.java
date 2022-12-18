@@ -14,6 +14,9 @@ public class VeterinarianWithoutCitizenId {
 
     public LocalDate registerDate;
 
+    public VeterinarianWithoutCitizenId()
+    {}
+
     public VeterinarianWithoutCitizenId(long diplomaNo, String firstName, Optional<String> middleName, String lastName, LocalDate birthDate, LocalDate registerDate)
     {
         this.diplomaNo = diplomaNo;
