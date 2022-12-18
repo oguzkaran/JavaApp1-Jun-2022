@@ -46,9 +46,14 @@ public class VeterinarianController {
     }
 
     @PostMapping("vet/save")
-
     public VeterinarianSaveDTO save(@RequestBody VeterinarianSaveDTO veterinarianSave)
     {
         return m_veterinarianService.saveVeterinarian(veterinarianSave);
+    }
+
+    @GetMapping("vet/animalsowners/diploma")
+    public  AnimalsOwnerDetailsDTO findByAnimalsOwnersByDiplomaNo(@RequestParam("no") long diplomaNo)
+    {
+        throw new UnsupportedOperationException("TODO:");
     }
 }

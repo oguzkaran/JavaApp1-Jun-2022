@@ -6,7 +6,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration(BeanName.MAPPER_CONFIG)
 public class MapperConfig {
     @Bean(BeanName.VETERINARIAN_MAPPER)
     public IVeterinarianMapper getVeterinarianMapper()

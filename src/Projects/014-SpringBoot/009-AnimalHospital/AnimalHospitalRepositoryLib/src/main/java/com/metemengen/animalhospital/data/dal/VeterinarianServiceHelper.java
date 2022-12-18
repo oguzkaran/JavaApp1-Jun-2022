@@ -1,10 +1,12 @@
 package com.metemengen.animalhospital.data.dal;
 
 import com.metemengen.animalhospital.data.BeanName;
+import com.metemengen.animalhospital.data.entity.AnimalOwnerDetails;
 import com.metemengen.animalhospital.data.entity.Veterinarian;
 import com.metemengen.animalhospital.data.entity.VeterinarianSave;
 import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
 import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
+import com.metemengen.animalhospital.data.repository.IAnimalRepository;
 import com.metemengen.animalhospital.data.repository.IVeterinarianRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -14,13 +16,16 @@ import java.util.Optional;
 @Component(BeanName.VETERINARIAN_SERVICE_HELPER)
 public class VeterinarianServiceHelper {
     private final IVeterinarianRepository m_veterinarianRepository;
+    private final IAnimalRepository m_animalRepository;
 
     private final IVeterinarianMapper m_veterinarianMapper;
 
     public VeterinarianServiceHelper(@Qualifier(BeanName.VETERINARIAN_REPOSITORY) IVeterinarianRepository veterinarianRepository,
-                                     @Qualifier(BeanName.VETERINARIAN_MAPPER)IVeterinarianMapper veterinarianMapper)
+                                     @Qualifier(BeanName.ANIMAL_REPOSITORY) IAnimalRepository animalRepository,
+                                     @Qualifier(BeanName.VETERINARIAN_MAPPER) IVeterinarianMapper veterinarianMapper)
     {
         m_veterinarianRepository = veterinarianRepository;
+        m_animalRepository = animalRepository;
         m_veterinarianMapper = veterinarianMapper;
     }
 
@@ -60,5 +65,10 @@ public class VeterinarianServiceHelper {
         m_veterinarianRepository.save(m_veterinarianMapper.toVeterinarian(veterinarianDTO));
 
         return veterinarianDTO;
+    }
+
+    public Iterable<AnimalOwnerDetails> findAnimalOwnerDetailsByDiplomaNo(long diplomaNo)
+    {
+        return m_animalRepository.findByDiplomaNo(diplomaNo);
     }
 }
