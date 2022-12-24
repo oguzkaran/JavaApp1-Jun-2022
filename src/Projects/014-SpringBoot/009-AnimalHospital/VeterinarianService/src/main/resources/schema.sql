@@ -17,7 +17,7 @@ create table if not exists owners (
 );
 
 create table if not exists animals (
-	animal_id bigint primary key,
+	animal_id serial primary key,
 	owner_id int references owners(owner_id) not null,
 	name varchar(100),
 	type varchar(100) not null,
@@ -58,14 +58,14 @@ end
 ' language plpgsql;
 
 create or replace function find_animal_details_by_diploma(bigint)
-    returns table (
-                      animal_id bigint,
-                      animal_name varchar(100),
-                      animal_type varchar(100),
-                      animal_birth_date date,
-                      animal_owner_name varchar(255),
-                      animal_owner_phone char(14)
-                  )
+returns table (
+                  animal_id bigint,
+                  animal_name varchar(100),
+                  animal_type varchar(100),
+                  animal_birth_date date,
+                  animal_owner_name varchar(255),
+                  animal_owner_phone char(14)
+              )
 as '
 begin
     return query
