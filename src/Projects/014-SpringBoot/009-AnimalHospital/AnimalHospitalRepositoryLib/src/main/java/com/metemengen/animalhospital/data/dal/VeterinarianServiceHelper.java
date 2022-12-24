@@ -17,7 +17,6 @@ import java.util.Optional;
 public class VeterinarianServiceHelper {
     private final IVeterinarianRepository m_veterinarianRepository;
     private final IAnimalRepository m_animalRepository;
-
     private final IVeterinarianMapper m_veterinarianMapper;
 
     public VeterinarianServiceHelper(@Qualifier(BeanName.VETERINARIAN_REPOSITORY) IVeterinarianRepository veterinarianRepository,

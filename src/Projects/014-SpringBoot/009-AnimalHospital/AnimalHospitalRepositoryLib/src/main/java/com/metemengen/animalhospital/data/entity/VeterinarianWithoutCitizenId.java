@@ -26,4 +26,16 @@ public class VeterinarianWithoutCitizenId {
         this.birthDate = birthDate;
         this.registerDate = registerDate;
     }
+
+    @Override
+    public int hashCode()
+    {
+        return Long.valueOf(diplomaNo).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof Veterinarian v && v.diplomaNo == diplomaNo;
+    }
 }

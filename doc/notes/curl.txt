@@ -11,14 +11,16 @@ curl -d '{"todoId": 1, "text": "Uzmanlar sayfası"}' -H "Content-Type: applicati
 
 
 For Operating Systems except windows
-curl -d '{"diplomaNo": 3078, \"citizenId\": \"12345678911\", "first_name": "Ali", "middle_name": "Vefa", "first_name": "Serçe", "bithDate":"12/03/1966", "registerDate":"17/12/2022"}' -H "Content-Type: application/json" -X POST http:/192.168.1.111:50500/api/vets/vet/save
+curl -d '{"diplomaNo": 3078, "citizenId": "123456789112", "firstName": "Ali", "middleName": "Vefa", "lastName": "Serçe", "birthDate":"12/03/1966", "registerDate":"17/12/2022"}' -H "Content-Type: application/json" -X POST 'http:/192.168.1.149:50500/api/vets/vet/save'
+
+curl -d '{"diplomaNo": 3079, "citizenId": "123456789132", "firstName": "Oğuz", "lastName": "Karan", "birthDate":"10/09/1976", "registerDate":"17/12/2022"}' -H "Content-Type: application/json" -X POST 'http:/192.168.1.149:50500/api/vets/vet/save'
 
 
 //For windows
 
 curl -d "{\"diplomaNo\": 3078, \"citizenId\": \"123456789111\", \"firstName\": \"Ali\", \"middleName\": \"Vefa\", \"lastName\": \"Serce\", \"birthDate\":\"12/03/1966\", \"registerDate\":\"17/12/2022\"}" -H "Content-Type: application/json" -X POST "http:/192.168.1.111:50500/api/vets/vet/save"
 
-curl -d "{\"diplomaNo\": 5005, \"citizenId\": \"1723456789111\", \"firstName\": \"Oguz\", \"lastName\": \"Karan\", \"birthDate\":\"10/09/1976\", \"registerDate\":\"17/12/2022\"}" -H "Content-Type: application/json" -X POST "http:/192.168.1.111:50500/api/vets/vet/save"
+curl -d "{\"diplomaNo\": 5005, \"citizenId\": \"172345678911134\", \"firstName\": \"Oguz\", \"lastName\": \"Karan\", \"birthDate\":\"10/09/1976\", \"registerDate\":\"17/12/2022\"}" -H "Content-Type: application/json" -X POST "http:/192.168.1.111:50500/api/vets/vet/save"
 
 
 

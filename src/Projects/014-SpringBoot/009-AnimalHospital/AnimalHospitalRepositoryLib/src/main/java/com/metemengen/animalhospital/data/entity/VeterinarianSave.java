@@ -13,4 +13,15 @@ public class VeterinarianSave { //POJO (Plain Old Java Object)
 
     //...
 
+    @Override
+    public int hashCode()
+    {
+        return Long.valueOf(diplomaNo).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof Veterinarian v && v.diplomaNo == diplomaNo;
+    }
 }

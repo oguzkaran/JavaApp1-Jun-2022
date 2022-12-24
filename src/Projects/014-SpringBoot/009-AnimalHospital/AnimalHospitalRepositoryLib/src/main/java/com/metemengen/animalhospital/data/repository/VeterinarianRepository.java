@@ -27,10 +27,8 @@ public class VeterinarianRepository implements IVeterinarianRepository {
             select * from veterinarians where date_part('month', register_date) = :month\s
             and date_part('year', register_date) = :year""";
 
-    private static final String FIND_BY_YEAR_BETWEEN_SQL = """
-            select diploma_no, first_name, middle_name, last_name, birth_date, register_date\s
-            from veterinarians where date_part('year', register_date) between :begin and :end
-            """;
+    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from find_veterinarian_by_year_between(:begin, :end)";
+
     private static final String FIND_BY_MONTH_SQL = """
                 select diploma_no, first_name, middle_name, last_name, birth_date, register_date\s
                 from veterinarians where date_part('month', register_date) = :month
@@ -38,9 +36,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String FIND_BY_YEAR_SQL = "select * from veterinarians where date_part('year', register_date) = :year";
 
 
-    private static final String SAVE_SQL = """
-            insert into veterinarians (diploma_no, citizen_id, first_name, middle_name, last_name, birth_date, register_date)
-            values (:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)""";
+    private static final String SAVE_SQL = "call sp_insert_veterinarian(:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
     private final IVeterinarianMapper m_veterinarianMapper;

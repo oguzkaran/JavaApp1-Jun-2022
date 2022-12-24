@@ -12,19 +12,7 @@ import java.util.Optional;
 
 @Repository(BeanName.ANIMAL_REPOSITORY)
 public class AnimalRepository implements IAnimalRepository {
-    private static final String FIND_BY_DIPLOMA_NO = """
-            select\s
-            a.animal_id as id,\
-            a.name as animal_name,\s
-            a.type as animal_type,
-            a.birth_date as animal_birth_date,
-            o.name as owner_name,\s
-            o.phone as owner_phone
-            from\s
-            veterinarians_to_animals va inner join animals a on a.animal_id = va.animal_id\s
-            inner join owners o on a.owner_id = o.owner_id\s
-            where va.diploma_no = :diplomaNo;
-            """;
+    private static final String FIND_BY_DIPLOMA_NO = "select * from find_animal_details_by_diploma(:diplomaNo)";
 
     private static AnimalOwnerDetails getAnimalOwnerDetails(ResultSet resultSet) throws SQLException
     {

@@ -7,17 +7,14 @@ import java.time.LocalDate;
 
 public class VeterinarianDTO {
     public long diplomaNo;
-    public String firstName;
-
     public String citizenId;
+
+    public String firstName;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String middleName;
 
     public String lastName;
-
-    @JsonFormat(pattern = "dd/MM/yyy", shape = JsonFormat.Shape.STRING)
-    public LocalDate birthDate;
 
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     public LocalDate registerDate;
