@@ -40,18 +40,23 @@ truncate table animals restart identity cascade;
 truncate table veterinarians_to_animals restart identity cascade;
 
 create or replace function find_veterinarian_by_year_between(int, int)
-returns table (
-                  diploma_no bigint,
-                  first_name varchar(100),
-                  middle_name varchar(100),
-                  last_name varchar(100),
-                  birth_date date,
-                  register_date date
-              )
+    returns table (
+                      diploma_no bigint,
+                      full_name varchar(300),
+                      birth_date date,
+                      register_date date
+                  )
 as '
 begin
     return query
-        select v.diploma_no, v.first_name, v.middle_name, v.last_name, v.birth_date, v.register_date
+        select
+            v.diploma_no,
+            case
+                when v.middle_name isnull then cast(v.first_name || $$ $$ || upper(v.last_name) as varchar(300))
+                else cast(v.first_name || $$ $$ || v.middle_name || $$ $$ || upper(v.last_name) as varchar(300))
+                end,
+            v.birth_date,
+            v.register_date
         from veterinarians v where date_part($$year$$, v.register_date) between $1 and $2;
 end
 

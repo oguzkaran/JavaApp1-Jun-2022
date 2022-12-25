@@ -40,7 +40,7 @@ public class VeterinarianController {
     }
 
     @GetMapping("between/year")
-    public VeterinariansWithoutCitizenIdDTO findByYearBetween(@RequestParam("begin") int begin, @RequestParam("end")int end)
+    public VeterinariansWithFullNameDTO findByYearBetween(@RequestParam("begin") int begin, @RequestParam("end")int end)
     {
         return m_veterinarianService.findVeterinariansByYearBetween(begin, end);
     }

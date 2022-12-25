@@ -2,6 +2,7 @@ package com.metemengen.animalhospital.data.repository;
 
 import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.entity.Veterinarian;
+import com.metemengen.animalhospital.data.entity.VeterinarianWithFullName;
 import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
 import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -54,6 +55,16 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         return new Veterinarian(diplomaNo, citizenId, firstName, middleNameOpt, lastName, birthDate, registerDate);
     }
 
+    private static VeterinarianWithFullName getVeterinarianWithFullname(ResultSet rs) throws SQLException
+    {
+        var diplomaNo = rs.getLong(1);
+        var fullName = rs.getString(2);
+        var birthDate = rs.getDate(3).toLocalDate();
+        var registerDate = rs.getDate(4).toLocalDate();
+
+        return new VeterinarianWithFullName(diplomaNo, fullName, birthDate, registerDate);
+    }
+
     private static VeterinarianWithoutCitizenId getVeterinarianWithoutCitizenId(ResultSet rs) throws SQLException
     {
         var diplomaNo = rs.getLong("diploma_no");
@@ -70,6 +81,13 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     {
         do
             veterinarians.add(getVeterinarian(rs));
+        while (rs.next());
+    }
+
+    private static void fillVeterinariansWithFullName(ResultSet rs, List<VeterinarianWithFullName> veterinarians) throws SQLException
+    {
+        do
+            veterinarians.add(getVeterinarianWithFullname(rs));
         while (rs.next());
     }
 
@@ -138,15 +156,15 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     }
 
     @Override
-    public Iterable<VeterinarianWithoutCitizenId> findByYearBetween(int begin, int end)
+    public Iterable<VeterinarianWithFullName> findByYearBetween(int begin, int end)
     {
         var paramMap = new HashMap<String, Object>();
-        var veterinarians = new ArrayList<VeterinarianWithoutCitizenId>();
+        var veterinarians = new ArrayList<VeterinarianWithFullName>();
 
         paramMap.put("begin", begin);
         paramMap.put("end", end);
 
-        m_namedParameterJdbcTemplate.query(FIND_BY_YEAR_BETWEEN_SQL, paramMap, (ResultSet rs) -> fillVeterinariansWithoutCitizenId(rs, veterinarians));
+        m_namedParameterJdbcTemplate.query(FIND_BY_YEAR_BETWEEN_SQL, paramMap, (ResultSet rs) -> fillVeterinariansWithFullName(rs, veterinarians));
 
         return veterinarians;
     }

@@ -1,0 +1,46 @@
+Aşağıdaki REST servisleri yazınız:
+- ~/api/movies/movie/save: Bir filmi veritabanına ekleyen POST servis
+- ~/api/movies/movie/count: Kaç tane movie olduğu bilgisini getiren servis
+- ~/api/movies/movies/find/sdate/month?m=3: m parametresi ile verilen ay içerisinde vizyona girmiş tüm movie'leri getiren servis
+- ~/api/movies/movie/find/sdate/year?y=2020: y parametresi ile verilen yıl içerisinde vizyona girmiş tüm movie'leri getiren servis
+- ~/api/movies/movie/find/sdate/my?month=3&year=2020: m parametresi ile verilen ay ve y parametresi ile verilen yıl
+ içerisinde vizyona girmiş tüm movie'leri getiren servis
+- ~/api/movies/movie/find/sdate/year/between?begin=2020&end=2022: Verilen iki tane yıl bilgisi arasındaki tüm movie'leri,
+- ~/api/movies/movie/find/director?id=1: id'si parametre olarak verilen yönetmenin tüm filmlerini getiren servis
+- ~/api/directors/director/find/movie?id=1: id'si parametre olarak verilen filmin tüm yönetmenlerini getiren servis
+- ~/api/directors/directors/save: Bir yönetmeni veritabanına ekleyen POST servis
+
+
+Açıklama:
+- Uygulamanın veritabanı ddl cümleleri hazırdır. Tablolarda bir değişiklik yapılmayacaktır
+- Geliştirme aşaması için çeşitli dummy veriler de verilmiştir. Bunları kullanabilirsiniz
+- Veritabanı işlemleri için JDBC kullanılacaktır
+- Veritabanı ismi japp1j22_moviesdb olacaktır
+- Uygulama geliştirmede profil kullanımı önerilir: dev, test ve default gibi
+- Profile göre veritabanı isimlerine ek yapılacaktır: japp1j22_moviesdb_dev, japp1j22_moviesdb_test, japp1j22_moviesdb
+- test ve ürün veritabanı için istenirse uzak veritabanı istenirse kullanılabilir. Ancak bu zorunlu değildir
+- Movie ve Director için ayrı servisler geliştirilecektir
+- Bu iki servis de aynı veritabanını kullanacaktır
+- Veritabaı işlemleri için ayrı bir tane repository library yapılacaktır
+- Katmanlı mimari ile geliştirilmesi önerilir
+- DTO dönüşümleri içim Mapstruct kütüphanesi ve derste yazmış olduğumuz MapstructUtil kütüphanesi kullanılabilir
+- DTO'ların yapısı zorunlu olanlar dışında programcı tarafından belirlenebilir
+- Tüm servisler aşağıdaki formatta yanıt verecektir
+
+
+{
+    "movies": [
+        {
+            "name": "Face Off",
+            "sceneDate":"1996-05-12"
+            "cost": "1000000.67"
+        },
+        {
+            "name": "Face Off",
+            "sceneDate":"1996-05-12"
+            "cost": "1000000.67"
+        }
+    ]
+}
+- Veritabanına göre nullable olan alanlar, tarih zamana ilişkin alanlar vb için format belirlemeleri 
+JsonXXX annotation'ları ile yapılabilir
