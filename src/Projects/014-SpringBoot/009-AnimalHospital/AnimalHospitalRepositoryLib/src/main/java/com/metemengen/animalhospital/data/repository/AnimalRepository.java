@@ -1,18 +1,23 @@
 package com.metemengen.animalhospital.data.repository;
 
-
 import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.entity.AnimalOwnerDetails;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
 @Repository(BeanName.ANIMAL_REPOSITORY)
 public class AnimalRepository implements IAnimalRepository {
     private static final String FIND_BY_DIPLOMA_NO = "select * from find_animal_details_by_diploma(:diplomaNo)";
+
+    private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
+
 
     private static AnimalOwnerDetails getAnimalOwnerDetails(ResultSet resultSet) throws SQLException
     {
@@ -33,10 +38,23 @@ public class AnimalRepository implements IAnimalRepository {
         while (resultSet.next());
     }
 
+    public AnimalRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
+    {
+        m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
     @Override
     public Iterable<AnimalOwnerDetails> findByDiplomaNo(long diplomaNo)
     {
-        throw new UnsupportedOperationException("Not implemented yet");
+        var paramMap = new HashMap<String, Object>();
+        var animalOwnerDetails = new ArrayList<AnimalOwnerDetails>();
+
+        paramMap.put("diplomaNo", diplomaNo);
+
+
+        m_namedParameterJdbcTemplate.query(FIND_BY_DIPLOMA_NO, paramMap, (ResultSet rs) -> fillAnimalDetails(rs, animalOwnerDetails));
+
+        return animalOwnerDetails;
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
