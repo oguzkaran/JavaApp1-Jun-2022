@@ -16,7 +16,6 @@ public class StopWatch {
     private long m_start;
     private long m_stop;
 
-
     public long getStart()
     {
         return m_start;
