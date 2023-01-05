@@ -50,8 +50,6 @@ public class AnimalRepository implements IAnimalRepository {
         var animalOwnerDetails = new ArrayList<AnimalOwnerDetails>();
 
         paramMap.put("diplomaNo", diplomaNo);
-
-
         m_namedParameterJdbcTemplate.query(FIND_BY_DIPLOMA_NO, paramMap, (ResultSet rs) -> fillAnimalDetails(rs, animalOwnerDetails));
 
         return animalOwnerDetails;

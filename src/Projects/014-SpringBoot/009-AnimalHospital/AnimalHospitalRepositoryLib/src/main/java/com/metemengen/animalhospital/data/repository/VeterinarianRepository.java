@@ -36,7 +36,6 @@ public class VeterinarianRepository implements IVeterinarianRepository {
                 """;
     private static final String FIND_BY_YEAR_SQL = "select * from veterinarians where date_part('year', register_date) = :year";
 
-
     private static final String SAVE_SQL = "call sp_insert_veterinarian(:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
