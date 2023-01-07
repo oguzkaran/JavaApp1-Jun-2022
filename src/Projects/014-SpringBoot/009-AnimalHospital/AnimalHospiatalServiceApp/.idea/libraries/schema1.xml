@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="schema1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/VeterinarianGetService/.idea/dataSources/98e12d95-ffba-4a0e-bd7a-253e6b8d47d2/storage_v2/_src_/database/japp1j22_animalhospitaldb.Q8Mdaw/schema/pg_catalog.0S1ZNQ.zip!/" />
+      <root url="jar://$PROJECT_DIR$/VeterinarianGetService/.idea/dataSources/98e12d95-ffba-4a0e-bd7a-253e6b8d47d2/storage_v2/_src_/database/japp1j22_animalhospitaldb.Q8Mdaw/schema/information_schema.FNRwLQ.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
