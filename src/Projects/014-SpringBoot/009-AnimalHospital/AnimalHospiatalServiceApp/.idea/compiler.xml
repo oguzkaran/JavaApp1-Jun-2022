@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for VeterinarianGetServiceApp" enabled="true">
+      <profile name="Annotation profile for AnimalGetServiceApp" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -15,26 +15,36 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
         </processorPath>
+        <module name="AnimalGetServiceApp" />
+        <module name="VeterinarianPostServiceApp" />
         <module name="VeterinarianGetServiceApp" />
+        <module name="com-metemengen-library-animalhospital-repository" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AnimalHospiatalServiceApp" target="17" />
       <module name="AnimalHospitalRepositoryLib" target="17" />
       <module name="AnimalHospitalServicseApp" target="17" />
+      <module name="AnimalServiceApp" target="17" />
       <module name="GenericParenProject" target="17" />
       <module name="VeterinarianGetService" target="17" />
-      <module name="VeterinarianPostServiceApp" target="17" />
+      <module name="VeterinarianGetServiceApp (1)" target="17" />
+      <module name="VeterinarianGetServiceApp (2)" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AnimalGetServiceApp" options="-parameters" />
       <module name="AnimalHospitalRepositoryLib" options="-parameters" />
-      <module name="AnimalHospitalServicesApp" options="-parameters" />
+      <module name="AnimalHospitalServicesApp" options="" />
       <module name="AnimalHospitalServicseApp" options="-parameters" />
+      <module name="AnimalServiceApp" options="-parameters" />
       <module name="VeterinarianGetService" options="-parameters" />
       <module name="VeterinarianGetServiceApp" options="-parameters" />
+      <module name="VeterinarianGetServiceApp (1)" options="-parameters" />
+      <module name="VeterinarianGetServiceApp (2)" options="-parameters" />
       <module name="VeterinarianPostServiceApp" options="-parameters" />
+      <module name="com-metemengen-library-animalhospital-repository" options="-parameters" />
     </option>
   </component>
 </project>

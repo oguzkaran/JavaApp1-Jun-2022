@@ -15,11 +15,6 @@
     <name>VeterinarianGetServiceApp</name>
     <description>VeterinarianGetService</description>
 
-    <properties>
-        <java.version>17</java.version>
-    </properties>
-
-
     <dependencies>
         <dependency>
             <groupId>com.metemengen</groupId>

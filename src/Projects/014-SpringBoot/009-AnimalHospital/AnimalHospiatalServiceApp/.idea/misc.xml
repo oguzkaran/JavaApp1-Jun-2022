@@ -9,6 +9,10 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/VeterinarianGetService/pom.xml" />
+        <option value="$PROJECT_DIR$/VeterinarianPostService/pom.xml" />
+        <option value="$PROJECT_DIR$/AnimalHospitalRepositoryLib/pom.xml" />
+        <option value="$PROJECT_DIR$/AnimalService/pom.xml" />
+        <option value="$PROJECT_DIR$/AnimalGetServiceApp/pom.xml" />
       </list>
     </option>
   </component>
