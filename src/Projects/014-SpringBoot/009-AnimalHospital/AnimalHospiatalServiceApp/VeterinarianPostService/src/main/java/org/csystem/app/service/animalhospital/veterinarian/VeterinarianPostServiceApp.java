@@ -6,9 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({"org.csystem", "com.metemengen"})
-public class App {
+public class VeterinarianPostServiceApp {
 	public static void main(String[] args)
 	{
-		SpringApplication.run(App.class, args);
+		SpringApplication.run(VeterinarianPostServiceApp.class, args);
 	}
 }

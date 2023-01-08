@@ -12,12 +12,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
-@Repository(BeanName.ANIMAL_REPOSITORY)
-public class AnimalRepository implements IAnimalRepository {
+@Repository(BeanName.ANIMAL_OWNER_REPOSITORY)
+public class AnimalOwnerRepository implements IAnimalOwnerRepository {
     private static final String FIND_BY_DIPLOMA_NO = "select * from find_animal_details_by_diploma(:diplomaNo)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
-
 
     private static AnimalOwnerDetails getAnimalOwnerDetails(ResultSet resultSet) throws SQLException
     {
@@ -38,7 +37,7 @@ public class AnimalRepository implements IAnimalRepository {
         while (resultSet.next());
     }
 
-    public AnimalRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
+    public AnimalOwnerRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
     {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }

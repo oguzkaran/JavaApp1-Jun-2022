@@ -15,8 +15,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
         </processorPath>
-        <module name="AnimalGetServiceApp" />
         <module name="VeterinarianPostServiceApp" />
+        <module name="AnimalGetService" />
         <module name="VeterinarianGetServiceApp" />
         <module name="com-metemengen-library-animalhospital-repository" />
       </profile>
@@ -25,6 +25,7 @@
       <module name="AnimalHospiatalServiceApp" target="17" />
       <module name="AnimalHospitalRepositoryLib" target="17" />
       <module name="AnimalHospitalServicseApp" target="17" />
+      <module name="AnimalRepositoryLib" target="17" />
       <module name="AnimalServiceApp" target="17" />
       <module name="GenericParenProject" target="17" />
       <module name="VeterinarianGetService" target="17" />
@@ -34,10 +35,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="AnimalGetServiceApp" options="-parameters" />
+      <module name="AnimalGetService" options="-parameters" />
       <module name="AnimalHospitalRepositoryLib" options="-parameters" />
-      <module name="AnimalHospitalServicesApp" options="" />
+      <module name="AnimalHospitalServicesApp" options="-parameters" />
       <module name="AnimalHospitalServicseApp" options="-parameters" />
+      <module name="AnimalRepositoryLib" options="-parameters" />
       <module name="AnimalServiceApp" options="-parameters" />
       <module name="VeterinarianGetService" options="-parameters" />
       <module name="VeterinarianGetServiceApp" options="-parameters" />
