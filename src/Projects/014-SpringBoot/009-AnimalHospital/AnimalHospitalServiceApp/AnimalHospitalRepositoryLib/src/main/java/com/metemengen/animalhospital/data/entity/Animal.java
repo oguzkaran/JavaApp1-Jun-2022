@@ -20,6 +20,7 @@ public class Animal { //POJO (Plain Old Java Object)
 
     @Column(name = "birth_date", nullable = false)
     public LocalDate birthDate;
+
     @Column(nullable = false)
     public boolean sterile;
 

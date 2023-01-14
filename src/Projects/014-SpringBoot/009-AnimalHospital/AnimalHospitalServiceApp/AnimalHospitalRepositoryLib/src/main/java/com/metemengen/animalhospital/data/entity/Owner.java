@@ -22,4 +22,16 @@ public class Owner {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
     public Set<Animal> animals;
+
+    @Override
+    public int hashCode()
+    {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof Owner o && o.id == id;
+    }
 }

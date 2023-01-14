@@ -1,7 +1,5 @@
 package org.csystem.app.service.animalhospital.animal.dto;
 
-import com.metemengen.animalhospital.data.entity.Owner;
-
 import java.time.LocalDate;
 
 public class AnimalDTO { //POJO (Plain Old Java Object)

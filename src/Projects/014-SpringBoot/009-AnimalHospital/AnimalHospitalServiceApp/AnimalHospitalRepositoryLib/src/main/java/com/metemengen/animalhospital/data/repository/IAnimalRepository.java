@@ -1,13 +1,14 @@
 package com.metemengen.animalhospital.data.repository;
 
-import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.entity.Animal;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Lazy
 public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
     Iterable<Animal> findByNameContainsAndSterile(@Param("text") String text, @Param("sterile") boolean sterile);
 

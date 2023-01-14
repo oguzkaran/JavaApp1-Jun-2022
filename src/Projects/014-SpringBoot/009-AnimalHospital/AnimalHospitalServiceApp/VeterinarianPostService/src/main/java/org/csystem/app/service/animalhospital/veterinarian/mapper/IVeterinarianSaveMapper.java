@@ -7,7 +7,4 @@ import org.mapstruct.Mapper;
 @Mapper(implementationName = "VeterinarianSaveMapperImpl", componentModel = "spring")
 public interface IVeterinarianSaveMapper {
     VeterinarianSave toVeterinarianSave(VeterinarianSaveDTO veterinarianSaveDTO);
-
-
-
 }

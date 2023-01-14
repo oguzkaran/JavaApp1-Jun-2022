@@ -6,6 +6,7 @@ import com.metemengen.animalhospital.data.entity.VeterinarianWithFullName;
 import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
 import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository(BeanName.VETERINARIAN_REPOSITORY)
+@Lazy
 public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String COUNT_SQL = "select count(*) from veterinarians";
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";

@@ -19,6 +19,7 @@
         <module name="AnimalGetService" />
         <module name="VeterinarianGetServiceApp" />
         <module name="com-metemengen-library-animalhospital-repository" />
+        <module name="OwnerGetService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -41,6 +42,7 @@
       <module name="AnimalHospitalServicseApp" options="-parameters" />
       <module name="AnimalRepositoryLib" options="-parameters" />
       <module name="AnimalServiceApp" options="-parameters" />
+      <module name="OwnerGetService" options="-parameters" />
       <module name="VeterinarianGetService" options="-parameters" />
       <module name="VeterinarianGetServiceApp" options="-parameters" />
       <module name="VeterinarianGetServiceApp (1)" options="-parameters" />

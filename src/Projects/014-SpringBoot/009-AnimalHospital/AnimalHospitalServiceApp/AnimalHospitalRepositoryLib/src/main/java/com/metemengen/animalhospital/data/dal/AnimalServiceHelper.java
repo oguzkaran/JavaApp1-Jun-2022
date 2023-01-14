@@ -6,11 +6,15 @@ import com.metemengen.animalhospital.data.entity.AnimalOwnerDetails;
 import com.metemengen.animalhospital.data.repository.IAnimalOwnerRepository;
 import com.metemengen.animalhospital.data.repository.IAnimalRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component(BeanName.ANIMAL_SERVICE_HELPER)
+@Lazy
 public class AnimalServiceHelper {
     private final IAnimalOwnerRepository m_animalOwnerRepository;
 
@@ -33,9 +37,20 @@ public class AnimalServiceHelper {
         return m_animalRepository.findById(id);
     }
 
-    public Iterable<Animal> findByNameContainsAndSterile(String text, boolean sterile)
+    public Iterable<Animal> findAnimalsByNameContainsAndSterile(String text, boolean sterile)
     {
         return m_animalRepository.findByNameContainsAndSterile(text, sterile);
     }
+
+    public Iterable<Animal> findAnimalsByType(String type)
+    {
+        return m_animalRepository.findByType(type);
+    }
+
+    public Iterable<Animal> findAnimalsByMonthAndYear(int month, int year)
+    {
+        return m_animalRepository.findByMonthAndYear(month, year);
+    }
+
     //...
 }
