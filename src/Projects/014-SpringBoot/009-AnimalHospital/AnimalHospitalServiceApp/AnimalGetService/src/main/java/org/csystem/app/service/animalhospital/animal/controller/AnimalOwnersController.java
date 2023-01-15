@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
-@RequestMapping("api/animalowners")
+@RequestMapping("api/read/animalowners")
 public class AnimalOwnersController {
     private final AnimalService m_animalAppService;
 
@@ -17,9 +17,17 @@ public class AnimalOwnersController {
         m_animalAppService = animalAppService;
     }
 
+    @GetMapping("find/animal/name")
+    public AnimalsOwnerDetailsDTO findByName(@RequestParam("n") String name)
+    {
+        return m_animalAppService.findAnimalsByName(name);
+    }
+
+    /*
     @GetMapping("owners/diploma")
     public AnimalsOwnerDetailsDTO findByAnimalsOwnersByDiplomaNo(@RequestParam("no") long diplomaNo)
     {
         return m_animalAppService.findAnimalsByOwnersByDiplomaNo(diplomaNo);
     }
+     */
 }

@@ -1,6 +1,5 @@
-package com.metemengen.animalhospital.data.entity;
+package com.metemengen.animalhospital.data.entity.orm;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -26,8 +25,21 @@ public class Animal { //POJO (Plain Old Java Object)
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id", nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     public Owner owner;
+
+    public Animal()
+    {
+
+    }
+
+    public Animal(String name, String type, LocalDate birthDate, boolean sterile)
+    {
+        this.name = name;
+        this.type = type;
+        this.birthDate = birthDate;
+        this.sterile = sterile;
+    }
 
     @Override
     public int hashCode()

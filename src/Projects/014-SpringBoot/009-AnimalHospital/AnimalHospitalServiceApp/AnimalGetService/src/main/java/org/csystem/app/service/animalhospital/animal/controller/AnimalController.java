@@ -1,13 +1,12 @@
 package org.csystem.app.service.animalhospital.animal.controller;
 
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsDTO;
+import org.csystem.app.service.animalhospital.animal.dto.AnimalsWithoutOwnerDTO;
 import org.csystem.app.service.animalhospital.animal.service.AnimalService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import static org.csystem.util.collection.CollectionUtil.toList;
 
 @RestController()
 @RequestMapping("api/read/animals")
@@ -26,7 +25,7 @@ public class AnimalController {
     }
 
     @GetMapping("/find/type")
-    public AnimalsDTO findByType(String type)
+    public AnimalsWithoutOwnerDTO findByType(@RequestParam("t") String type)
     {
         return m_animalAppService.findAnimalsByType(type);
     }

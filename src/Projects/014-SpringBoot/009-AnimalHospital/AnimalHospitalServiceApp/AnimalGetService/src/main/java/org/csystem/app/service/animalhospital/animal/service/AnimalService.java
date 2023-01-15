@@ -4,11 +4,14 @@ import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.dal.AnimalServiceHelper;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsDTO;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsOwnerDetailsDTO;
+import org.csystem.app.service.animalhospital.animal.dto.AnimalsWithoutOwnerDTO;
 import org.csystem.app.service.animalhospital.animal.mapper.IAnimalMapper;
 import org.csystem.app.service.animalhospital.animal.mapper.IAnimalOwnerDetailsMapper;
+import org.csystem.app.service.animalhospital.animal.mapper.IAnimalWithoutOwnerMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.stream.StreamSupport;
 
 import static org.csystem.util.collection.CollectionUtil.toList;
 
@@ -16,22 +19,24 @@ import static org.csystem.util.collection.CollectionUtil.toList;
 public class AnimalService {
     private final AnimalServiceHelper m_animalServiceHelper;
     private final IAnimalOwnerDetailsMapper m_animalOwnerDetailsMapper;
-
     private final IAnimalMapper m_animalMapper;
+
+    private final IAnimalWithoutOwnerMapper m_animalWithoutOwnerMapper;
 
     public AnimalService(@Qualifier(BeanName.ANIMAL_SERVICE_HELPER) AnimalServiceHelper animalServiceHelper,
                          IAnimalOwnerDetailsMapper animalOwnerDetailsMapper,
-                         IAnimalMapper animalMapper)
+                         IAnimalMapper animalMapper, IAnimalWithoutOwnerMapper animalWithoutOwnerMapper)
     {
         m_animalServiceHelper = animalServiceHelper;
         m_animalOwnerDetailsMapper = animalOwnerDetailsMapper;
         m_animalMapper = animalMapper;
+        m_animalWithoutOwnerMapper = animalWithoutOwnerMapper;
     }
 
-    public AnimalsOwnerDetailsDTO findAnimalsByOwnersByDiplomaNo(@RequestParam("no") long diplomaNo)
+    public AnimalsOwnerDetailsDTO findAnimalsByName(String name)
     {
-        return m_animalOwnerDetailsMapper.toAnimalsOwnerDetailsDTO(toList(m_animalServiceHelper.findAnimalOwnerDetailsByDiplomaNo(diplomaNo),
-                m_animalOwnerDetailsMapper::toAnimalOwnerDetailsDTO));
+        return m_animalOwnerDetailsMapper.toAnimalsOwnerDetailsDTO(
+                StreamSupport.stream(m_animalServiceHelper.findAnimalsByName(name).spliterator(), false).toList());
     }
 
     public AnimalsDTO findAnimalsByNameContainsAndSterile(String text)
@@ -40,9 +45,9 @@ public class AnimalService {
                 m_animalMapper::toAnimalDTO));
     }
 
-    public AnimalsDTO findAnimalsByType(String type)
+    public AnimalsWithoutOwnerDTO findAnimalsByType(String type)
     {
-        return m_animalMapper.toAnimalsDTO(toList(m_animalServiceHelper.findAnimalsByType(type), m_animalMapper::toAnimalDTO));
+        return m_animalWithoutOwnerMapper.toAnimalsDTO(StreamSupport.stream(m_animalServiceHelper.findAnimalsByType(type).spliterator(), false).toList());
     }
 
     public AnimalsDTO findAnimalsByMonthAndYear(int month, int year)

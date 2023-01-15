@@ -1,11 +1,11 @@
 package com.metemengen.animalhospital.data.dal;
 
 import com.metemengen.animalhospital.data.BeanName;
-import com.metemengen.animalhospital.data.entity.Veterinarian;
-import com.metemengen.animalhospital.data.entity.VeterinarianSave;
-import com.metemengen.animalhospital.data.entity.VeterinarianWithFullName;
-import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
-import com.metemengen.animalhospital.data.repository.IVeterinarianRepository;
+import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianSave;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
+import com.metemengen.animalhospital.data.mapper.jdbc.IVeterinarianMapper;
+import com.metemengen.animalhospital.data.repository.jdbc.IVeterinarianRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 

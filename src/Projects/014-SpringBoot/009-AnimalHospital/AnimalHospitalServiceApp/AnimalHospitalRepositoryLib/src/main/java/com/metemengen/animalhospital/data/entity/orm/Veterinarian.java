@@ -1,9 +1,9 @@
-package com.metemengen.animalhospital.data.entity;
+package com.metemengen.animalhospital.data.entity.orm;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-public class Veterinarian { //POJO (Plain Old Java Object)
+public class Veterinarian {
     public long diplomaNo;
     public String citizenId;
     public String firstName;

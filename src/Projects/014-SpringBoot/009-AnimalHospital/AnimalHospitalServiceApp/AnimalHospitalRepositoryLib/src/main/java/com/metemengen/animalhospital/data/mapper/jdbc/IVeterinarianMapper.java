@@ -1,8 +1,8 @@
-package com.metemengen.animalhospital.data.mapper;
+package com.metemengen.animalhospital.data.mapper.jdbc;
 
 import com.karandev.util.mapstruct.IOptionalMapper;
-import com.metemengen.animalhospital.data.entity.Veterinarian;
-import com.metemengen.animalhospital.data.entity.VeterinarianSave;
+import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianSave;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

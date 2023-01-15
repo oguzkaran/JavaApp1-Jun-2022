@@ -1,23 +1,22 @@
-package com.metemengen.animalhospital.data.entity;
+package com.metemengen.animalhospital.data.entity.orm.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
 public class AnimalOwnerDetails {
-    public long id;
     public String animalName;
     public String animalType;
+
+    @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     public LocalDate animalBirthDate;
+
     public String ownerName;
+
     public String phone;
 
-    public AnimalOwnerDetails()
+    public AnimalOwnerDetails(String animalName, String animalType, LocalDate animalBirthDate, String ownerName, String phone)
     {
-
-    }
-
-    public AnimalOwnerDetails(long id, String animalName, String animalType, LocalDate animalBirthDate, String ownerName, String phone)
-    {
-        this.id = id;
         this.animalName = animalName;
         this.animalType = animalType;
         this.animalBirthDate = animalBirthDate;

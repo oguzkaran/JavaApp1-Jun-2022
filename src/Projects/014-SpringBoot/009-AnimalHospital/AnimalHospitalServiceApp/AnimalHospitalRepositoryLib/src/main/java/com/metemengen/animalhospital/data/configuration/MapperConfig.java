@@ -1,7 +1,7 @@
 package com.metemengen.animalhospital.data.configuration;
 
 import com.metemengen.animalhospital.data.BeanName;
-import com.metemengen.animalhospital.data.mapper.IVeterinarianMapper;
+import com.metemengen.animalhospital.data.mapper.jdbc.IVeterinarianMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

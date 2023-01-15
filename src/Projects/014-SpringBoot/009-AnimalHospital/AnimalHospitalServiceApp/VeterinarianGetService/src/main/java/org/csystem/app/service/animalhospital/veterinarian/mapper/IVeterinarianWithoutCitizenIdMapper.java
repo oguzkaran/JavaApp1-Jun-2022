@@ -2,7 +2,7 @@ package org.csystem.app.service.animalhospital.veterinarian.mapper;
 
 import com.karandev.util.mapstruct.IOptionalMapper;
 import com.karandev.util.mapstruct.annotation.ToType;
-import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithoutCitizenId;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianWithoutCitizenIdDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansWithoutCitizenIdDTO;
 import org.mapstruct.Mapper;

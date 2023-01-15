@@ -1,8 +1,7 @@
-package com.metemengen.animalhospital.data.repository;
+package com.metemengen.animalhospital.data.repository.jdbc;
 
-import com.metemengen.animalhospital.data.entity.Veterinarian;
-import com.metemengen.animalhospital.data.entity.VeterinarianWithFullName;
-import com.metemengen.animalhospital.data.entity.VeterinarianWithoutCitizenId;
+import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
 import org.csystem.util.data.repository.ICrudRepository;
 
 public interface IVeterinarianRepository extends ICrudRepository<Veterinarian, Long> {

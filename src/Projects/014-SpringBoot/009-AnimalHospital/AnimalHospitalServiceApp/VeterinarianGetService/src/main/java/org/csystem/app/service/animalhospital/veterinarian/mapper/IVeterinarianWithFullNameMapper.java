@@ -1,6 +1,6 @@
 package org.csystem.app.service.animalhospital.veterinarian.mapper;
 
-import com.metemengen.animalhospital.data.entity.VeterinarianWithFullName;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianWithFullNameDTO;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansWithFullNameDTO;
 import org.mapstruct.Mapper;
