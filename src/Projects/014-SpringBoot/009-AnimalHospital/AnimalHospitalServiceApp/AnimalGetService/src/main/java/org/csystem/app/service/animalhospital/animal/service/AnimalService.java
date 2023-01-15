@@ -58,6 +58,4 @@ public class AnimalService {
     {
         return m_animalMapper.toAnimalsDTO(toList(m_animalServiceHelper.findAnimalsByMonthAndYear(month, year), m_animalMapper::toAnimalDTO));
     }
-
-
 }
