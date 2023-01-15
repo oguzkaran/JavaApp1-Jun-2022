@@ -1,115 +1,39 @@
 package com.metemengen.animalhospital.data.entity.orm;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.Set;
 
+@Entity
+@Table(name = "veterinarians")
 public class Veterinarian {
+    @Id
+    @Column(name = "diploma_no")
     public long diplomaNo;
-    public String citizenId;
-    public String firstName;
-    public Optional<String> middleName;
 
+    @Column(name = "citizen_id", unique = true, nullable = false)
+    public String citizenId;
+
+    @Column(name = "first_name", nullable = false)
+    public String firstName;
+
+    @Column(name = "middle_name")
+    public String middleName;
+
+    @Column(name = "last_name", nullable = false)
     public String lastName;
 
+    @Column(name = "birth_date", nullable = false)
     public LocalDate birthDate;
 
+    @Column(name = "register_date", nullable = false)
     public LocalDate registerDate;
 
-    public Veterinarian()
-    {
-    }
-
-    public Veterinarian(long diplomaNo, String citizenId, String firstName, Optional<String> middleName, String lastName, LocalDate birthDate, LocalDate registerDate)
-    {
-        this.diplomaNo = diplomaNo;
-        this.citizenId = citizenId;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.registerDate = registerDate;
-    }
-
-    public long getDiplomaNo()
-    {
-        return diplomaNo;
-    }
-
-    public void setDiplomaNo(long diplomaNo)
-    {
-        this.diplomaNo = diplomaNo;
-    }
-
-    public String getCitizenId()
-    {
-        return citizenId;
-    }
-
-    public void setCitizenId(String citizenId)
-    {
-        this.citizenId = citizenId;
-    }
-
-    public String getFirstName()
-    {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName()
-    {
-        return middleName.orElse(null);
-    }
-
-    public void setMiddleName(String middleName)
-    {
-        this.middleName = Optional.ofNullable(middleName);
-    }
-
-    public Optional<String> getMiddleNameOpt()
-    {
-        return middleName;
-    }
-
-    public void setMiddleNameOpt(Optional<String> middleName)
-    {
-        this.middleName = middleName;
-    }
-
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
-
-    public LocalDate getBirthDate()
-    {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate)
-    {
-        this.birthDate = birthDate;
-    }
-
-    public LocalDate getRegisterDate()
-    {
-        return registerDate;
-    }
-
-    public void setRegisterDate(LocalDate registerDate)
-    {
-        this.registerDate = registerDate;
-    }
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "veterinarians_to_animals", joinColumns = @JoinColumn(name = "diploma_no", referencedColumnName = "diploma_no", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "animal_id", referencedColumnName = "animal_id", nullable = false))
+    public Set<Animal> animals;
 
     @Override
     public int hashCode()

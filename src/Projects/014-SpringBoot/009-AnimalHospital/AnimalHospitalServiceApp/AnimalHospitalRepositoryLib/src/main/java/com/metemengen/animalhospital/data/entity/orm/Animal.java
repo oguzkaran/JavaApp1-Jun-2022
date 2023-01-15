@@ -3,6 +3,7 @@ package com.metemengen.animalhospital.data.entity.orm;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "animals")
@@ -28,18 +29,8 @@ public class Animal { //POJO (Plain Old Java Object)
     //@JsonIgnore
     public Owner owner;
 
-    public Animal()
-    {
-
-    }
-
-    public Animal(String name, String type, LocalDate birthDate, boolean sterile)
-    {
-        this.name = name;
-        this.type = type;
-        this.birthDate = birthDate;
-        this.sterile = sterile;
-    }
+    @ManyToMany(mappedBy = "animals", fetch = FetchType.LAZY)
+    public Set<Veterinarian> veterinarians;
 
     @Override
     public int hashCode()

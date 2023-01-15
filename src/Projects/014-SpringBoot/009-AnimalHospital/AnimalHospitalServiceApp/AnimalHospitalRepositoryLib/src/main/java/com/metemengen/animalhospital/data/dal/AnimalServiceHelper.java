@@ -6,6 +6,7 @@ import com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails;
 import com.metemengen.animalhospital.data.entity.orm.view.IAnimalWithoutOwner;
 import com.metemengen.animalhospital.data.repository.orm.IAnimalRepository;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -39,6 +40,11 @@ public class AnimalServiceHelper {
     public Iterable<AnimalOwnerDetails> findAnimalsByName(String name)
     {
         return m_animalRepository.findByName(name);
+    }
+
+    public Iterable<AnimalOwnerDetails> findAnimalsByVeterinarianDiplomaNo(long diplomaNo)
+    {
+        return m_animalRepository.findByVeterinarianDiplomaNo(diplomaNo);
     }
 
     public Iterable<Animal> findAnimalsByMonthAndYear(int month, int year)

@@ -73,7 +73,7 @@
         <dependency>
             <groupId>org.csystem</groupId>
             <artifactId>org-csystem-util-collection</artifactId>
-            <version>6.3.0</version>
+            <version>6.4.0</version>
         </dependency>
 
         <dependency>

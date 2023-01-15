@@ -35,8 +35,12 @@ public class AnimalService {
 
     public AnimalsOwnerDetailsDTO findAnimalsByName(String name)
     {
-        return m_animalOwnerDetailsMapper.toAnimalsOwnerDetailsDTO(
-                StreamSupport.stream(m_animalServiceHelper.findAnimalsByName(name).spliterator(), false).toList());
+        return m_animalOwnerDetailsMapper.toAnimalsOwnerDetailsDTO(toList(m_animalServiceHelper.findAnimalsByName(name)));
+    }
+
+    public AnimalsOwnerDetailsDTO findAnimalsByVeterinarianDiplomaNo(long diplomaNo)
+    {
+        return m_animalOwnerDetailsMapper.toAnimalsOwnerDetailsDTO(toList(m_animalServiceHelper.findAnimalsByVeterinarianDiplomaNo(diplomaNo)));
     }
 
     public AnimalsDTO findAnimalsByNameContainsAndSterile(String text)
@@ -54,4 +58,6 @@ public class AnimalService {
     {
         return m_animalMapper.toAnimalsDTO(toList(m_animalServiceHelper.findAnimalsByMonthAndYear(month, year), m_animalMapper::toAnimalDTO));
     }
+
+
 }

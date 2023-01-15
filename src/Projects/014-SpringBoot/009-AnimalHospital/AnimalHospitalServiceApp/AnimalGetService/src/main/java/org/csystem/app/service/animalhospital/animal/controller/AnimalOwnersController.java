@@ -17,17 +17,15 @@ public class AnimalOwnersController {
         m_animalAppService = animalAppService;
     }
 
-    @GetMapping("find/animal/name")
+    @GetMapping("find/animals/name")
     public AnimalsOwnerDetailsDTO findByName(@RequestParam("n") String name)
     {
         return m_animalAppService.findAnimalsByName(name);
     }
 
-    /*
-    @GetMapping("owners/diploma")
+    @GetMapping("find/animals/vet/diploma")
     public AnimalsOwnerDetailsDTO findByAnimalsOwnersByDiplomaNo(@RequestParam("no") long diplomaNo)
     {
-        return m_animalAppService.findAnimalsByOwnersByDiplomaNo(diplomaNo);
+        return m_animalAppService.findAnimalsByVeterinarianDiplomaNo(diplomaNo);
     }
-     */
 }

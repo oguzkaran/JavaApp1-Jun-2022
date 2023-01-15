@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------
 	FILE		: CollectionUtil.java
 	AUTHOR		: JavaApp1-Jun-2022 Group
-	LAST UPDATE	: 05.11.2022
+	LAST UPDATE	: 15.01.2023
 
 	Utility class for generic collection operations
 
@@ -18,6 +18,16 @@ import java.util.stream.StreamSupport;
 public final class CollectionUtil {
     private CollectionUtil()
     {
+    }
+
+    public static <T> List<T> toList(Iterable<? extends T> iterable)
+    {
+        return toList(iterable, false);
+    }
+
+    public static <T> List<T> toList(Iterable<? extends T> iterable, boolean parallel)
+    {
+        return StreamSupport.stream(iterable.spliterator(), parallel).collect(Collectors.toList());
     }
 
     public static <T, R> List<R> toList(Iterable<? extends T> iterable, Function<? super T, ? extends R> function)
@@ -39,4 +49,5 @@ public final class CollectionUtil {
     {
         return toList(iterable, function, parallel);
     }
+    //...
 }

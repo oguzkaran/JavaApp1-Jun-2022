@@ -19,9 +19,18 @@ public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
     @Query(nativeQuery = true, value = "select * from animals where date_part('month', birth_date) = :month and date_part('year', birth_date) = :year")
     Iterable<Animal> findByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
+
     @Query("""
         select new com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails(a.name, a.type, a.birthDate, o.name, o.phone)\s
-        from Animal a inner join Owner o on o = a.owner where a.name = ?1\s
+        from Animal a join a.owner o where a.name = ?1\s
         """)
     Iterable<AnimalOwnerDetails> findByName(@Param("name") String name);
+
+    @Query("""
+        select distinct new com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails(a.name, a.type, a.birthDate, o.name, o.phone)\s
+        from Owner o join Animal a on o = a.owner join a.veterinarians v where v.diplomaNo = :diplomaNo
+    """)
+    Iterable<AnimalOwnerDetails> findByVeterinarianDiplomaNo(@Param("diplomaNo") long diplomaNo);
+
+
 }
