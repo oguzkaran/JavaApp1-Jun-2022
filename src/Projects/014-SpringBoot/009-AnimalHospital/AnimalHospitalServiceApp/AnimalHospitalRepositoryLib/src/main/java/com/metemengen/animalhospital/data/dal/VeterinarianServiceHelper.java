@@ -11,10 +11,19 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+import static com.karandev.util.data.error.DataUtil.doForRepository;
+
 @Component(BeanName.VETERINARIAN_SERVICE_HELPER)
 public class VeterinarianServiceHelper {
     private final IVeterinarianRepository m_veterinarianRepository;
     private final IVeterinarianMapper m_veterinarianMapper;
+
+    private VeterinarianSave saveVeterinarianCallback(VeterinarianSave veterinarianDTO)
+    {
+        m_veterinarianRepository.save(m_veterinarianMapper.toVeterinarian(veterinarianDTO));
+
+        return veterinarianDTO;
+    }
 
     public VeterinarianServiceHelper(@Qualifier(BeanName.VETERINARIAN_REPOSITORY) IVeterinarianRepository veterinarianRepository,
                                      @Qualifier(BeanName.VETERINARIAN_MAPPER) IVeterinarianMapper veterinarianMapper)
@@ -25,39 +34,31 @@ public class VeterinarianServiceHelper {
 
     public long countVeterinarians()
     {
-        //...
-
-        return m_veterinarianRepository.count();
+        return doForRepository(m_veterinarianRepository::count, "VeterinarianServiceHelper.countVeterinarians");
     }
 
     public Optional<Veterinarian> findVeterinarianById(Long diplomaNo)
     {
-        //...
-        return m_veterinarianRepository.findById(diplomaNo);
+        return doForRepository(() -> m_veterinarianRepository.findById(diplomaNo), "VeterinarianServiceHelper.findVeterinarianById");
     }
 
     public Iterable<Veterinarian> findVeterinariansByLastName(String lastName)
     {
-        //...
-        return m_veterinarianRepository.findByLastName(lastName);
+        return doForRepository(() -> m_veterinarianRepository.findByLastName(lastName), "VeterinarianServiceHelper.findVeterinariansByLastName");
     }
 
     public Iterable<Veterinarian> findVeterinariansByMonthAndYear(int month, int year)
     {
-        //...
-        return m_veterinarianRepository.findByMonthAndYear(month, year);
+        return doForRepository(() -> m_veterinarianRepository.findByMonthAndYear(month, year), "VeterinarianServiceHelper.findVeterinariansByMonthAndYear");
     }
 
     public Iterable<VeterinarianWithFullName> findVeterinariansByYearBetween(int begin, int end)
     {
-        //...
-        return m_veterinarianRepository.findByYearBetween(begin, end);
+        return doForRepository(() -> m_veterinarianRepository.findByYearBetween(begin, end), "VeterinarianServiceHelper.findVeterinariansByYearBetween");
     }
 
-    public VeterinarianSave save(VeterinarianSave veterinarianDTO)
+    public VeterinarianSave saveVeterinarian(VeterinarianSave veterinarianDTO)
     {
-        m_veterinarianRepository.save(m_veterinarianMapper.toVeterinarian(veterinarianDTO));
-
-        return veterinarianDTO;
+        return doForRepository(() -> saveVeterinarianCallback(veterinarianDTO), "VeterinarianServiceHelper.save");
     }
 }

@@ -1,14 +1,14 @@
 /*----------------------------------------------------------------------
 	FILE        : ICrudRepository.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 27.11.2022
+	LAST UPDATE : 21.01.2023
 
 	Abstraction of general CRUD operations
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.data.repository;
+package com.karandev.util.data.repository;
 
 import java.util.Optional;
 

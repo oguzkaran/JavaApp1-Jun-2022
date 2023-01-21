@@ -94,7 +94,7 @@ language plpgsql
 as '
 	begin
 		insert into veterinarians (diploma_no, citizen_id, first_name, middle_name, last_name, birth_date, register_date)
-            values ($1, $2, $3, $4, $5, $6, $7);
+            values ($1, $2, $3, $4, lower($5), $6, $7);
     end
 ';
 

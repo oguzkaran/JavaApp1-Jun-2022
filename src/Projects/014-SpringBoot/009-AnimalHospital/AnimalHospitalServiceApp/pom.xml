@@ -65,9 +65,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.csystem</groupId>
-            <artifactId>org-csystem-util-data</artifactId>
-            <version>6.0.0</version>
+            <groupId>com.karandev</groupId>
+            <artifactId>com-karandev-util-data</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>

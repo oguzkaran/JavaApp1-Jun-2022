@@ -1,22 +1,22 @@
 /*----------------------------------------------------------------------
-	FILE        : RepositoryException.java
+	FILE        : DataServiceException.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 27.11.2022
+	LAST UPDATE : 21.01.2023
 
-	RepositoryException class which can wrap the exception in repository
+	DataServiceException class which can wrap the exception in service
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.data.repository.exception;
+package com.karandev.util.data.service;
 
-public class RepositoryException extends RuntimeException {
-    public RepositoryException(String message)
+public class DataServiceException extends RuntimeException {
+    public DataServiceException(String message)
     {
         this(message, null);
     }
 
-    public RepositoryException(String message, Throwable cause)
+    public DataServiceException(String message, Throwable cause)
     {
         super(message, cause);
     }

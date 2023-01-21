@@ -5004,3 +5004,6 @@ insert into veterinarians_to_animals (animal_id, diploma_no, datetime, descripti
 insert into veterinarians_to_animals (animal_id, diploma_no, datetime, description, price) values (673, 513, '2022-11-19', 'interferon beta-1a', 1585.87);
 insert into veterinarians_to_animals (animal_id, diploma_no, datetime, description, price) values (756, 682, '2022-11-13', 'Tag Alder', 1836.64);
 insert into veterinarians_to_animals (animal_id, diploma_no, datetime, description, price) values (764, 944, '2022-05-28', 'Warfarin Sodium', 1500.62);
+
+
+update veterinarians set last_name = lower(last_name);

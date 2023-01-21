@@ -4,8 +4,6 @@ import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
 import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
 import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithoutCitizenId;
-import com.metemengen.animalhospital.data.mapper.jdbc.IVeterinarianMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,7 +22,7 @@ import java.util.Optional;
 public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String COUNT_SQL = "select count(*) from veterinarians";
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";
-    private static final String FIND_BY_LAST_NAME_SQL = "select * from veterinarians where last_name=:lastName";
+    private static final String FIND_BY_LAST_NAME_SQL = "select * from veterinarians where last_name=lower(:lastName)";
 
     private static final String FIND_BY_MONTH_AND_YEAR_SQL = """
             select * from veterinarians where date_part('month', register_date) = :month\s
@@ -41,7 +39,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String SAVE_SQL = "call sp_insert_veterinarian(:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
-    private final IVeterinarianMapper m_veterinarianMapper;
+
 
     private static Veterinarian getVeterinarian(ResultSet rs) throws SQLException
     {
@@ -99,11 +97,10 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         while (rs.next());
     }
 
-    public VeterinarianRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
-                                  @Qualifier(BeanName.VETERINARIAN_MAPPER) IVeterinarianMapper veterinarianMapper)
+    public VeterinarianRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
     {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-        m_veterinarianMapper = veterinarianMapper;
+
     }
 
     @Override

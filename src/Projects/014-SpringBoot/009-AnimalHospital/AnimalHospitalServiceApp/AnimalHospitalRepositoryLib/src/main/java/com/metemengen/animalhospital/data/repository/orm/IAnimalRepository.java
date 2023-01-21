@@ -22,15 +22,13 @@ public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
 
     @Query("""
         select new com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails(a.name, a.type, a.birthDate, o.name, o.phone)\s
-        from Animal a join a.owner o where a.name = ?1\s
+        from Animal a join a.owner o where a.name = lower(?1)\s
         """)
     Iterable<AnimalOwnerDetails> findByName(@Param("name") String name);
 
     @Query("""
-        select distinct new com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails(a.name, a.type, a.birthDate, o.name, o.phone)\s
+        select new com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails(a.name, a.type, a.birthDate, o.name, o.phone)\s
         from Owner o join Animal a on o = a.owner join a.veterinarians v where v.diplomaNo = :diplomaNo
     """)
     Iterable<AnimalOwnerDetails> findByVeterinarianDiplomaNo(@Param("diplomaNo") long diplomaNo);
-
-
 }

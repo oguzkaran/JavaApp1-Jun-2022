@@ -1,7 +1,11 @@
 package org.csystem.app.service.animalhospital.veterinarian.controller;
 
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianError;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianSaveDTO;
 import org.csystem.app.service.animalhospital.veterinarian.service.VeterinarianService;
+import org.csystem.data.service.DataServiceException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +18,22 @@ public class VeterinarianController {
 
     public VeterinarianController(VeterinarianService veterinarianService)
     {
+
         m_veterinarianService = veterinarianService;
     }
 
     @PostMapping("vet/save")
-    public VeterinarianSaveDTO save(@RequestBody VeterinarianSaveDTO veterinarianSave)
+    public ResponseEntity<Object> save(@RequestBody VeterinarianSaveDTO veterinarianSave)
     {
-        return m_veterinarianService.saveVeterinarian(veterinarianSave);
+        ResponseEntity<Object> result;
+
+        try {
+            result = ResponseEntity.ok(m_veterinarianService.saveVeterinarian(veterinarianSave));
+        }
+        catch (DataServiceException ignore) {
+            result = ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value()));
+        }
+
+        return result;
     }
 }
