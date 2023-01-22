@@ -22,7 +22,7 @@ curl -d "{\"diplomaNo\": 3078, \"citizenId\": \"123456789111\", \"firstName\": \
 
 curl -d "{\"diplomaNo\": 5005, \"citizenId\": \"172345678911134\", \"firstName\": \"Oguz\", \"lastName\": \"Karan\", \"birthDate\":\"10/09/1976\", \"registerDate\":\"17/12/2022\"}" -H "Content-Type: application/json" -X POST "http:/192.168.1.111:50500/api/vets/vet/save"
 
-curl -d "{\"diplomaNo\": 100, \"animalId\": 67, \"dateTime\": \"21/01/2023 12:34:00\", \"price\": 1000}" -H "Content-Type: application/json" -X POST "http:/192.168.1.113:50505/api/animalhospital/vetan/save"
+curl -d "{\"diplomaNo\": 100, \"animalId\": 67, \"price\": 1000}" -H "Content-Type: application/json" -X POST "http:/192.168.1.113:50505/api/animalhospital/vetan/save"
 
 
 
