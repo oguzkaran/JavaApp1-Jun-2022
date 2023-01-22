@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/AnimalGetServiceApp/pom.xml" />
         <option value="$PROJECT_DIR$/AnimalGetService/pom.xml" />
         <option value="$PROJECT_DIR$/OwnerGetService/pom.xml" />
+        <option value="$PROJECT_DIR$/VeterinarianAnimalPostService/pom.xml" />
       </list>
     </option>
   </component>

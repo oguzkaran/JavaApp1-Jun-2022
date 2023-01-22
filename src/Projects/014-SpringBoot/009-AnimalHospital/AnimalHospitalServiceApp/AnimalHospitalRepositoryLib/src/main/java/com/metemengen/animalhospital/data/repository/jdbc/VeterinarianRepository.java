@@ -1,11 +1,12 @@
 package com.metemengen.animalhospital.data.repository.jdbc;
 
 import com.metemengen.animalhospital.data.BeanName;
-import com.metemengen.animalhospital.data.entity.jdbc.AnimalVeterinarianSave;
 import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
+import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianAnimalSave;
 import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
 import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithoutCitizenId;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -38,7 +39,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String FIND_BY_YEAR_SQL = "select * from veterinarians where date_part('year', register_date) = :year";
 
     private static final String SAVE_SQL = "call sp_insert_veterinarian(:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)";
-    private static final String SAVE_VETERINARIAN_ANIMAL_SQL = "call sp_insert_veterinarian(:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)";
+    private static final String SAVE_VETERINARIAN_ANIMAL_SQL = "call sp_insert_veterinarian_animal(:animalId, :diplomaNo, :price)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
 
@@ -194,12 +195,23 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     }
 
     @Override
-    public boolean saveVeterinarianAnimal(AnimalVeterinarianSave animalVeterinarianSave)
+    public boolean saveVeterinarianAnimal(VeterinarianAnimalSave veterinarianAnimalSave)
     {
-        var paramSource = new BeanPropertySqlParameterSource(animalVeterinarianSave);
+        boolean result = false;
+        try {
+            var paramSource = new BeanPropertySqlParameterSource(veterinarianAnimalSave);
 
-        paramSource.registerSqlType("dateTime", Types.DATE);
-        return m_namedParameterJdbcTemplate.update(SAVE_VETERINARIAN_ANIMAL_SQL, paramSource) != 0;
+            paramSource.registerSqlType("dateTime", Types.DATE);
+
+            m_namedParameterJdbcTemplate.update(SAVE_VETERINARIAN_ANIMAL_SQL, paramSource);
+
+            result = true;
+        }
+        catch (DataAccessException ignore) {
+
+        }
+
+        return result;
     }
 
     ////////////////////////////////////////////////////////////////////

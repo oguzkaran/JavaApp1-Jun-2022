@@ -99,11 +99,11 @@ as '
 ';
 
 
-create or replace procedure sp_insert_veterinarian_animal(int, bigint, timestamp, double precision)
+create or replace procedure sp_insert_veterinarian_animal(int, bigint, double precision)
 language plpgsql
 as '
 	begin
-		insert into veterinarians_to_animals (animal_id, diploma_no, datetime, price) values ($1, $2, $3, $4);
+		insert into veterinarians_to_animals (animal_id, diploma_no, price) values ($1, $2, $3);
     end
 ';
 

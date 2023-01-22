@@ -1,9 +1,9 @@
 package org.csystem.app.service.animalhospital.veterinarian.controller;
 
+import com.karandev.util.data.service.DataServiceException;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianError;
 import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianSaveDTO;
 import org.csystem.app.service.animalhospital.veterinarian.service.VeterinarianService;
-import org.csystem.data.service.DataServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

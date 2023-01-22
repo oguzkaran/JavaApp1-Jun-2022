@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for VeterinarianGetServiceApp" enabled="true">
+      <profile name="Annotation profile for VeterinarianPostServiceApp" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -15,6 +15,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
         </processorPath>
+        <module name="VeterinarianAnimalPostService" />
         <module name="VeterinarianPostServiceApp" />
         <module name="AnimalGetService" />
         <module name="VeterinarianGetServiceApp" />
@@ -43,6 +44,7 @@
       <module name="AnimalRepositoryLib" options="-parameters" />
       <module name="AnimalServiceApp" options="-parameters" />
       <module name="OwnerGetService" options="-parameters" />
+      <module name="VeterinarianAnimalPostService" options="-parameters" />
       <module name="VeterinarianGetService" options="-parameters" />
       <module name="VeterinarianGetServiceApp" options="-parameters" />
       <module name="VeterinarianGetServiceApp (1)" options="-parameters" />
