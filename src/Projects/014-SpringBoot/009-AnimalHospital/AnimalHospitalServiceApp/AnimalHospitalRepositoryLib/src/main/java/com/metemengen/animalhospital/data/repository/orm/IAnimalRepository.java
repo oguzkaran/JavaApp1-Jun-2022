@@ -31,4 +31,6 @@ public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
         from Owner o join Animal a on o = a.owner join a.veterinarians v where v.diplomaNo = :diplomaNo
     """)
     Iterable<AnimalOwnerDetails> findByVeterinarianDiplomaNo(@Param("diplomaNo") long diplomaNo);
+
+
 }

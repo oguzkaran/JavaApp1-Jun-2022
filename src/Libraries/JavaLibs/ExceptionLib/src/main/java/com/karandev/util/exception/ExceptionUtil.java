@@ -1,14 +1,14 @@
 /*----------------------------------------------------------------------
-FILE        : ExceptionUtil.java
-AUTHOR      : Oğuz Karan
-LAST UPDATE : 19.09.2021
+    FILE        : ExceptionUtil.java
+    AUTHOR      : Oğuz Karan
+    LAST UPDATE : 19.09.2021
 
-ExceptionUtil class for exception managing
+    ExceptionUtil class for exception managing
 
-Copyleft (c) 1993 by C and System Programmers Association (CSD)
-All Rights Free
+    Copyleft (c) 1993 by C and System Programmers Association (CSD)
+    All Rights Free
 -----------------------------------------------------------------------*/
-package org.csystem.util.exception;
+package com.karandev.util.exception;
 
 import java.io.Closeable;
 import java.lang.reflect.InvocationTargetException;
@@ -29,7 +29,7 @@ public final class ExceptionUtil {
     private ExceptionUtil()
     {}
 
-    public static <T extends RuntimeException> void doWorkForRunnable(IActionCallback actionCallback, String msg, Class<T> cls)
+    public static <T extends RuntimeException> void doForRunnable(IRunnable actionCallback, String msg, Class<T> cls)
     {
         try {
             actionCallback.run();
@@ -39,7 +39,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static <T extends RuntimeException> void doWorkForRunnable(IActionCallback actionCallback, Consumer<Throwable> consumer, String msg, Class<T> cls)
+    public static <T extends RuntimeException> void doForRunnable(IRunnable actionCallback, Consumer<Throwable> consumer, String msg, Class<T> cls)
     {
         try {
             actionCallback.run();
@@ -50,7 +50,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static <T extends RuntimeException, R> R doWorkFor(ISupplierCallback<R> supplier, String msg, Class<T> cls)
+    public static <T extends RuntimeException, R> R doForSupplier(ISupplier<R> supplier, String msg, Class<T> cls)
     {
         R result = null;
 
@@ -64,7 +64,7 @@ public final class ExceptionUtil {
         return result;
     }
 
-    public static <T extends RuntimeException, R> R doWorkFor(ISupplierCallback<R> supplier, Consumer<Throwable>  consumer, String msg, Class<T> cls)
+    public static <T extends RuntimeException, R> R doForSupplier(ISupplier<R> supplier, Consumer<Throwable>  consumer, String msg, Class<T> cls)
     {
         R result = null;
 
@@ -79,7 +79,7 @@ public final class ExceptionUtil {
         return result;
     }
 
-    public static <R> R doWorkForRuntimeException(ISupplierCallback<R> supplier, String msg)
+    public static <R> R doForRuntimeException(ISupplier<R> supplier, String msg)
     {
         try {
             return supplier.get();
@@ -89,7 +89,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static void doWorkForRuntimeException(IActionCallback actionCallback, String msg)
+    public static void doForRuntimeException(IRunnable actionCallback, String msg)
     {
         try {
             actionCallback.run();
@@ -99,7 +99,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static <R> R subscribe(ISupplierCallback<R> supplier, Function<Throwable, R> function)
+    public static <R> R subscribe(ISupplier<R> supplier, Function<Throwable, R> function)
     {
         try {
             return supplier.get();
@@ -109,7 +109,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static void subscribeRunnable(IActionCallback actionCallback, Consumer<Throwable> consumer)
+    public static void subscribeRunnable(IRunnable actionCallback, Consumer<Throwable> consumer)
     {
         try {
             actionCallback.run();
@@ -119,7 +119,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static <R> R subscribe(ISupplierCallback<R> supplier, Function<Throwable, R> function, Runnable runnableCompleted)
+    public static <R> R subscribe(ISupplier<R> supplier, Function<Throwable, R> function, Runnable runnableCompleted)
     {
         try {
             return supplier.get();
@@ -132,7 +132,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static void subscribeRunnable(IActionCallback actionCallback, Consumer<Throwable> consumer, Runnable runnableCompleted)
+    public static void subscribeRunnable(IRunnable actionCallback, Consumer<Throwable> consumer, Runnable runnableCompleted)
     {
         try {
             actionCallback.run();
@@ -145,7 +145,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static <R> R subscribe(ISupplierCallback<R> supplier, Closeable closeable, Function<Throwable, R> function, Runnable runnableCompleted)
+    public static <R> R subscribe(ISupplier<R> supplier, Closeable closeable, Function<Throwable, R> function, Runnable runnableCompleted)
     {
         try (closeable) {
             return supplier.get();
@@ -158,7 +158,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static void subscribeRunnable(IActionCallback actionCallback, Closeable closeable, Consumer<Throwable> consumer, Runnable runnableCompleted)
+    public static void subscribeRunnable(IRunnable actionCallback, Closeable closeable, Consumer<Throwable> consumer, Runnable runnableCompleted)
     {
         try (closeable) {
             actionCallback.run();
@@ -171,7 +171,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static <R> R subscribe(ISupplierCallback<R> supplier, Closeable closeable, Function<Throwable, R> function)
+    public static <R> R subscribe(ISupplier<R> supplier, Closeable closeable, Function<Throwable, R> function)
     {
         try (closeable) {
             return supplier.get();
@@ -181,7 +181,7 @@ public final class ExceptionUtil {
         }
     }
 
-    public static void subscribeRunnable(IActionCallback actionCallback, Closeable closeable, Consumer<Throwable> consumer)
+    public static void subscribeRunnable(IRunnable actionCallback, Closeable closeable, Consumer<Throwable> consumer)
     {
         try (closeable) {
             actionCallback.run();

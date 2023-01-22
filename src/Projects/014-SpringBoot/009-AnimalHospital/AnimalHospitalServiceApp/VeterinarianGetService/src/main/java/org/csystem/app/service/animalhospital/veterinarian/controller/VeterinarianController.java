@@ -1,7 +1,10 @@
 package org.csystem.app.service.animalhospital.veterinarian.controller;
 
 import com.karandev.util.data.service.DataServiceException;
-import org.csystem.app.service.animalhospital.veterinarian.dto.*;
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianError;
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianStatus;
+import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianStatusDTO;
 import org.csystem.app.service.animalhospital.veterinarian.mapper.IVeterinarianMapper;
 import org.csystem.app.service.animalhospital.veterinarian.service.VeterinarianService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.karandev.util.exception.ExceptionUtil.subscribe;
 
 @RestController
 @RequestMapping("api/read/vets")
@@ -105,21 +110,14 @@ public class VeterinarianController {
     @GetMapping("monthyear")
     public ResponseEntity<Object> findByMonthAndYear(@RequestParam("m") int month, @RequestParam("y")int year)
     {
-        ResponseEntity<Object> result;
-
-        try {
-            result = ResponseEntity.ok(m_veterinarianService.findVeterinariansByMonthAndYear(month, year));
-        }
-        catch (Throwable ignore) {
-            result = ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value()));
-        }
-
-        return result;
+        return subscribe(() -> ResponseEntity.ok(m_veterinarianService.findVeterinariansByMonthAndYear(month, year)),
+                ignore -> ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value())));
     }
 
     @GetMapping("between/year")
-    public VeterinariansWithFullNameDTO findByYearBetween(@RequestParam("begin") int begin, @RequestParam("end")int end)
+    public ResponseEntity<Object> findByYearBetween(@RequestParam("begin") int begin, @RequestParam("end")int end)
     {
-        return m_veterinarianService.findVeterinariansByYearBetween(begin, end);
+        return subscribe(() -> ResponseEntity.ok(m_veterinarianService.findVeterinariansByYearBetween(begin, end)),
+                ignore -> ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value())));
     }
 }

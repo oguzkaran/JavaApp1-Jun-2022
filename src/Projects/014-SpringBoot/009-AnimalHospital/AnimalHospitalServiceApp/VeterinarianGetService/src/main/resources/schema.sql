@@ -29,7 +29,7 @@ create table if not exists veterinarians_to_animals (
 	veterinary_to_animal_id bigserial primary key,
 	animal_id bigint references animals(animal_id) not null,
 	diploma_no int references veterinarians(diploma_no) not null,
-	datetime timestamp not null,
+	datetime timestamp default(current_timestamp) not null,
 	description text,
 	price double precision default(0.0) not null
 );
@@ -95,6 +95,15 @@ as '
 	begin
 		insert into veterinarians (diploma_no, citizen_id, first_name, middle_name, last_name, birth_date, register_date)
             values ($1, $2, $3, $4, lower($5), $6, $7);
+    end
+';
+
+
+create or replace procedure sp_insert_veterinarian_animal(int, bigint, timestamp, double precision)
+language plpgsql
+as '
+	begin
+		insert into veterinarians_to_animals (animal_id, diploma_no, datetime, price) values ($1, $2, $3, $4);
     end
 ';
 

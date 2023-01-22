@@ -1,6 +1,7 @@
 package com.metemengen.animalhospital.data.repository.jdbc;
 
 import com.karandev.util.data.repository.ICrudRepository;
+import com.metemengen.animalhospital.data.entity.jdbc.AnimalVeterinarianSave;
 import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
 import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
 
@@ -10,4 +11,5 @@ public interface IVeterinarianRepository extends ICrudRepository<Veterinarian, L
     Iterable<VeterinarianWithFullName> findByYearBetween(int begin, int end);
     Iterable<Veterinarian> findByMonth(int month);
     Iterable<Veterinarian> findByYear(int year);
+    boolean saveVeterinarianAnimal(AnimalVeterinarianSave animalVeterinarianSave);
 }

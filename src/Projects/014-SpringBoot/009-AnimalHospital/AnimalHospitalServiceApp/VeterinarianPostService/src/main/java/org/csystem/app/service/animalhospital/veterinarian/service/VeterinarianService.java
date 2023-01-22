@@ -14,8 +14,6 @@ public class VeterinarianService {
     private final VeterinarianServiceHelper m_veterinarianServiceHelper;
     private final IVeterinarianSaveMapper m_veterinarianSaveMapper;
 
-
-
     public VeterinarianService(@Qualifier(BeanName.VETERINARIAN_SERVICE_HELPER) VeterinarianServiceHelper veterinarianServiceHelper,
                                IVeterinarianSaveMapper veterinarianSaveMapper)
     {

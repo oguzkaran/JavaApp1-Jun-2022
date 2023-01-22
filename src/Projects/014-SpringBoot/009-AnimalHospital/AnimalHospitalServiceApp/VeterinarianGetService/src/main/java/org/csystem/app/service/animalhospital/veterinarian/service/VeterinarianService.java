@@ -1,7 +1,5 @@
 package org.csystem.app.service.animalhospital.veterinarian.service;
 
-import com.karandev.util.data.repository.exception.RepositoryException;
-import com.karandev.util.data.service.DataServiceException;
 import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.dal.VeterinarianServiceHelper;
 import org.csystem.app.service.animalhospital.veterinarian.dto.CountDTO;
@@ -36,41 +34,35 @@ public class VeterinarianService {
 
     public CountDTO countVeterinarians()
     {
-        return doForDataService(() -> m_veterinarianMapper.toCountDTO(m_veterinarianServiceHelper.countVeterinarians()), "VeterinarianService.countVeterinarians");
+        return doForDataService(() -> m_veterinarianMapper.toCountDTO(m_veterinarianServiceHelper.countVeterinarians()),
+                "VeterinarianService.countVeterinarians");
     }
+
     public Optional<VeterinarianDTO> findVeterinarianByDiplomaNo(long diplomaNo)
     {
-        return doForDataService(() ->m_veterinarianServiceHelper.findVeterinarianById(diplomaNo).map(m_veterinarianMapper::toVeterinarianDTO), "VeterinarianService.findVeterinarianByDiplomaNo");
+        return doForDataService(() -> m_veterinarianServiceHelper.findVeterinarianById(diplomaNo)
+                .map(m_veterinarianMapper::toVeterinarianDTO), "VeterinarianService.findVeterinarianByDiplomaNo");
     }
 
     public VeterinariansDTO findVeterinariansByLastName(String lastName)
     {
-        try {
-            return m_veterinarianMapper.toVeterinariansDTO(CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByLastName(lastName), m_veterinarianMapper::toVeterinarianDTO));
-        }
-        catch (RepositoryException ex) {
-            throw new DataServiceException("VeterinarianService.findVeterinariansByLastName", ex.getCause());
-        }
+        return doForDataService(() -> m_veterinarianMapper.toVeterinariansDTO(CollectionUtil.toList(
+                m_veterinarianServiceHelper.findVeterinariansByLastName(lastName), m_veterinarianMapper::toVeterinarianDTO)),
+                "VeterinarianService.findVeterinariansByLastName");
     }
+
     public VeterinariansDTO findVeterinariansByMonthAndYear(int month, int year)
     {
-        try {
-            return m_veterinarianMapper.toVeterinariansDTO(CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByMonthAndYear(month, year), m_veterinarianMapper::toVeterinarianDTO));
-        }
-        catch (RepositoryException ex) {
-            throw new DataServiceException("VeterinarianService.findVeterinariansByMonthAndYear", ex.getCause());
-        }
+        return doForDataService(() -> m_veterinarianMapper.toVeterinariansDTO(CollectionUtil.toList(
+                m_veterinarianServiceHelper.findVeterinariansByMonthAndYear(month, year), m_veterinarianMapper::toVeterinarianDTO)),
+                "VeterinarianService.findVeterinariansByMonthAndYear");
     }
 
     public VeterinariansWithFullNameDTO findVeterinariansByYearBetween(int begin, int end)
     {
-        try {
-            return m_veterinarianWithFullNameMapper.toVeterinariansDTO(
-                    CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByYearBetween(begin, end), m_veterinarianWithFullNameMapper::toVeterinarianWithFullName) );
-        }
-        catch (RepositoryException ex) {
-            throw new DataServiceException("VeterinarianService.findVeterinariansByYearBetween", ex.getCause());
-        }
+        return doForDataService(() -> m_veterinarianWithFullNameMapper.toVeterinariansDTO(
+                        CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByYearBetween(begin, end), m_veterinarianWithFullNameMapper::toVeterinarianWithFullName)),
+                "VeterinarianService.findVeterinariansByYearBetween");
     }
     //...
 }
