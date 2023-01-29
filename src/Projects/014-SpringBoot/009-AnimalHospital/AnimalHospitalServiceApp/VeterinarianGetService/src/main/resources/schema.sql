@@ -7,13 +7,15 @@ create table if not exists veterinarians (
 	middle_name varchar(100),
 	last_name varchar(100) not null,
 	birth_date date not null,
-	register_date date default(current_date) not null	
+	register_date date default(current_date) not null
+    --,is_active boolean default(true) not null
 );
 
 create table if not exists owners (
 	owner_id serial primary key,
 	name varchar(255) not null,
-	phone char(14) not null,	address varchar(512) not null
+	phone char(10) not null unique,
+    address varchar(512) not null
 );
 
 create table if not exists animals (
@@ -22,7 +24,8 @@ create table if not exists animals (
 	name varchar(100),
 	type varchar(100) not null,
 	birth_date date not null,
-	sterile bool not null	
+	sterile bool not null
+    --,is_active boolean default(true) not null
 );
 
 create table if not exists veterinarians_to_animals (
@@ -106,6 +109,8 @@ as '
 		insert into veterinarians_to_animals (animal_id, diploma_no, price) values ($1, $2, $3);
     end
 ';
+
+
 
 
 

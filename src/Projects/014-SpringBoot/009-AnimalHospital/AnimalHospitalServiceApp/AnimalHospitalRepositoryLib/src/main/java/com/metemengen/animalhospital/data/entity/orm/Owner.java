@@ -8,13 +8,15 @@ import java.util.Set;
 @Table(name = "owners")
 public class Owner {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "owner_id")
+
     public int id;
 
     @Column(nullable = false)
     public String name;
 
-    @Column(nullable = false, length = 14)
+    @Column(nullable = false, length = 9, unique = true)
     public String phone;
 
     @Column(nullable = false, length = 512)

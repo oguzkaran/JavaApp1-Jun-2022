@@ -5,8 +5,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @Lazy
 public interface IOwnerRepository extends CrudRepository<Owner, Integer> {
-    Iterable<Owner> findByPhone(String phone);
+    Optional<Owner> findByPhone(String phone);
 }

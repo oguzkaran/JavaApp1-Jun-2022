@@ -23,6 +23,7 @@ import java.util.Optional;
 @Lazy
 public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String COUNT_SQL = "select count(*) from veterinarians";
+    private static final String FIND_ALL_SQL = "select * from veterinarians"; //+ " where is_active=true";
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";
     private static final String FIND_BY_LAST_NAME_SQL = "select * from veterinarians where last_name=lower(:lastName)";
 
@@ -114,6 +115,16 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         m_namedParameterJdbcTemplate.query(COUNT_SQL, rs -> {counts.add(rs.getLong(1));});
 
         return counts.get(0);
+    }
+
+    @Override
+    public Iterable<Veterinarian> findAll()
+    {
+        var veterinarians = new ArrayList<Veterinarian>();
+
+        m_namedParameterJdbcTemplate.query(FIND_ALL_SQL, (ResultSet rs) -> fillVeterinarians(rs, veterinarians));
+
+        return veterinarians;
     }
 
     @Override
@@ -248,12 +259,6 @@ public class VeterinarianRepository implements IVeterinarianRepository {
 
     @Override
     public boolean existsById(Long aLong)
-    {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Iterable<Veterinarian> findAll()
     {
         throw new UnsupportedOperationException();
     }

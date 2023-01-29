@@ -45,8 +45,23 @@ public class VeterinarianController {
 
     }
 
+    @GetMapping("all")
+    public ResponseEntity<Object> findAll()
+    {
+        ResponseEntity<Object> result;
+
+        try {
+            result = ResponseEntity.ok(m_veterinarianService.findAllVeterinarians());
+        }
+        catch (DataServiceException ignore) {
+            result = ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value()));
+        }
+
+        return result;
+    }
+
     /*
-        Aşağıdaki 4 metot farklı yaklaşımları göstermektedir. Bu yaklaşımların hangisinin olacağı servise bağlıdır.
+        Aşağıdaki 4 metot, farklı yaklaşımları göstermektedir. Bu yaklaşımların hangisinin olacağı servise bağlıdır.
         Burada örnek amaçlı 3 tanesi ayrı ayrı yazılmıştır. Yoksa servis özelinde bir tanesi tercih edilebilir
     */
 
@@ -120,4 +135,6 @@ public class VeterinarianController {
         return subscribe(() -> ResponseEntity.ok(m_veterinarianService.findVeterinariansByYearBetween(begin, end)),
                 ignore -> ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value())));
     }
+
+
 }

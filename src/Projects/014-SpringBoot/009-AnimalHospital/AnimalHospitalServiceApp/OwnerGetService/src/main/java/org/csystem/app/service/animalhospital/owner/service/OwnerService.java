@@ -23,6 +23,6 @@ public class OwnerService {
 
     public OwnersDTO findOwnersByPhone(String phone)
     {
-        return m_ownerMapper.toOwnersDTO(toList(m_ownerServiceHelper.findOwnerByPhone(phone), m_ownerMapper::toOwnerDTO));
+        throw new UnsupportedOperationException("TODO:");
     }
 }

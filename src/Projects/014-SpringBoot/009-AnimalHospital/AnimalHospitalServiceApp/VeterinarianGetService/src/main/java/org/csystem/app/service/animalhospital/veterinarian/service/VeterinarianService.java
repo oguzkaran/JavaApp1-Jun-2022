@@ -12,7 +12,9 @@ import org.csystem.util.collection.CollectionUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+
 import java.util.Optional;
+import static org.csystem.util.collection.CollectionUtil.*;
 
 import static com.karandev.util.data.error.DataUtil.doForDataService;
 
@@ -36,6 +38,14 @@ public class VeterinarianService {
     {
         return doForDataService(() -> m_veterinarianMapper.toCountDTO(m_veterinarianServiceHelper.countVeterinarians()),
                 "VeterinarianService.countVeterinarians");
+    }
+
+    public VeterinariansDTO findAllVeterinarians()
+    {
+        var veterinarians = m_veterinarianMapper.toVeterinariansDTO(
+                toList(m_veterinarianServiceHelper.findAllVeterinarians(), m_veterinarianMapper::toVeterinarianDTO));
+
+        return doForDataService(() -> veterinarians, "VeterinarianService.findAllVeterinarians");
     }
 
     public Optional<VeterinarianDTO> findVeterinarianByDiplomaNo(long diplomaNo)

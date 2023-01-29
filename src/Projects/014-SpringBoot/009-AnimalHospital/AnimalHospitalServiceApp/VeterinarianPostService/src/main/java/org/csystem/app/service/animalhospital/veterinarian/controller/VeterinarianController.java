@@ -18,7 +18,6 @@ public class VeterinarianController {
 
     public VeterinarianController(VeterinarianService veterinarianService)
     {
-
         m_veterinarianService = veterinarianService;
     }
 

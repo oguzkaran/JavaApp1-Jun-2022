@@ -24,6 +24,8 @@ curl -d "{\"diplomaNo\": 5005, \"citizenId\": \"172345678911134\", \"firstName\"
 
 curl -d "{\"diplomaNo\": 100, \"animalId\": 67, \"price\": 1000}" -H "Content-Type: application/json" -X POST "http:/192.168.1.113:50505/api/animalhospital/vetan/save"
 
+curl -d "{\"name\": \"Garfield\", \"type\": \"Cat\", \"birthDate\": \"01/02/2017\", \"sterile\": true, \"ownerName\": \"Nuri Can Ozturk\", \"phone\": \"54187434488\", \"address\": \"Bayrakli\"}" -H "Content-Type: application/json" -X POST "http:/192.168.1.113:50503/api/update/animals/animal/owner/save"
+
 
 
 

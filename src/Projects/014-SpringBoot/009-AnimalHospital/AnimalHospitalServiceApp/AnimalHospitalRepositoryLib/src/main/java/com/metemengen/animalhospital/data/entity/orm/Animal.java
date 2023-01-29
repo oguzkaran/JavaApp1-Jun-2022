@@ -10,6 +10,7 @@ import java.util.Set;
 public class Animal { //POJO (Plain Old Java Object)
     @Id
     @Column(name = "animal_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     @Column(length = 100, nullable = false)

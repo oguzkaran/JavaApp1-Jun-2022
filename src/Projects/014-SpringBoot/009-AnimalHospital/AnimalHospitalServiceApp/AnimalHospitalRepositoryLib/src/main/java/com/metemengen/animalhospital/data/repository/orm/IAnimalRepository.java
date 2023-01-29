@@ -19,7 +19,6 @@ public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
     @Query(nativeQuery = true, value = "select * from animals where date_part('month', birth_date) = :month and date_part('year', birth_date) = :year")
     Iterable<Animal> findByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
-
     @Query("""
         select new com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails(a.name, a.type, a.birthDate, o.name, o.phone)\s
         from Animal a join a.owner o where a.name = lower(?1)\s

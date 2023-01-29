@@ -6,6 +6,8 @@ import com.metemengen.animalhospital.data.repository.orm.IOwnerRepository;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component(BeanName.OWNER_SERVICE_HELPER)
 @Lazy
 public class OwnerServiceHelper {
@@ -16,7 +18,7 @@ public class OwnerServiceHelper {
         m_ownerRepository = ownerRepository;
     }
 
-    public Iterable<Owner> findOwnerByPhone(String phone)
+    public Optional<Owner> findOwnerByPhone(String phone)
     {
         return m_ownerRepository.findByPhone(phone);
     }

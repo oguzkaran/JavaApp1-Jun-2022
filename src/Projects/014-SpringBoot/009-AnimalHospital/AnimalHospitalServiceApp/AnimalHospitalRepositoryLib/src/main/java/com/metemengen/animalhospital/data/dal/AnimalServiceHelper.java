@@ -52,5 +52,10 @@ public class AnimalServiceHelper {
         return m_animalRepository.findByMonthAndYear(month, year);
     }
 
+    public Animal saveAnimal(Animal animal)
+    {
+        return m_animalRepository.save(animal);
+    }
+
     //...
 }
