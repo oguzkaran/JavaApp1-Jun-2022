@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/RepositoryLib/pom.xml" />
         <option value="$PROJECT_DIR$/PostalCodeSearchJSONService/pom.xml" />
+        <option value="$PROJECT_DIR$/ServiceLib/pom.xml" />
       </list>
     </option>
   </component>

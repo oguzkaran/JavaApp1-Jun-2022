@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
       </profile>
-      <profile name="Annotation profile for PostalCodeSearchJSONService" enabled="true">
+      <profile name="Annotation profile for ServiceLib" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -17,6 +17,7 @@
         </processorPath>
         <module name="PostalCodeSearchJSONService" />
         <module name="RepositoryLib" />
+        <module name="ServiceLib" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="PostalCodeSearchJSONService" options="-parameters" />
       <module name="PostalCodeServiceApp" options="-parameters" />
       <module name="RepositoryLib" options="-parameters" />
+      <module name="ServiceLib" options="-parameters" />
     </option>
   </component>
 </project>
