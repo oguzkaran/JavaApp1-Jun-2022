@@ -8,6 +8,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(implementationName = "PostalCodeMapperImpl", componentModel = "spring")
 public interface IPostalCodeMapper {
     @Mappings({
@@ -17,4 +19,16 @@ public interface IPostalCodeMapper {
     })
     PostalCodeDTO toPostalCodeDTO(PostalCode postalCode);
     PostalCodesDTO toPostalCodesDTO(PostalCodes postalCodes);
+
+    PostalCodeDTO toPostalCodeDTO(org.csystem.app.geonames.postalcodesearch.data.entity.PostalCode postalCode);
+    default PostalCodesDTO toPostalCodesDTO(List<PostalCodeDTO> postalCodes)
+    {
+        var dto = new PostalCodesDTO();
+
+        dto.postalCodes = postalCodes;
+
+        return dto;
+    }
+
+    org.csystem.app.geonames.postalcodesearch.data.entity.PostalCode toPostalCode(PostalCodeDTO postalCodeDTO);
 }

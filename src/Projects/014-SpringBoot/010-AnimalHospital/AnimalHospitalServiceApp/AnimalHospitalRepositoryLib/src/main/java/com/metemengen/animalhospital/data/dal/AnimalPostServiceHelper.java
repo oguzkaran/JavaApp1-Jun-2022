@@ -34,7 +34,6 @@ public class AnimalPostServiceHelper {
         owner.name = animalWithOwnerSaveDTO.ownerName;
         owner.phone = animalWithOwnerSaveDTO.phone;
         owner.address = animalWithOwnerSaveDTO.address;
-
         owner = m_ownerRepository.save(owner);
         saveAnimalWithOwnerActionCallback(animalWithOwnerSaveDTO, owner);
     }
