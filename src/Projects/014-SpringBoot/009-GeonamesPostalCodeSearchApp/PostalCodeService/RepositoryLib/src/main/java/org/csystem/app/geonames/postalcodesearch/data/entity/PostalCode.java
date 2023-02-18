@@ -16,7 +16,6 @@ public class PostalCode {
     @Column(name = "admin_code1")
     public String adminCode1;
 
-
     @Column(name = "admin_name2")
     public String adminName2;
 

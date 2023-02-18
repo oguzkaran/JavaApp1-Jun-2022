@@ -21,11 +21,6 @@ public class PostalCodeSearchService {
 
     public PostalCodes findPostalCodes(String code)
     {
-        return findPostalCodes(code, 10);
-    }
-
-    public PostalCodes findPostalCodes(String code, int maxRows)
-    {
-        return m_restTemplate.getForObject(String.format(m_url, code, maxRows), PostalCodes.class);
+        return m_restTemplate.getForObject(String.format(m_url, code), PostalCodes.class);
     }
 }

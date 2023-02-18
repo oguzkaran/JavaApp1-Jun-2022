@@ -19,13 +19,16 @@ import static org.csystem.util.collection.CollectionUtil.toList;
 public class PostalCodeAppService {
     private final PostalCodeSearchService m_postalCodeSearchService;
     private final IPostalCodeMapper m_postalCodeMapper;
-
     private final IPostalCodeRepository m_postalCodeRepository;
     private final IPostalCodeInfoRepository m_postalCodeInfoRepository;
 
-    private PostalCodesDTO getPostalCodeFromGeonames(String code, int maxRows)
+    private PostalCodesDTO getPostalCodeFromGeonames(String code)
     {
-        var postalCodesDTO = m_postalCodeMapper.toPostalCodesDTO(m_postalCodeSearchService.findPostalCodes(code, maxRows));
+        var postalCodesDTO = m_postalCodeMapper.toPostalCodesDTO(m_postalCodeSearchService.findPostalCodes(code));
+
+        if (postalCodesDTO.postalCodes.isEmpty())
+            return postalCodesDTO;
+
         var pi = new PostalCodeInfo();
 
         pi.code = code;
@@ -41,8 +44,9 @@ public class PostalCodeAppService {
         return postalCodesDTO;
     }
 
-    private PostalCodesDTO getPostalCodesFromDB(String code, int maxRows)
+    private PostalCodesDTO getPostalCodesFromDB(String code)
     {
+        m_postalCodeInfoRepository.updateQueryDateTimeAndQueryCount(code);
         return m_postalCodeMapper.toPostalCodesDTO(toList(m_postalCodeRepository.findByCode(code), m_postalCodeMapper::toPostalCodeDTO));
     }
 
@@ -55,9 +59,9 @@ public class PostalCodeAppService {
     }
 
     @Transactional
-    public PostalCodesDTO findPostalCodes(String code, int maxRows)
+    public PostalCodesDTO findPostalCodes(String code)
     {
-        return m_postalCodeInfoRepository.existsById(code) ? getPostalCodesFromDB(code, maxRows)
-                : getPostalCodeFromGeonames(code, maxRows);
+        return m_postalCodeInfoRepository.existsById(code) ? getPostalCodesFromDB(code)
+                : getPostalCodeFromGeonames(code);
     }
 }

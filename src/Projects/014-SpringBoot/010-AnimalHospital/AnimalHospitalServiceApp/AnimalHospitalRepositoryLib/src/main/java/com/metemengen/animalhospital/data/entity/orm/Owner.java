@@ -10,7 +10,6 @@ public class Owner {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "owner_id")
-
     public int id;
 
     @Column(nullable = false)

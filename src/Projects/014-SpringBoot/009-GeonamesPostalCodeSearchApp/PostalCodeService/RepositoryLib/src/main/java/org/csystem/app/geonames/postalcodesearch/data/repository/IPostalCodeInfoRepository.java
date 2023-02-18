@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IPostalCodeInfoRepository extends CrudRepository<PostalCodeInfo, String> {
-
+    @Query("update PostalCodeInfo pi set pi.queryCount = pi.queryCount + 1, pi.queryDateTime = current_timestamp where pi.code = :code")
+    @Modifying
+    int updateQueryDateTimeAndQueryCount(@Param("code") String code);
 }

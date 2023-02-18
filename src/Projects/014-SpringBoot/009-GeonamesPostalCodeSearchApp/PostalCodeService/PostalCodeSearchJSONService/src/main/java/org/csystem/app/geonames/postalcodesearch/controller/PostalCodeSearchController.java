@@ -20,8 +20,8 @@ public class PostalCodeSearchController {
     }
 
     @GetMapping("codes")
-    public PostalCodesDTO findPostalCodes(String code, @RequestParam("count")int maxRows)
+    public PostalCodesDTO findPostalCodes(String code)
     {
-        return m_postalCodeAppService.findPostalCodes(code, maxRows);
+        return m_postalCodeAppService.findPostalCodes(code);
     }
 }
