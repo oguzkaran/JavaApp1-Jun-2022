@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="VeterinarianWebApplication" />
       </profile>
       <profile name="Annotation profile for VeterinarianPostServiceApp" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -52,6 +53,7 @@
       <module name="VeterinarianGetServiceApp (1)" options="-parameters" />
       <module name="VeterinarianGetServiceApp (2)" options="-parameters" />
       <module name="VeterinarianPostServiceApp" options="-parameters" />
+      <module name="VeterinarianWebApplication" options="-parameters" />
       <module name="com-metemengen-library-animalhospital-repository" options="-parameters" />
     </option>
   </component>
