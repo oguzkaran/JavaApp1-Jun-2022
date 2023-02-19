@@ -136,5 +136,10 @@ public class VeterinarianController {
                 ignore -> ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value())));
     }
 
-
+    @GetMapping("name/full")
+    public ResponseEntity<Object> findAllWithFullName()
+    {
+        return subscribe(() -> ResponseEntity.ok(m_veterinarianService.findAllVeterinariansWithFullName()),
+                ignore -> ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value())));
+    }
 }

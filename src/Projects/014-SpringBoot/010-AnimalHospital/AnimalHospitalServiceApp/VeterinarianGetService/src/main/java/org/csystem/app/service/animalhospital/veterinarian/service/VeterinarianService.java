@@ -74,5 +74,12 @@ public class VeterinarianService {
                         CollectionUtil.toList(m_veterinarianServiceHelper.findVeterinariansByYearBetween(begin, end), m_veterinarianWithFullNameMapper::toVeterinarianWithFullName)),
                 "VeterinarianService.findVeterinariansByYearBetween");
     }
+
+    public VeterinariansWithFullNameDTO findAllVeterinariansWithFullName()
+    {
+        return doForDataService(() -> m_veterinarianWithFullNameMapper.toVeterinariansDTO(
+                        CollectionUtil.toList(m_veterinarianServiceHelper.findAllVeterinariansWithFullName(), m_veterinarianWithFullNameMapper::toVeterinarianWithFullName)),
+                "VeterinarianService.findAllVeterinariansWithFullName");
+    }
     //...
 }

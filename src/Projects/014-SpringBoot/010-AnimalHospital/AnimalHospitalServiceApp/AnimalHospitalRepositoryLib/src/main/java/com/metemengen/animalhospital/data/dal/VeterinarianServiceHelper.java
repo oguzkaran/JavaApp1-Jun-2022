@@ -62,6 +62,11 @@ public class VeterinarianServiceHelper {
         return doForRepository(() -> m_veterinarianRepository.findByYearBetween(begin, end), "VeterinarianServiceHelper.findVeterinariansByYearBetween");
     }
 
+    public Iterable<VeterinarianWithFullName> findAllVeterinariansWithFullName()
+    {
+        return doForRepository(m_veterinarianRepository::findAllWithFullName, "VeterinarianServiceHelper.findAllVeterinariansWithFullName");
+    }
+
     public VeterinarianSave saveVeterinarian(VeterinarianSave veterinarianDTO)
     {
         return doForRepository(() -> saveVeterinarianCallback(veterinarianDTO), "VeterinarianServiceHelper.save");

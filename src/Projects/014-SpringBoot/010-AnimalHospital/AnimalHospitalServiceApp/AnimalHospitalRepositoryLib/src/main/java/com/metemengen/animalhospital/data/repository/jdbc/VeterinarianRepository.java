@@ -31,7 +31,9 @@ public class VeterinarianRepository implements IVeterinarianRepository {
             select * from veterinarians where date_part('month', register_date) = :month\s
             and date_part('year', register_date) = :year""";
 
-    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from find_veterinarian_by_year_between(:begin, :end)";
+    private static final String FIND_BY_YEAR_BETWEEN_SQL = "select * from find_veterinarians_by_year_between(:begin, :end)";
+
+    private static final String FIND_ALL_WITH_FULL_NAME = "select * from find_all_veterinarians_with_full_name()";
 
     private static final String FIND_BY_MONTH_SQL = """
                 select diploma_no, first_name, middle_name, last_name, birth_date, register_date\s
@@ -182,16 +184,29 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     }
 
     @Override
+    public Iterable<VeterinarianWithFullName> findAllWithFullName()
+    {
+        var paramMap = new HashMap<String, Object>();
+        var veterinarians = new ArrayList<VeterinarianWithFullName>();
+
+        m_namedParameterJdbcTemplate.query(FIND_ALL_WITH_FULL_NAME, paramMap, (ResultSet rs) -> fillVeterinariansWithFullName(rs, veterinarians));
+
+        return veterinarians;
+    }
+
+    @Override
     public Iterable<Veterinarian> findByMonth(int month)
     {
-        throw new UnsupportedOperationException("Not implemented yet");
+        throw new UnsupportedOperationException("TODO");
     }
 
     @Override
     public Iterable<Veterinarian> findByYear(int year)
     {
-        throw new UnsupportedOperationException("Not implemented yet");
+        throw new UnsupportedOperationException("TODO");
     }
+
+
 
     @Override
     public <S extends Veterinarian> S save(S veterinarian)

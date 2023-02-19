@@ -30,7 +30,7 @@ public class VeterinarianController {
             result = ResponseEntity.ok(m_veterinarianService.saveVeterinarian(veterinarianSave));
         }
         catch (DataServiceException ignore) {
-            result = ResponseEntity.internalServerError().body(new VeterinarianError("Internal problem occurs!...Try again later", HttpStatus.INTERNAL_SERVER_ERROR.value()));
+            result = ResponseEntity.internalServerError().body(new VeterinarianError(ignore.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value()));
         }
 
         return result;

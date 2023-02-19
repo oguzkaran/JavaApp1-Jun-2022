@@ -33,6 +33,7 @@ public class VeterinarianModel {
         m_fullName = fullName;
     }
 
+    @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     public LocalDate getBirthDate()
     {
         return m_birthDate;
@@ -43,6 +44,7 @@ public class VeterinarianModel {
         m_birthDate = birthDate;
     }
 
+    @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     public LocalDate getRegisterDate()
     {
         return m_registerDate;

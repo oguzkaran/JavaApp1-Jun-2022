@@ -1,6 +1,7 @@
 package com.busrapolat.app.web.veterinarian.model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class VeterinarianSaveModel {
     private long m_diplomaNo;
@@ -8,7 +9,8 @@ public class VeterinarianSaveModel {
     private String m_firstName;
     private String m_middleName;
     private String m_lastName;
-    private LocalDate m_birthDate;
+    private String m_birthDate;
+    //private String m_registerDate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(LocalDate.now());
 
     public long getDiplomaNo()
     {
@@ -60,12 +62,12 @@ public class VeterinarianSaveModel {
         m_lastName = lastName;
     }
 
-    public LocalDate getBirthDate()
+    public String getBirthDate()
     {
         return m_birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate)
+    public void setBirthDate(String birthDate)
     {
         m_birthDate = birthDate;
     }
