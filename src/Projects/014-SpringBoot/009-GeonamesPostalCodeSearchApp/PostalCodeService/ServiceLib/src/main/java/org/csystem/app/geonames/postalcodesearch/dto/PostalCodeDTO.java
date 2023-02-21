@@ -23,3 +23,5 @@ public class PostalCodeDTO {
 
     public double latitude;
 }
+
+
