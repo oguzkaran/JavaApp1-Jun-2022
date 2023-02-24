@@ -61,7 +61,6 @@ public class PostalCodeAppService {
     @Transactional
     public PostalCodesDTO findPostalCodes(String code)
     {
-        return m_postalCodeInfoRepository.existsById(code) ? getPostalCodesFromDB(code)
-                : getPostalCodeFromGeonames(code);
+        return m_postalCodeInfoRepository.existsById(code) ? getPostalCodesFromDB(code) : getPostalCodeFromGeonames(code);
     }
 }
