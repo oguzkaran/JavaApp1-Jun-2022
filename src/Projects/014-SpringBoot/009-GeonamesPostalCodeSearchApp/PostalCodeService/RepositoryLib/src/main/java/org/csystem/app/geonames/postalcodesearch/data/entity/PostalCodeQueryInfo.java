@@ -18,5 +18,9 @@ public class PostalCodeQueryInfo {
     @Column(name = "query_value", nullable = false)
     public int queryValue;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "code", nullable = false)
+    public PostalCodeInfo postalCodeInfo;
+
     //...
 }

@@ -2,6 +2,8 @@ package org.csystem.app.geonames.postalcodesearch.data.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "postal_codes")
 public class PostalCode {
@@ -33,6 +35,8 @@ public class PostalCode {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "code", nullable = false)
     public PostalCodeInfo postalCodeInfo;
+
+
 
     @Column(nullable = false)
     public double latitude;

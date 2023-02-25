@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface IPostalCodeRepository extends CrudRepository<PostalCode, Long> {
     @Query("select pc from PostalCode pc join pc.postalCodeInfo where pc.postalCodeInfo.code = :code")
     Iterable<PostalCode> findByCode(@Param("code") String code);
-    //Iterable<PostalCode> findByCode(@Param("code") String code, @Param("maxRows")int maxRows);
 }

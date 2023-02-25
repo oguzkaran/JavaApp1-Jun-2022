@@ -1,2 +1,0 @@
-- PostalCodeQueryInfo sınıfını uygun şekilde düzenleyiniz ve her query de buna ilişkin kaydın da eklenmesini sağlayınız
-- RepositoryLib'e bir helper sınıf (DAL katmanı) ekleyiniz ve Service sınıfının bu sınıfı enjekte etmesini sağlayınız

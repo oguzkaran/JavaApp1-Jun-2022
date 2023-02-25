@@ -2,19 +2,15 @@ package org.csystem.app.geonames.postalcodesearch.data.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "postal_code_info")
 public class PostalCodeInfo {
     @Id
     public String code;
-
-    @Column(name = "query_datetime", nullable = false)
-    public LocalDateTime queryDateTime = LocalDateTime.now();
-
     @Column(name = "save_datetime", nullable = false)
     public LocalDateTime saveDateTime = LocalDateTime.now();
 
@@ -23,6 +19,9 @@ public class PostalCodeInfo {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "postalCodeInfo", cascade = CascadeType.ALL)
     public List<PostalCode> postalCodes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "postalCodeInfo", cascade = CascadeType.ALL)
+    public Set<PostalCodeQueryInfo> postalCodeQueryInfo;
 
     @Override
     public int hashCode()
