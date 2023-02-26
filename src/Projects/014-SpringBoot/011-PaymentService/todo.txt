@@ -1,0 +1,38 @@
+Aşağıda açıklanan card ödeme sistemine ilişkin rest servisi yazınız:
+- Uygulamanın veritabanı aşağıdaki tablolardan oluşacaktır
+    - device_owners
+        device_owner_id
+        name
+        password
+        register_date
+        address
+    - companies
+        compony_id
+        name
+        password
+        register_date
+        addreass
+    -card_company
+        - card_company_id
+        - name
+        - ...
+    - card_info
+        - card_number
+        - expiry_month
+        - expiry_year
+        - balance
+        - card_company_id
+        - ...
+    - card_users
+        - username
+        - password
+        - card_number
+        - company_id (foreign key)
+        - ...
+    - payment
+        - payment_id 
+        - card_username (foreign key)
+        - device_owner_id (foreign key)
+        - amount
+        - datetime
+        - ...

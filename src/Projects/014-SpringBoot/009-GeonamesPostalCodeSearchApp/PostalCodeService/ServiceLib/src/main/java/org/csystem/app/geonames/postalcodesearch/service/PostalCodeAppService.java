@@ -23,12 +23,12 @@ import static org.csystem.util.collection.CollectionUtil.toList;
 public class PostalCodeAppService {
     private final PostalCodeSearchService m_postalCodeSearchService;
     private final IPostalCodeMapper m_postalCodeMapper;
-
     private final PostalCodeAppHelper m_postalCodeAppHelper;
 
     private PostalCodeQueryInfo createPostalCodeQueryInfo(PostalCodeInfo pi, int queryCount)
     {
         var pqi = new PostalCodeQueryInfo();
+
         pqi.postalCodeInfo = pi;
         pqi.queryDateTime = LocalDateTime.now();
         pqi.queryValue = queryCount;

@@ -1,0 +1,1 @@
+Bu uygulamayı PostalCode uygulamasında olduğıu gibi veritabanına ekleyecek şekilde yazınız.
