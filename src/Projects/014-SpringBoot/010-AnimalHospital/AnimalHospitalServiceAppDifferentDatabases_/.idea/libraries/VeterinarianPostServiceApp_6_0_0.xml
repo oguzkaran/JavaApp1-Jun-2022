@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="VeterinarianPostServiceApp-6.0.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/VeterinarianPostService/target/VeterinarianPostServiceApp-6.0.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
