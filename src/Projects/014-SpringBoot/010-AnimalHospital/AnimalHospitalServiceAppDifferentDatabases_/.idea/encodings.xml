@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/AnimalGetService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AnimalGetService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AnimalHospitalRepositoryLib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AnimalHospitalRepositoryLib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AnimalPostService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OwnerGetService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VeterinarianAnimalPostService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VeterinarianGetService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VeterinarianPostService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VeterinarianPostService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VeterinarianWebApplication/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/VeterinarianWebApplication/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
