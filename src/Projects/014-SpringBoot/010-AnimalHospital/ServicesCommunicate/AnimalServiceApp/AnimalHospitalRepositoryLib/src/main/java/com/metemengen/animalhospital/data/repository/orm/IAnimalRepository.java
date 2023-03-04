@@ -16,7 +16,7 @@ public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
 
     Iterable<IAnimalWithoutOwner> findByType(@Param("type") String type);
 
-    @Query(nativeQuery = true, value = "select * from animals where date_part('month', birth_date) = :month and date_part('year', birth_date) = :year")
+    @Query(nativeQuery = true, value = "select * from animals where month(birth_date) = :month and year(birth_date) = :year")
     Iterable<Animal> findByMonthAndYear(@Param("month") int month, @Param("year") int year);
 
     @Query("""
@@ -24,5 +24,4 @@ public interface IAnimalRepository extends CrudRepository<Animal, Integer> {
         from Animal a join a.owner o where a.name = lower(?1)\s
         """)
     Iterable<AnimalOwnerDetails> findByName(@Param("name") String name);
-
 }

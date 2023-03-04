@@ -1,6 +1,5 @@
 package org.csystem.app.service.animalhospital.animal.controller;
 
-
 import com.metemengen.animalhospital.data.entity.orm.dto.AnimalSaveDTO;
 import com.metemengen.animalhospital.data.entity.orm.dto.AnimalWithOwnerSaveDTO;
 import org.csystem.app.service.animalhospital.animal.service.AnimalService;
@@ -35,3 +34,5 @@ public class AnimalController {
         return animal.id != 0 ? ResponseEntity.ok(animal) : ResponseEntity.status(HttpStatus.NO_CONTENT).body(animal);
     }
 }
+
+
