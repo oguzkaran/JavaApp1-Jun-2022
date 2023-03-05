@@ -1,12 +1,10 @@
 package org.csystem.app.service.animalhospital.animal.controller;
 
+import org.csystem.app.service.animalhospital.animal.dto.AnimalExistsDTO;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsDTO;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsWithoutOwnerDTO;
 import org.csystem.app.service.animalhospital.animal.service.AnimalService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("api/read/animals")
@@ -16,6 +14,12 @@ public class AnimalController {
     public AnimalController(AnimalService animalAppService)
     {
         m_animalAppService = animalAppService;
+    }
+
+    @GetMapping("animal/id/exists/{id}")
+    public AnimalExistsDTO existsAnimalById(@PathVariable("id") int animalId)
+    {
+        return m_animalAppService.existsAnimalById(animalId);
     }
 
     @GetMapping("contains/sterile/name")

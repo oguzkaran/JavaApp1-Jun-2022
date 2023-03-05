@@ -16,13 +16,14 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
         </processorPath>
         <module name="AnimalGetService" />
+        <module name="com-atahanyengin-library-animalhospital-repository" />
         <module name="AnimalPostService" />
-        <module name="com-metemengen-library-animalhospital-repository" />
         <module name="OwnerGetService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AnimalHospiatalServiceApp" target="17" />
+      <module name="com-metemengen-library-animalhospital-repository" target="17" />
       <module name="GenericParenProject" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -32,6 +33,7 @@
       <module name="AnimalPostService" options="-parameters" />
       <module name="AnimalServiceApp" options="-parameters" />
       <module name="OwnerGetService" options="-parameters" />
+      <module name="com-atahanyengin-library-animalhospital-repository" options="-parameters" />
       <module name="com-metemengen-library-animalhospital-repository" options="-parameters" />
     </option>
   </component>

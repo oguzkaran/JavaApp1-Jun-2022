@@ -37,6 +37,11 @@ public class VeterinarianServiceHelper {
         return doForRepository(m_veterinarianRepository::count, "VeterinarianServiceHelper.countVeterinarians");
     }
 
+    public boolean existsVeterinarianByDiplomaNo(Long diplomaNo)
+    {
+        return  doForRepository(() -> m_veterinarianRepository.existsById(diplomaNo), "VeterinarianServiceHelper.existsVeterinarianByDiplomaNo");
+    }
+
     public Iterable<Veterinarian> findAllVeterinarians()
     {
         return doForRepository(m_veterinarianRepository::findAll, "VeterinarianServiceHelper.findAllVeterinarians");

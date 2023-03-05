@@ -1,6 +1,6 @@
 package org.csystem.app.service.animalhospital.animal.mapper;
 
-import com.metemengen.animalhospital.data.entity.orm.dto.AnimalOwnerDetails;
+import com.atahanyengin.animalhospital.data.entity.orm.dto.AnimalOwnerDetails;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsOwnerDetailsDTO;
 import org.mapstruct.Mapper;
 

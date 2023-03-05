@@ -1,8 +1,8 @@
 package org.csystem.app.service.animalhospital.animal.service;
 
-import com.metemengen.animalhospital.data.dal.AnimalPostServiceHelper;
-import com.metemengen.animalhospital.data.entity.orm.dto.AnimalSaveDTO;
-import com.metemengen.animalhospital.data.entity.orm.dto.AnimalWithOwnerSaveDTO;
+import com.atahanyengin.animalhospital.data.dal.AnimalPostServiceHelper;
+import com.atahanyengin.animalhospital.data.entity.orm.dto.AnimalSaveDTO;
+import com.atahanyengin.animalhospital.data.entity.orm.dto.AnimalWithOwnerSaveDTO;
 import org.springframework.stereotype.Service;
 
 @Service

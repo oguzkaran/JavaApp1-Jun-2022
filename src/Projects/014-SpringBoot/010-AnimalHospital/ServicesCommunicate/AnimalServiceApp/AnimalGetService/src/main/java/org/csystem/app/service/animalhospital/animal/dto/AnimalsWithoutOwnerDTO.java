@@ -1,6 +1,6 @@
 package org.csystem.app.service.animalhospital.animal.dto;
 
-import com.metemengen.animalhospital.data.entity.orm.view.IAnimalWithoutOwner;
+import com.atahanyengin.animalhospital.data.entity.orm.view.IAnimalWithoutOwner;
 
 import java.util.List;
 

@@ -23,6 +23,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String COUNT_SQL = "select count(*) from veterinarians";
     private static final String FIND_ALL_SQL = "select * from veterinarians"; //+ " where is_active=true";
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";
+
     private static final String FIND_BY_LAST_NAME_SQL = "select * from veterinarians where last_name=lower(:lastName)";
 
     private static final String FIND_BY_MONTH_AND_YEAR_SQL = """
@@ -103,7 +104,6 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     public VeterinarianRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate)
     {
         m_namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-
     }
 
     @Override
@@ -114,6 +114,12 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         m_namedParameterJdbcTemplate.query(COUNT_SQL, rs -> {counts.add(rs.getLong(1));});
 
         return counts.get(0);
+    }
+
+    @Override
+    public boolean existsById(Long diplomaNo)
+    {
+        return findById(diplomaNo).isPresent();
     }
 
     @Override
@@ -250,12 +256,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public boolean existsById(Long aLong)
-    {
-        throw new UnsupportedOperationException();
-    }
-
+    
     @Override
     public Iterable<Veterinarian> findAllById(Iterable<Long> id)
     {

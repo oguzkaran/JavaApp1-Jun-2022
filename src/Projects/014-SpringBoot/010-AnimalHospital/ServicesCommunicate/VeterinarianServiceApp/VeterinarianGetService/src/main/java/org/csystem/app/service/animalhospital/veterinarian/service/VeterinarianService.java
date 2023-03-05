@@ -2,10 +2,7 @@ package org.csystem.app.service.animalhospital.veterinarian.service;
 
 import com.metemengen.animalhospital.data.BeanName;
 import com.metemengen.animalhospital.data.dal.VeterinarianServiceHelper;
-import org.csystem.app.service.animalhospital.veterinarian.dto.CountDTO;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansDTO;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinariansWithFullNameDTO;
+import org.csystem.app.service.animalhospital.veterinarian.dto.*;
 import org.csystem.app.service.animalhospital.veterinarian.mapper.IVeterinarianMapper;
 import org.csystem.app.service.animalhospital.veterinarian.mapper.IVeterinarianWithFullNameMapper;
 import org.csystem.util.collection.CollectionUtil;
@@ -38,6 +35,11 @@ public class VeterinarianService {
     {
         return doForDataService(() -> m_veterinarianMapper.toCountDTO(m_veterinarianServiceHelper.countVeterinarians()),
                 "VeterinarianService.countVeterinarians");
+    }
+
+    public VeterinarianExistsDTO existsVeterinarianByDiplomaNo(Long diplomaNo)
+    {
+        return new VeterinarianExistsDTO(m_veterinarianServiceHelper.existsVeterinarianByDiplomaNo(diplomaNo));
     }
 
     public VeterinariansDTO findAllVeterinarians()

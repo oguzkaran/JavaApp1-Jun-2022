@@ -1,7 +1,7 @@
 package org.csystem.app.service.animalhospital.owner.service;
 
-import com.metemengen.animalhospital.data.BeanName;
-import com.metemengen.animalhospital.data.dal.OwnerServiceHelper;
+import com.atahanyengin.animalhospital.data.BeanName;
+import com.atahanyengin.animalhospital.data.dal.OwnerServiceHelper;
 import org.csystem.app.service.animalhospital.owner.dto.OwnersDTO;
 import org.csystem.app.service.animalhospital.owner.mapper.IOwnerMapper;
 import org.springframework.beans.factory.annotation.Qualifier;

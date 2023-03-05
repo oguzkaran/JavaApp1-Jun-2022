@@ -1,7 +1,7 @@
 package org.csystem.app.service.animalhospital.animal.controller;
 
-import com.metemengen.animalhospital.data.entity.orm.dto.AnimalSaveDTO;
-import com.metemengen.animalhospital.data.entity.orm.dto.AnimalWithOwnerSaveDTO;
+import com.atahanyengin.animalhospital.data.entity.orm.dto.AnimalSaveDTO;
+import com.atahanyengin.animalhospital.data.entity.orm.dto.AnimalWithOwnerSaveDTO;
 import org.csystem.app.service.animalhospital.animal.service.AnimalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

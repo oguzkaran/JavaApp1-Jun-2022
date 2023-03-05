@@ -17,9 +17,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.metemengen</groupId>
-            <artifactId>com-metemengen-library-animalhospital-repository</artifactId>
-            <version>1.5.0</version>
+            <groupId>com.atahanyengin</groupId>
+            <artifactId>com-atahanyengin-library-animalhospital-repository</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>

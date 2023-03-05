@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan({"com.metemengen", "org.csystem"})
-@EnableJpaRepositories(basePackages = "com.metemengen")
-@EntityScan(basePackages = "com.metemengen")
+@ComponentScan({"com.atahanyengin", "org.csystem"})
+@EnableJpaRepositories(basePackages = "com.atahanyengin")
+@EntityScan(basePackages = "com.atahanyengin")
 public class AnimalPostServiceApp {
     public static void main(String[] args)
     {

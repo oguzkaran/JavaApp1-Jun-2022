@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.metemengen")
-@EntityScan(basePackages = "com.metemengen")
-@ComponentScan({"org.csystem", "com.metemengen"})
+@ComponentScan({"org.csystem", "com.atahanyengin"})
+@EnableJpaRepositories(basePackages = "com.atahanyengin")
+@EntityScan(basePackages = "com.atahanyengin")
 public class OwnerGetServiceApp {
     public static void main(String[] args)
     {

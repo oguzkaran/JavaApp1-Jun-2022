@@ -1,7 +1,8 @@
 package org.csystem.app.service.animalhospital.animal.service;
 
-import com.metemengen.animalhospital.data.BeanName;
-import com.metemengen.animalhospital.data.dal.AnimalServiceHelper;
+import com.atahanyengin.animalhospital.data.BeanName;
+import com.atahanyengin.animalhospital.data.dal.AnimalServiceHelper;
+import org.csystem.app.service.animalhospital.animal.dto.AnimalExistsDTO;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsDTO;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsOwnerDetailsDTO;
 import org.csystem.app.service.animalhospital.animal.dto.AnimalsWithoutOwnerDTO;
@@ -33,6 +34,10 @@ public class AnimalService {
         m_animalWithoutOwnerMapper = animalWithoutOwnerMapper;
     }
 
+    public AnimalExistsDTO existsAnimalById(int id)
+    {
+        return new AnimalExistsDTO(m_animalServiceHelper.existsAnimalByAnimalId(id));
+    }
     public AnimalsOwnerDetailsDTO findAnimalsByName(String name)
     {
         return m_animalOwnerDetailsMapper.toAnimalsOwnerDetailsDTO(toList(m_animalServiceHelper.findAnimalsByName(name)));

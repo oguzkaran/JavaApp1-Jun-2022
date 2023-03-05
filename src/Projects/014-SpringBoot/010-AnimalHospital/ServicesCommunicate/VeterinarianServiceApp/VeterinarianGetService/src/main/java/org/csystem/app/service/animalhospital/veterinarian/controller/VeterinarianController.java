@@ -1,10 +1,7 @@
 package org.csystem.app.service.animalhospital.veterinarian.controller;
 
 import com.karandev.util.data.service.DataServiceException;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianDTO;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianError;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianStatus;
-import org.csystem.app.service.animalhospital.veterinarian.dto.VeterinarianStatusDTO;
+import org.csystem.app.service.animalhospital.veterinarian.dto.*;
 import org.csystem.app.service.animalhospital.veterinarian.mapper.IVeterinarianMapper;
 import org.csystem.app.service.animalhospital.veterinarian.service.VeterinarianService;
 import org.springframework.http.HttpStatus;
@@ -45,6 +42,11 @@ public class VeterinarianController {
 
     }
 
+    @GetMapping("vet/diploma/exists")
+    public VeterinarianExistsDTO existsByDiplomaNo(@RequestParam("no") long diplomaNo)
+    {
+        return m_veterinarianService.existsVeterinarianByDiplomaNo(diplomaNo);
+    }
     @GetMapping("all")
     public ResponseEntity<Object> findAll()
     {
@@ -60,32 +62,6 @@ public class VeterinarianController {
         return result;
     }
 
-    /*
-        Aşağıdaki 4 metot, farklı yaklaşımları göstermektedir. Bu yaklaşımların hangisinin olacağı servise bağlıdır.
-        Burada örnek amaçlı 3 tanesi ayrı ayrı yazılmıştır. Yoksa servis özelinde bir tanesi tercih edilebilir
-    */
-
-    @GetMapping("vet/diploma/404")
-    public ResponseEntity<VeterinarianDTO> findByDiplomaNo404(@RequestParam("no") long diplomaNo)
-    {
-        return ResponseEntity.of(m_veterinarianService.findVeterinarianByDiplomaNo(diplomaNo));
-    }
-
-    @GetMapping("vet/diploma/200/difftypes")
-    public Object findByDiplomaNoObject(@RequestParam("no") long diplomaNo)
-    {
-        var result = m_veterinarianService.findVeterinarianByDiplomaNo(diplomaNo);
-
-        return result.isPresent() ? result.get() : new VeterinarianStatus("Not found", diplomaNo);
-    }
-
-    @GetMapping("vet/diploma/200/status")
-    public VeterinarianStatusDTO findByDiplomaNoStatus(@RequestParam("no") long diplomaNo)
-    {
-        var result = m_veterinarianService.findVeterinarianByDiplomaNo(diplomaNo);
-
-        return result.isPresent() ? m_veterinarianMapper.toVeterinarianStatus(result.get()) : new VeterinarianStatusDTO(false);
-    }
 
     @GetMapping("vet/diploma")
     public ResponseEntity<Object> findByDiplomaNo(@RequestParam("no") String diplomaNoStr)
