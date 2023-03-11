@@ -88,7 +88,7 @@ public final class NumberUtil {
 	
 	public static int countDigits(long val)
 	{
-		return val == 0 ? 1 : (int)log10(abs(val)) +  1;
+		return val == 0 ? 1 : (int)log10(abs(val)) + 1;
 	}
 	
 	public static int digitsSum(long val)
