@@ -11,7 +11,7 @@
 
 	<groupId>org.csystem</groupId>
 	<artifactId>org-csystem-util-math</artifactId>
-	<version>6.1.0</version>
+	<version>7.0.0</version>
 	<name>org-csystem-util.math</name>
 
 	<repositories>
@@ -26,7 +26,12 @@
 	</properties>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.9.2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

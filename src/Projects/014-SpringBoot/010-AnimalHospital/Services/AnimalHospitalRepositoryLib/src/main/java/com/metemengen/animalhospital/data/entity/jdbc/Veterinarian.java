@@ -19,6 +19,11 @@ public class Veterinarian {
     {
     }
 
+    public Veterinarian(long diplomaNo, String citizenId, String firstName, String lastName, LocalDate birthDate, LocalDate registerDate)
+    {
+        this(diplomaNo, citizenId, firstName, Optional.empty(), lastName, birthDate, registerDate);
+    }
+
     public Veterinarian(long diplomaNo, String citizenId, String firstName, Optional<String> middleName, String lastName, LocalDate birthDate, LocalDate registerDate)
     {
         this.diplomaNo = diplomaNo;

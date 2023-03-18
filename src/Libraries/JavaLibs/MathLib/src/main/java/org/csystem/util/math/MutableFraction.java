@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : MutableFraction.java
 	AUTHOR		: JavaApp1-Jun-2022 Group
-	LAST UPDATE	: 17.09.2022
+	LAST UPDATE	: 18.03.2023
 
 	MutableFraction class that represents fraction in mathematics
 
@@ -9,6 +9,8 @@
 	All Rights Free
 -----------------------------------------------------------------------*/
 package org.csystem.util.math;
+
+import org.csystem.util.math.exception.MathOperationException;
 
 public class MutableFraction implements Comparable<MutableFraction> {
     private int m_a;
@@ -38,9 +40,9 @@ public class MutableFraction implements Comparable<MutableFraction> {
     {
         if (b == 0) {
             if (a == 0)
-                throw new IllegalArgumentException("Indeterminate");
+                throw new MathOperationException("Indeterminate");
 
-            throw new IllegalArgumentException("Undefined");
+            throw new MathOperationException("Undefined", a < 0 ? MathOperationStatus.NEGATIVE_INFINITY : MathOperationStatus.POSITIVE_INFINITY);
         }
     }
 

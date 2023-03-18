@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : StringUtil.java
 	AUTHOR      : JavaApp1-Jun-2022 Group
-	LAST UPDATE : 09.10.2022
+	LAST UPDATE : 18.03.2023
 
 	Utility class for string operations
 
@@ -140,7 +140,7 @@ public final class StringUtil {
         var sb = new StringBuilder(n);
         int length = sourceText.length();
 
-        for (int i = 0; i < n; ++i)
+        for (var i = 0; i < n; ++i)
             sb.append(sourceText.charAt(r.nextInt(length)));
 
         return sb.toString();

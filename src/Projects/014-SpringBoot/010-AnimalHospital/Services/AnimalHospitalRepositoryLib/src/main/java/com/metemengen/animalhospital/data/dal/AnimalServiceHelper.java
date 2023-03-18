@@ -21,7 +21,6 @@ public class AnimalServiceHelper {
         m_animalRepository = animalRepository;
     }
 
-
     public Optional<Animal> findAnimalById(int id)
     {
         return m_animalRepository.findById(id);

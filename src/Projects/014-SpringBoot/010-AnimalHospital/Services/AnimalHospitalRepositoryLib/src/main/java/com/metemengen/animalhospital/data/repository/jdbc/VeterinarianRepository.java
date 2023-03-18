@@ -23,7 +23,9 @@ import java.util.Optional;
 @Lazy
 public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String COUNT_SQL = "select count(*) from veterinarians";
+
     private static final String FIND_ALL_SQL = "select * from veterinarians"; //+ " where is_active=true";
+
     private static final String FIND_BY_DIPLOMA_NO_SQL = "select * from veterinarians where diploma_no=:diplomaNo";
     private static final String FIND_BY_LAST_NAME_SQL = "select * from veterinarians where last_name=lower(:lastName)";
 
@@ -42,6 +44,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     private static final String FIND_BY_YEAR_SQL = "select * from veterinarians where date_part('year', register_date) = :year";
 
     private static final String SAVE_SQL = "call sp_insert_veterinarian(:diplomaNo, :citizenId, :firstName, :middleName, :lastName, :birthDate, :registerDate)";
+
     private static final String SAVE_VETERINARIAN_ANIMAL_SQL = "call sp_insert_veterinarian_animal(:animalId, :diplomaNo, :price)";
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class NumberUtilTest {
+public class NumberUtilCountDigitsTest {
     @Test
     public void givenNonNegativeValue_whenCountDigits_thenReturnCount()
     {
