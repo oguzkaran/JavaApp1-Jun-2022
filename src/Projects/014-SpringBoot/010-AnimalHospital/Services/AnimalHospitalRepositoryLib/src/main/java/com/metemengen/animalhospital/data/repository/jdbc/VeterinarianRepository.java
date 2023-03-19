@@ -226,6 +226,7 @@ public class VeterinarianRepository implements IVeterinarianRepository {
     public boolean saveVeterinarianAnimal(VeterinarianAnimalSave veterinarianAnimalSave)
     {
         boolean result = false;
+
         try {
             var paramSource = new BeanPropertySqlParameterSource(veterinarianAnimalSave);
 

@@ -4,6 +4,7 @@ import com.metemengen.animalhospital.data.entity.jdbc.Veterinarian;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @SpringBootTest
+@SpringBootApplication
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class VeterinarianRepositorySaveTest {
     @Autowired

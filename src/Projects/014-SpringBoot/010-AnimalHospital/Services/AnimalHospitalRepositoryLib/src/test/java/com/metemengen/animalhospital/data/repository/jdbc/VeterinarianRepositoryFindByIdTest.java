@@ -9,10 +9,9 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 
 @SpringBootTest
-@SpringBootApplication
 @TestPropertySource(locations = "classpath:application-test.properties")
 @Sql({"/ddl.sql", "/veterinarian_data.sql"})
-public class VeterinarianRepositoryFindTest {
+public class VeterinarianRepositoryFindByIdTest {
     @Autowired
     private IVeterinarianRepository m_veterinarianRepository;
 

@@ -2,6 +2,7 @@ package com.metemengen.animalhospital.data.entity.jdbc;
 
 public class VeterinarianAnimalSave {
     public int animalId;
+
     public long diplomaNo;
 
     public double price;
