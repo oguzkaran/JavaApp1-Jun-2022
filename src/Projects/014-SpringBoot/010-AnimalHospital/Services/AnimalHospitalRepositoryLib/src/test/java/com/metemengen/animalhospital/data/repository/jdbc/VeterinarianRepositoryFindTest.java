@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 @SpringBootTest
 @SpringBootApplication
 @TestPropertySource(locations = "classpath:application-test.properties")
-@Sql({"/ddl.sql", "/dml.sql"})
+@Sql({"/ddl.sql", "/veterinarian_data.sql"})
 public class VeterinarianRepositoryFindTest {
     @Autowired
     private IVeterinarianRepository m_veterinarianRepository;

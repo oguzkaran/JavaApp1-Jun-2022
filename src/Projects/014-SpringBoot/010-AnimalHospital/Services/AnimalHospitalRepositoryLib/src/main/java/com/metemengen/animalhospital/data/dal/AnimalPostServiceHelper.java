@@ -1,6 +1,8 @@
 package com.metemengen.animalhospital.data.dal;
 
+import com.karandev.util.data.repository.exception.RepositoryException;
 import com.metemengen.animalhospital.data.entity.orm.Owner;
+import com.metemengen.animalhospital.data.entity.orm.dto.AnimalDTO;
 import com.metemengen.animalhospital.data.entity.orm.dto.AnimalSaveDTO;
 import com.metemengen.animalhospital.data.entity.orm.dto.AnimalWithOwnerSaveDTO;
 import com.metemengen.animalhospital.data.mapper.orm.IAnimalDTOMapper;
@@ -18,14 +20,15 @@ public class AnimalPostServiceHelper {
 
     private  final IAnimalDTOMapper m_animalMapper;
 
-    private void saveAnimalWithOwnerActionCallback(AnimalWithOwnerSaveDTO animalWithOwnerSaveDTO, Owner owner)
+    private void saveAnimalActionCallback(AnimalDTO animalDTO, Owner owner)
     {
-        var animal = m_animalMapper.toAnimal(animalWithOwnerSaveDTO);
+        var animal = m_animalMapper.toAnimal(animalDTO);
 
         animal.owner = owner;
         m_animalRepository.save(animal);
-        animalWithOwnerSaveDTO.id = animal.id;
+        animalDTO.id = animal.id;
     }
+
 
     private void saveAnimalWithOwnerEmptyActionCallback(AnimalWithOwnerSaveDTO animalWithOwnerSaveDTO)
     {
@@ -35,7 +38,7 @@ public class AnimalPostServiceHelper {
         owner.phone = animalWithOwnerSaveDTO.phone;
         owner.address = animalWithOwnerSaveDTO.address;
         owner = m_ownerRepository.save(owner);
-        saveAnimalWithOwnerActionCallback(animalWithOwnerSaveDTO, owner);
+        saveAnimalActionCallback(animalWithOwnerSaveDTO, owner);
     }
 
     public AnimalPostServiceHelper(IAnimalRepository animalRepository, IOwnerRepository ownerRepository, IAnimalDTOMapper animalMapper)
@@ -50,7 +53,7 @@ public class AnimalPostServiceHelper {
     {
         var opt = m_ownerRepository.findByPhone(animalWithOwnerSaveDTO.phone);
 
-        opt.ifPresentOrElse(o -> saveAnimalWithOwnerActionCallback(animalWithOwnerSaveDTO, o),
+        opt.ifPresentOrElse(o -> saveAnimalActionCallback(animalWithOwnerSaveDTO, o),
                 () -> saveAnimalWithOwnerEmptyActionCallback(animalWithOwnerSaveDTO));
 
         return animalWithOwnerSaveDTO;
@@ -59,6 +62,13 @@ public class AnimalPostServiceHelper {
     @Transactional
     public AnimalSaveDTO saveAnimal(AnimalSaveDTO animalSaveDTO)
     {
-        throw new UnsupportedOperationException("TODO");
+        var opt = m_ownerRepository.findByPhone(animalSaveDTO.phone);
+
+        if (opt.isEmpty())
+            throw new RepositoryException("No such phone for owner");
+
+        saveAnimalActionCallback(animalSaveDTO, opt.get());
+
+        return animalSaveDTO;
     }
 }

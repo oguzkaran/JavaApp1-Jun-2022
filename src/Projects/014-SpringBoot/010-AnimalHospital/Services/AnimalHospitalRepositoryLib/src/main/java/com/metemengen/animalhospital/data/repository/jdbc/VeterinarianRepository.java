@@ -49,7 +49,6 @@ public class VeterinarianRepository implements IVeterinarianRepository {
 
     private final NamedParameterJdbcTemplate m_namedParameterJdbcTemplate;
 
-
     private static Veterinarian getVeterinarian(ResultSet rs) throws SQLException
     {
         var diplomaNo = rs.getLong(1);

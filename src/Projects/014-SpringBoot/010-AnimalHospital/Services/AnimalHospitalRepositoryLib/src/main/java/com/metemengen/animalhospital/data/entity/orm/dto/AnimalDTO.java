@@ -13,5 +13,6 @@ public class AnimalDTO {
 
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     public LocalDate birthDate;
+
     public boolean sterile;
 }

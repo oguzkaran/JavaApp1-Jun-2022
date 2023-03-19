@@ -7,6 +7,7 @@ import com.metemengen.animalhospital.data.entity.jdbc.VeterinarianWithFullName;
 import com.metemengen.animalhospital.data.mapper.jdbc.IVeterinarianMapper;
 import com.metemengen.animalhospital.data.repository.jdbc.IVeterinarianRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import static com.karandev.util.data.error.DataUtil.doForRepository;
 
 @Component(BeanName.VETERINARIAN_SERVICE_HELPER)
+@Lazy
 public class VeterinarianServiceHelper {
     private final IVeterinarianRepository m_veterinarianRepository;
     private final IVeterinarianMapper m_veterinarianMapper;

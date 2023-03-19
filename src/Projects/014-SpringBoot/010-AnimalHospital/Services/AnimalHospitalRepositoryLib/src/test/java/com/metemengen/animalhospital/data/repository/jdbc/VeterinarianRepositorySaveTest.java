@@ -33,7 +33,7 @@ public class VeterinarianRepositorySaveTest {
 
 
     @Test
-    @Sql({"/ddl.sql", "/dml.sql"})
+    @Sql({"/ddl.sql", "/veterinarian_data.sql"})
     public void givenVeterinarianInformationWithoutMiddleName_whenSave_thenFindByDiplomaNo()
     {
         var v = new Veterinarian(90234329, "12345678915", "Nuri", "Öztürk", LocalDate.of(1999, 1, 25), LocalDate.now());
