@@ -47,6 +47,7 @@ public class VeterinarianController {
     {
         return m_veterinarianService.existsVeterinarianByDiplomaNo(diplomaNo);
     }
+
     @GetMapping("all")
     public ResponseEntity<Object> findAll()
     {

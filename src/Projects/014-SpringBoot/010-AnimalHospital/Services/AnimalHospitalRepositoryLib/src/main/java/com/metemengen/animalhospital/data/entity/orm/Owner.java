@@ -15,7 +15,7 @@ public class Owner {
     @Column(nullable = false)
     public String name;
 
-    @Column(nullable = false, length = 9, unique = true)
+    @Column(nullable = false, length = 15, unique = true)
     public String phone;
 
     @Column(nullable = false, length = 512)
