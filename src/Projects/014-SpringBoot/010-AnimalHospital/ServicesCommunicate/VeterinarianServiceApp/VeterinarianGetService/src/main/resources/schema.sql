@@ -11,7 +11,6 @@ create table if not exists veterinarians (
     --,is_active boolean default(true) not null
 );
 
-
 truncate table veterinarians restart identity cascade;
 
 create or replace function find_veterinarians_by_year_between(int, int)

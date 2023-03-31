@@ -15,8 +15,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
         </processorPath>
-        <module name="AnimalGetService" />
         <module name="com-atahanyengin-library-animalhospital-repository" />
+        <module name="AnimalGetService" />
         <module name="AnimalPostService" />
         <module name="OwnerGetService" />
       </profile>
