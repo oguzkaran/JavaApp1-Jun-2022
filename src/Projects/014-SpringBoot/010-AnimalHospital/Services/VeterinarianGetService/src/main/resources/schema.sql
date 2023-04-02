@@ -8,7 +8,7 @@ create table if not exists veterinarians (
 	last_name varchar(100) not null,
 	birth_date date not null,
 	register_date date default(current_date) not null
-    --,is_active boolean default(true) not null
+    --is_active boolean default(true) not null
 );
 
 create table if not exists owners (
@@ -62,7 +62,6 @@ begin
             v.register_date
         from veterinarians v where date_part($$year$$, v.register_date) between $1 and $2;
 end
-
 ' language plpgsql;
 
 create or replace function find_all_veterinarians_with_full_name()
@@ -138,8 +137,4 @@ as '
 		insert into veterinarians_to_animals (animal_id, diploma_no, price) values ($1, $2, $3);
     end
 ';
-
-
-
-
 

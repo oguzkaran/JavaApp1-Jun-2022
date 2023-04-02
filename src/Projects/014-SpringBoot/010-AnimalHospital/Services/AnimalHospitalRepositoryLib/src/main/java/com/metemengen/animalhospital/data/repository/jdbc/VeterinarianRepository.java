@@ -287,10 +287,6 @@ public class VeterinarianRepository implements IVeterinarianRepository {
         throw new UnsupportedOperationException();
     }
 
-
-
-
-
     @Override
     public <S extends Veterinarian> Iterable<S> saveAll(Iterable<S> entities)
     {
