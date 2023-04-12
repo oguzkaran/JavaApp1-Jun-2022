@@ -25,4 +25,9 @@ public class VeterinarianAnimalServiceHelper {
             throw new RepositoryException("VeterinarianAnimalServiceHelper.saveVeterinarianAnimal", ex);
         }
     }
+
+    public Iterable<VeterinarianAnimal> findAllVeterinarianAnimal()
+    {
+        return m_veterinarianRepository.findAll();
+    }
 }

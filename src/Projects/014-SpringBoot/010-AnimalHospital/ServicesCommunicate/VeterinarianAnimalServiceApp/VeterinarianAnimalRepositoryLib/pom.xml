@@ -10,7 +10,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.metemengen</groupId>
+	<groupId>com.denizogut</groupId>
 	<artifactId>com-denizogut-library-animalhospital-repository</artifactId>
 	<version>1.0.0</version>
 	<name>com-denizogut-library-animalhospital-repository</name>
