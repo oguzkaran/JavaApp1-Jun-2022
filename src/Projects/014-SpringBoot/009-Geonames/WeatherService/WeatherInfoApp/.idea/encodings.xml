@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/PlaceInfoBackupCoordinateInserterService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PlaceInfoBackupCoordinateInserterService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PlaceInfoCoordinateInserterService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PlaceInfoCoordinateInserterService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoBackup/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoBackup/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoBackupRepositoryLib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoBackupRepositoryLib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoCollector/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoCollector/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoDailyService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoDailyService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoHistoryService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoHistoryService/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoRepositoryLib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/WeatherInfoRepositoryLib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

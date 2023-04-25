@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+      </profile>
+      <profile name="Annotation profile for WeatherInfoHistoryServiceApp" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
+        </processorPath>
+        <module name="org-csystem-application-weather-repository" />
+        <module name="WeatherInfoHistoryServiceApp" />
+        <module name="org-csystem-application-weather-backup-repository" />
+        <module name="WeatherInfoCollectorApp" />
+        <module name="WeatherInfoDailyServiceApp" />
+        <module name="PlaceInfoBackupCoordinateInserterApp" />
+        <module name="WeatherInfoBackupApp" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AnimalHospiatalServiceApp" target="17" />
+      <module name="GenericParenProject" target="17" />
+      <module name="PlaceInfoCoordinateInserterApp (1)" target="11" />
+      <module name="PlaceInfoCoordinateInserterApp (2)" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PlaceInfoBackupCoordinateInserterApp" options="-parameters" />
+      <module name="PlaceInfoCoordinateInserterApp" options="-parameters" />
+      <module name="PlaceInfoCoordinateInserterApp (1)" options="-parameters" />
+      <module name="PlaceInfoCoordinateInserterApp (2)" options="-parameters" />
+      <module name="WeatherInfoApp" options="-parameters" />
+      <module name="WeatherInfoBackupApp" options="-parameters" />
+      <module name="WeatherInfoCollectorApp" options="-parameters" />
+      <module name="WeatherInfoDailyServiceApp" options="-parameters" />
+      <module name="WeatherInfoHistoryServiceApp" options="-parameters" />
+      <module name="org-csystem-application-weather-backup-repository" options="-parameters" />
+      <module name="org-csystem-application-weather-repository" options="-parameters" />
+    </option>
+  </component>
+</project>

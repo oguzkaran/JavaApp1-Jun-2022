@@ -1,15 +1,18 @@
 package com.denizogut.library.animalhospital.data.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "veterinarians_to_animals")
 public class VeterinarianAnimal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "veterinary_to_animal_id")
-    public long id;
+    public UUID uuid;
 
     @Column(name = "animal_id", nullable = false)
     public int animalId;

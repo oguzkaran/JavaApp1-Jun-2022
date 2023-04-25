@@ -4,17 +4,19 @@ import com.denizogut.library.animalhospital.data.dal.VeterinarianAnimalServiceHe
 import com.denizogut.library.animalhospital.data.entity.VeterinarianAnimal;
 import com.karandev.util.data.repository.exception.RepositoryException;
 import org.csystem.app.service.animalhospital.scheduler.dto.client.ExistsDTO;
-import org.csystem.util.console.Console;
+import org.csystem.app.service.animalhospital.scheduler.mapper.IVeterinarianAnimalMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.UUID;
 import java.util.stream.StreamSupport;
 
 @Service
 public class VeterinarianSchedulerService {
     private final VeterinarianAnimalServiceHelper m_veterinarianAnimalServiceHelper;
+    private final IVeterinarianAnimalMapper m_veterinarianAnimalMapper;
 
     private final RestTemplate m_restTemplate;
 
@@ -41,10 +43,27 @@ public class VeterinarianSchedulerService {
         return exists(String.format(m_animalServiceUrlFormat, veterinarianAnimal.animalId));
     }
 
-    public VeterinarianSchedulerService(VeterinarianAnimalServiceHelper veterinarianAnimalServiceHelper, RestTemplate restTemplate)
+    private void check(VeterinarianAnimal veterinarianAnimal)
     {
-        m_veterinarianAnimalServiceHelper = veterinarianAnimalServiceHelper;
-        m_restTemplate = restTemplate;
+        try {
+            if (!veterinarianExists(veterinarianAnimal) || !animalExists(veterinarianAnimal)) {
+                m_veterinarianAnimalServiceHelper.deleteVeterinarianAnimalByUUID(veterinarianAnimal.uuid);
+                var backup = m_veterinarianAnimalMapper.toVeterinarianAnimalBackup(veterinarianAnimal);
+
+                m_veterinarianAnimalServiceHelper.saveVeterinarianAnimalBackup(backup);
+            }
+        }
+        catch (RepositoryException ignore) {
+
+        }
+    }
+
+    public VeterinarianSchedulerService(VeterinarianAnimalServiceHelper m_veterinarianAnimalServiceHelper,
+                                        IVeterinarianAnimalMapper m_veterinarianAnimalMapper,
+                                        RestTemplate m_restTemplate) {
+        this.m_veterinarianAnimalServiceHelper = m_veterinarianAnimalServiceHelper;
+        this.m_veterinarianAnimalMapper = m_veterinarianAnimalMapper;
+        this.m_restTemplate = m_restTemplate;
     }
 
     @Transactional
@@ -54,20 +73,14 @@ public class VeterinarianSchedulerService {
                 .forEach(this::check);
     }
 
-    public void check(VeterinarianAnimal veterinarianAnimal)
-    {
-        try {
-            if (!veterinarianExists(veterinarianAnimal) || !animalExists(veterinarianAnimal))
-                Console.writeLine("Diploma No:%d, Animal Id:%d", veterinarianAnimal.diplomaNo, veterinarianAnimal.animalId);
-        }
-        catch (RepositoryException ignore) {
-
-        }
-    }
-
     public Iterable<VeterinarianAnimal> findVeterinarianAnimals()
     {
         return m_veterinarianAnimalServiceHelper.findAllVeterinarianAnimal();
+    }
+
+    public void deleteVeterinarianAnimalByUUID(UUID uuid)
+    {
+        m_veterinarianAnimalServiceHelper.deleteVeterinarianAnimalByUUID(uuid);
     }
 
     //...

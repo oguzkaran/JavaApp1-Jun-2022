@@ -18,7 +18,7 @@ public class SchedulerRunner {
     }
 
     //@Scheduled(cron = "0 50 23 1,15 * *", zone="Europe/Istanbul")
-    @Scheduled(cron = "0 41-50 18 * * *" , zone="Europe/Istanbul")
+    @Scheduled(cron = "0 0-15 18 * * *" , zone="Europe/Istanbul")
     public void schedule()
     {
         Console.writeLine("schedule");
