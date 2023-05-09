@@ -15,12 +15,12 @@ import java.util.UUID;
 public class VeterinarianAnimalServiceHelper {
     private final IVeterinarianAnimalRepository m_veterinarianRepository;
 
-    private final IVeterinarianAnimalBackupRepository m_VeterinarianAnimalBackupRepository;
+    private final IVeterinarianAnimalBackupRepository m_veterinarianAnimalBackupRepository;
 
 
-    public VeterinarianAnimalServiceHelper(IVeterinarianAnimalRepository m_veterinarianRepository, IVeterinarianAnimalBackupRepository m_VeterinarianAnimalBackupRepository) {
+    public VeterinarianAnimalServiceHelper(IVeterinarianAnimalRepository m_veterinarianRepository, IVeterinarianAnimalBackupRepository m_veterinarianAnimalBackupRepository) {
         this.m_veterinarianRepository = m_veterinarianRepository;
-        this.m_VeterinarianAnimalBackupRepository = m_VeterinarianAnimalBackupRepository;
+        this.m_veterinarianAnimalBackupRepository = m_veterinarianAnimalBackupRepository;
     }
 
     public VeterinarianAnimal saveVeterinarianAnimal(VeterinarianAnimal veterinarianAnimalSave)
@@ -37,7 +37,7 @@ public class VeterinarianAnimalServiceHelper {
     public VeterinarianAnimalBackup saveVeterinarianAnimalBackup(VeterinarianAnimalBackup veterinarianAnimalBackupSave)
     {
         try {
-            return m_VeterinarianAnimalBackupRepository.save(veterinarianAnimalBackupSave);
+            return m_veterinarianAnimalBackupRepository.save(veterinarianAnimalBackupSave);
         }
         catch (Throwable ex) {
             throw new RepositoryException("VeterinarianAnimalServiceHelper.saveVeterinarianAnimalBackup", ex);
