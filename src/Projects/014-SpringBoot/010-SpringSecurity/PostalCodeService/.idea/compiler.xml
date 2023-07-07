@@ -6,15 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-      </profile>
-      <profile name="Annotation profile for ServiceLib" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.3.Final/mapstruct-processor-1.5.3.Final.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.3.Final/mapstruct-1.5.3.Final.jar" />
-        </processorPath>
         <module name="PostalCodeSearchJSONService" />
         <module name="RepositoryLib" />
         <module name="ServiceLib" />
@@ -27,10 +18,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="PostalCodeSearchJSONService" options="-parameters" />
-      <module name="PostalCodeServiceApp" options="-parameters" />
-      <module name="RepositoryLib" options="-parameters" />
-      <module name="ServiceLib" options="-parameters" />
+      <module name="PostalCodeSearchJSONService" options="" />
+      <module name="PostalCodeServiceApp" options="" />
+      <module name="RepositoryLib" options="" />
+      <module name="ServiceLib" options="" />
     </option>
   </component>
 </project>
