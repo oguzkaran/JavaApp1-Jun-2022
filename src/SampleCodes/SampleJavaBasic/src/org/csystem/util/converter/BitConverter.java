@@ -1,9 +1,10 @@
 /*----------------------------------------------------------------------
 	FILE        : BitConverter.java
 	AUTHOR      : Oğuz Karan
-	LAST UPDATE : 08.01.2022
+	LAST UPDATE : 15.10.2021
 
-	Utility class for byte operations with built-in types
+	BitConverter class for byte operations with built-in types and
+	String class
 
 	Copyleft (c) 1993 by C and System Programmers Association (CSD)
 	All Rights Free
@@ -14,7 +15,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 
 public final class BitConverter {
 	private static ByteBuffer allocate(int capacity)
@@ -54,24 +54,6 @@ public final class BitConverter {
 	public static byte [] getBytes(String str, Charset charset)
 	{
 		return str.getBytes(charset);
-	}
-
-	public static byte[] getFixedBytes(String str, int n)
-	{
-		char [] chars = new char[n];
-
-		System.arraycopy(str.toCharArray(), 0, chars, 0, str.length());
-
-		return getBytes(chars);
-	}
-
-	public static String toStringFixed(byte [] data)
-	{
-		String str = new String(BitConverter.toCharArray(data, data.length));
-
-		str = str.substring(0, str.indexOf('\0'));
-
-		return str;
 	}
 
 	public static byte [] getBytes(byte value)
@@ -298,7 +280,7 @@ public final class BitConverter {
 	{
 		byte [] result = new byte[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Byte.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Byte.BYTES)
 			result[i] = toByte(data, idx);
 
 		return result;
@@ -313,7 +295,7 @@ public final class BitConverter {
 	{
 		short [] result = new short[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Short.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Short.BYTES)
 			result[i] = toShort(data, idx);
 
 		return result;
@@ -328,7 +310,7 @@ public final class BitConverter {
 	{
 		int [] result = new int[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Integer.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Integer.BYTES)
 			result[i] = toInt(data, idx);
 
 		return result;
@@ -343,7 +325,7 @@ public final class BitConverter {
 	{
 		long [] result = new long[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Long.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Long.BYTES)
 			result[i] = toLong(data, idx);
 
 		return result;
@@ -358,7 +340,7 @@ public final class BitConverter {
 	{
 		char [] result = new char[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Character.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Character.BYTES)
 			result[i] = toChar(data, idx);
 
 		return result;
@@ -373,7 +355,7 @@ public final class BitConverter {
 	{
 		double [] result = new double[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Double.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Double.BYTES)
 			result[i] = toDouble(data, idx);
 
 		return result;
@@ -388,7 +370,7 @@ public final class BitConverter {
 	{
 		float [] result = new float[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, idx += Float.BYTES)
+		for (int i = 0, idx = startIndex; i < count; ++i, idx += Float.BYTES)
 			result[i] = toFloat(data, idx);
 
 		return result;
@@ -403,7 +385,7 @@ public final class BitConverter {
 	{
 		boolean [] result = new boolean[count];
 
-		for (int i = 0, idx = startIndex; i < count && idx < data.length; ++i, ++idx)
+		for (int i = 0, idx = startIndex; i < count; ++i, ++idx)
 			result[i] = toBoolean(data, idx);
 
 		return result;

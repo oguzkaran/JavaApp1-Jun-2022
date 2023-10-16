@@ -1,7 +1,7 @@
 /*----------------------------------------------------------------------
 	FILE        : SystemUtil.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 02.01.2022
+	AUTHOR      : Oğuz Karan
+	LAST UPDATE : 12.08.2023
 
 	Utility class for system operations
 
@@ -12,10 +12,18 @@ package org.csystem.util.system;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.file.Path;
 
 public final class SystemUtil {
+    private static final String LITTLE_ENDIAN_TEXT = "LITTLE ENDIAN";
+    private static final String BIG_ENDIAN_TEXT = "BIG ENDIAN";
     private SystemUtil()
     {
+    }
+
+    public static void changeEndian(ByteBuffer byteBuffer)
+    {
+        byteBuffer.order(byteBuffer.order() == ByteOrder.BIG_ENDIAN ? ByteOrder.LITTLE_ENDIAN : ByteOrder.BIG_ENDIAN);
     }
 
     public static ByteOrder getEndian(ByteBuffer byteBuffer)
@@ -23,13 +31,31 @@ public final class SystemUtil {
         return byteBuffer.order();
     }
 
-    public static void toLittleEndian(ByteBuffer byteBuffer)
+    public static String endianText(ByteBuffer byteBuffer)
     {
-        byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+        return byteBuffer.order() == ByteOrder.LITTLE_ENDIAN ? LITTLE_ENDIAN_TEXT : BIG_ENDIAN_TEXT;
     }
 
-    public static String getEndianText()
+
+    public static boolean isLittleEndian()
     {
-        return ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN ? "Little Endian" : "Big Endian";
+        return ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN;
     }
+
+    public static boolean isBigEndian()
+    {
+        return !isLittleEndian();
+    }
+
+    public static String endianText()
+    {
+        return isLittleEndian() ? LITTLE_ENDIAN_TEXT : BIG_ENDIAN_TEXT;
+    }
+
+    public Path userDirectoryPath()
+    {
+        return Path.of(System.getProperty("user.dir"));
+    }
+
+    //...
 }

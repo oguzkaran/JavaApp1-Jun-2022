@@ -1,13 +1,13 @@
-/*----------------------------------------------------------------------
-	FILE        : DayOfWeek.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 24.10.2021
+/*------------------------------------------------------------------
+	FILE		: DayOfWeek.java
+	AUTHOR		: Java-Aug-2022 Group
+	LAST UPDATE	: 01.04.2023
 
-	enum class that represents days of week
+	enum class for day of weeks
 
-	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	Copyleft (c) 1993 by C and System Programmers Association
 	All Rights Free
------------------------------------------------------------------------*/
+------------------------------------------------------------------ */
 package org.csystem.util.datetime;
 
 public enum DayOfWeek {

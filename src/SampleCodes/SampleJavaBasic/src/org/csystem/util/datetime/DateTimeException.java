@@ -1,23 +1,23 @@
-/*----------------------------------------------------------------------
-	FILE        : DateTimeException.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 05.12.2021
+/*------------------------------------------------------------------
+	FILE		: DateTimeException.java
+	AUTHOR		: Java-Aug-2022 Group
+	LAST UPDATE	: 10.06.2023
 
-	Class that is used for exceptions of date and/or time
+	DateTimeException class
 
-	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	Copyleft (c) 1993 by C and System Programmers Association
 	All Rights Free
------------------------------------------------------------------------*/
+------------------------------------------------------------------ */
 package org.csystem.util.datetime;
 
 public class DateTimeException extends RuntimeException {
     public DateTimeException(String message)
     {
-        super(message);
+        this(message, null);
     }
 
-    public String getMessage()
+    public DateTimeException(String message, Throwable cause)
     {
-        return String.format("DateTime Exception:%s", super.getMessage());
+        super(message, cause);
     }
 }

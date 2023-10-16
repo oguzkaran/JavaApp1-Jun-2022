@@ -1,30 +1,31 @@
-/*----------------------------------------------------------------------
-	FILE        : IntValue.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 14.11.2021
+/*----------------------------------------------------------------
+	FILE		: IntValue.java
+	AUTHOR		: Java-Aug-2022 Group
+	LAST UPDATE	: 30.04.2023
 
-	Immutable IntValue class for wrapping an int value by using cache
-	for [-128, 127] closed interval
+	Immutable IntValue class that wraps an int value by using cache
+	for values in [-128, 127] interval
 
-	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	Copyleft (c) 1993 C and System Programmers Association
 	All Rights Free
------------------------------------------------------------------------*/
+----------------------------------------------------------------*/
 package org.csystem.util.wrapper;
 
 public final class IntValue {
     private static final int CACHE_MIN = -128;
     private static final int CACHE_MAX = 127;
-    private static final IntValue[] ms_cache = new IntValue[CACHE_MAX - CACHE_MIN + 1];
+    private static final IntValue [] CACHE = new IntValue[CACHE_MAX - CACHE_MIN + 1];
     private final int m_value;
+
+    public static final IntValue ZERO = of(0);
+    public static final IntValue ONE = of(1);
+    public static final IntValue TWO = of(2);
+    public static final IntValue TEN = of(10);
 
     private IntValue(int value)
     {
         m_value = value;
     }
-
-    public static final IntValue ZERO = of(0);
-    public static final IntValue ONE = of(1);
-    public static final IntValue TEN = of(10);
 
     public static IntValue of(int value)
     {
@@ -33,10 +34,10 @@ public final class IntValue {
 
         int idx = value + 128;
 
-        if (ms_cache[idx] == null)
-            ms_cache[idx] = new IntValue(value);
+        if (CACHE[idx] == null)
+            CACHE[idx] = new IntValue(value);
 
-        return ms_cache[idx];
+        return CACHE[idx];
     }
 
     public int getValue()
@@ -54,9 +55,9 @@ public final class IntValue {
         return of(m_value + value);
     }
 
-    public IntValue add(IntValue other)
+    public IntValue add(IntValue value)
     {
-        return add(other.m_value);
+        return add(value.m_value);
     }
 
     public IntValue subtract(int value)
@@ -64,9 +65,9 @@ public final class IntValue {
         return add(-value);
     }
 
-    public IntValue subtract(IntValue other)
+    public IntValue subtract(IntValue value)
     {
-        return subtract(other.m_value);
+        return subtract(value.m_value);
     }
 
     public IntValue multiply(int value)
@@ -74,9 +75,9 @@ public final class IntValue {
         return of(m_value * value);
     }
 
-    public IntValue multiply(IntValue other)
+    public IntValue multiply(IntValue value)
     {
-        return multiply(other.m_value);
+        return multiply(value.m_value);
     }
 
     public IntValue divide(int value)
@@ -84,31 +85,42 @@ public final class IntValue {
         return of(m_value / value);
     }
 
-    public IntValue divide(IntValue other)
+    public IntValue divide(IntValue value)
     {
-        return divide(other.m_value);
+        return divide(value.m_value);
     }
 
-    public IntValue [] divideWithRemainder(int value)
+    public IntValue [] divideAndRemainder(int value)
     {
         IntValue [] result = new IntValue[2];
+
         result[0] = divide(value);
-        result[1] = of(m_value % value);
+        result[1] = mod(value);
 
         return result;
     }
 
-    public IntValue [] divideWithRemainder(IntValue other)
+    public IntValue [] divideAndRemainder(IntValue value)
     {
-        return divideWithRemainder(other.m_value);
+        return divideAndRemainder(value.m_value);
     }
 
-    public IntValue increment()
+    public IntValue mod(int value)
+    {
+        return of(m_value % value);
+    }
+
+    public IntValue mod(IntValue value)
+    {
+        return mod(value.m_value);
+    }
+
+    public IntValue inc()
     {
         return add(1);
     }
 
-    public IntValue decrement()
+    public IntValue dec()
     {
         return subtract(1);
     }

@@ -1,57 +1,50 @@
-/*----------------------------------------------------------------------
-	FILE        : StringUtil.java
-	AUTHOR      : Java-May-2021 Group
-	LAST UPDATE : 08.01.2022
+/*----------------------------------------------------------------
+	FILE		: Console.java
+	AUTHOR		: Java-Aug-2022 Group
+	LAST UPDATE	: 12.08.2023
 
-	Console class that is used for standard input and output operations
+	Utility class for standard input and output operations
 
-	Copyleft (c) 1993 by C and System Programmers Association (CSD)
+	Copyleft (c) 1993 C and System Programmers Association
 	All Rights Free
------------------------------------------------------------------------*/
+----------------------------------------------------------------*/
 package org.csystem.util.console;
 
 import java.util.Scanner;
 
 public final class Console {
-    private static final Scanner ms_kb;
+    private static final Scanner KB;
 
     static {
-        ms_kb = new Scanner(System.in);
+        KB = new Scanner(System.in);
     }
+
     private Console()
-    {}
+    {
+    }
 
     public static int readInt()
     {
         return readInt("");
     }
 
-    public static int readInt(String message)
+    public static int readInt(String prompt)
     {
-        return readInt(message, "");
+        return readInt(prompt, "");
     }
 
-    public static int readInt(String message, String errMessage)
+    public static int readInt(String prompt, String invalidMessage)
     {
-        for (;;) {
+        while (true) {
             try {
-                System.out.print(message);
-                return Integer.parseInt(ms_kb.nextLine());
+                System.out.print(prompt);
+
+                return Integer.parseInt(KB.nextLine());
             }
             catch (NumberFormatException ignore) {
-                System.out.print(errMessage);
+                System.out.print(invalidMessage);
             }
         }
-    }
-
-    public static int readIntLine(String message)
-    {
-        return readInt(message + '\n');
-    }
-
-    public static int readIntLine(String message, String errMessage)
-    {
-        return readInt(message + '\n', errMessage + '\n');
     }
 
     public static double readDouble()
@@ -59,43 +52,135 @@ public final class Console {
         return readDouble("");
     }
 
-    public static double readDouble(String message)
+    public static double readDouble(String prompt)
     {
-        return readDouble(message, "");
+        return readDouble(prompt, "");
     }
 
-    public static double readDouble(String message, String errMessage)
+    public static double readDouble(String prompt, String invalidMessage)
     {
-        for (;;) {
+        while (true) {
             try {
-                System.out.print(message);
-                return Double.parseDouble(ms_kb.nextLine());
+                System.out.print(prompt);
+
+                return Double.parseDouble(KB.nextLine());
             }
             catch (NumberFormatException ignore) {
-                System.out.print(errMessage);
+                System.out.print(invalidMessage);
             }
         }
     }
 
-    public static double readDoubleLine(String message)
+    public static long readLong()
     {
-        return readInt(message + '\n');
+        return readLong("");
     }
 
-    public static double readDoubleLine(String message, String errMessage)
+    public static long readLong(String prompt)
     {
-        return readInt(message + '\n', errMessage + '\n');
+        return readLong(prompt, "");
     }
 
-    public static String read(String message)
+    public static long readLong(String prompt, String invalidMessage)
     {
-        System.out.print(message);
-        return ms_kb.nextLine();
+        while (true) {
+            try {
+                System.out.print(prompt);
+
+                return Long.parseLong(KB.nextLine());
+            }
+            catch (NumberFormatException ignore) {
+                System.out.print(invalidMessage);
+            }
+        }
     }
 
-    public static String readLine()
+    public static short readShort()
     {
-        return ms_kb.nextLine();
+        return readShort("");
+    }
+
+    public static short readShort(String prompt)
+    {
+        return readShort(prompt, "");
+    }
+
+    public static short readShort(String prompt, String invalidMessage)
+    {
+        while (true) {
+            try {
+                System.out.print(prompt);
+
+                return Short.parseShort(KB.nextLine());
+            }
+            catch (NumberFormatException ignore) {
+                System.out.print(invalidMessage);
+            }
+        }
+    }
+
+    public static String readString()
+    {
+        return readString("");
+    }
+
+    public static String readString(String prompt)
+    {
+        write(prompt);
+        return KB.nextLine();
+    }
+
+    public static char readChar()
+    {
+        return readChar("");
+    }
+
+    public static char readChar(String prompt)
+    {
+        return readChar(prompt, "");
+    }
+
+    public static char readChar(String prompt, String invalidMessage)
+    {
+        String str;
+
+        while ((str = readString(prompt)).length() != 1 && !str.isEmpty())
+            Console.write(invalidMessage);
+
+        return str.isEmpty() ? '\n' : str.charAt(0);
+    }
+
+    //...
+
+
+    public static void write(Object arg)
+    {
+        write("%s", arg);
+    }
+
+    public static void write(String format, Object...args)
+    {
+        System.out.printf(format, args);
+    }
+
+    public static void writeLine(String format, Object...args)
+    {
+        write(format + "\n", args);
+    }
+
+    public static void writeErrLine(String format, Object...args)
+    {
+        System.err.printf(format + "\n", args);
+    }
+
+    public static void writeLine()
+    {
+        System.out.println();
+    }
+
+    public static void writeLine(Object arg)
+    {
+        writeLine("%s", arg);
     }
 
     //...
